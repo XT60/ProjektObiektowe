@@ -1,4 +1,3 @@
-
 public enum MapDirection {
     N, NE, E, SE, S, SW, W, NW;
 
@@ -49,5 +48,10 @@ public enum MapDirection {
                 return new Vector2d(-1, -1);
         }
         return null;
+    }
+
+    @Override
+    public boolean equals(MapDirection object){
+        return object.ordinal() == this.ordinal();
     }
 }
