@@ -1,0 +1,35 @@
+int mapHeight                       wysokość i szerokość mapy,
+enum mapVariant                     wariant mapy (wyjaśnione w sekcji poniżej),
+int initPlantCount                  startowa liczba roślin,
+int plantEnergy                     energia zapewniana przez zjedzenie jednej rośliny,
+int plantGrowthRate                 liczba roślin wyrastająca każdego dnia,
+enum plantVariant                   wariant wzrostu roślin (wyjaśnione w sekcji poniżej),
+int initAnimalCount                 startowa liczba zwierzaków,
+int initAnimalEnergy                startowa energia zwierzaków,
+int reproductionEnergyTreshold      energia konieczna, by uznać zwierzaka za najedzonego (i gotowego do rozmnażania),
+int reproductionCost                energia rodziców zużywana by stworzyć potomka,
+int minMutationCount                minimalna liczba mutacji u potomków (może być równa 0)
+int maxMutationCount                maksymalna
+enum mutationVariant                wariant mutacji (wyjaśnione w sekcji poniżej),
+int animalGenomeLength              długość genomu zwierzaków,
+enum animalVariant                  wariant zachowania zwierzaków (wyjaśnione w sekcji poniżej),
+
+
+enum mapVariant
+    GLOBE
+    PORTAL
+
+enum plantVariant
+    TOXIC_CORPSE
+    FERTILE_EQUATOR
+
+enum mutationVariant
+    SLIGHT_REVISION
+    FULL_RANDOMNESS
+
+enum animalVariant
+    PREDESTINAION
+    SOME_CRAZYNESS
+
+
+

@@ -1,3 +1,6 @@
+package oop;
+
+
 public enum MapDirection {
     N, NE, E, SE, S, SW, W, NW;
 
@@ -24,8 +27,8 @@ public enum MapDirection {
         return "";
     }
 
-    public MapDirection turned(int angleMultiplier){
-        return MapDirection.values()[angleMultiplier + this.ordinal()];
+    public MapDirection turned(int moveValue){
+        return MapDirection.values()[(moveValue + this.ordinal()) % 8];
     }
 
     public Vector2d toUnitVector(){
@@ -50,8 +53,4 @@ public enum MapDirection {
         return null;
     }
 
-    @Override
-    public boolean equals(MapDirection object){
-        return object.ordinal() == this.ordinal();
-    }
 }

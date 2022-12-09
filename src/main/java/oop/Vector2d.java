@@ -1,3 +1,5 @@
+package oop;
+
 import java.util.Objects;
 
 public class Vector2d {
@@ -9,6 +11,7 @@ public class Vector2d {
         this.y = y;
     }
 
+//    public boolean
     public Vector2d(Vector2d vec){
         this.x = vec.getX();
         this.y = vec.getY();
