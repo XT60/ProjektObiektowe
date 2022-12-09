@@ -1,10 +1,12 @@
-import org.junit.jupiter.api.Assertions;
+package oop;
+
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class MapDirectionTest {
     @Test
-    public void toStringTest(){
+    public void turnedTest(){
         MapDirection[] beginValues = {
                 MapDirection.N,
                 MapDirection.NE,
@@ -20,7 +22,7 @@ public class MapDirectionTest {
         MapDirection[] resutls = {
                 MapDirection.N,
                 MapDirection.E,
-                MapDirection.SE,
+                MapDirection.S,
                 MapDirection.W,
                 MapDirection.N,
                 MapDirection.E,
@@ -29,11 +31,7 @@ public class MapDirectionTest {
         };
 
         for(int i = 0; i < beginValues.length; i++){
-//            Assertions.assertEquals(beginValues[i].turned(arguments[i]));
+            assertTrue(beginValues[i].turned(arguments[i]) == resutls[i]);
         }
     }
-
-//    public void validate(MapDirection[] beginValues, int[] arguments, MapDirection[] results){
-//
-//    }
 }
