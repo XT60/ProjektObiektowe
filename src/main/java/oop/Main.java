@@ -1,6 +1,7 @@
 package oop;
 
 
+import gui.App;
 import oop.*;
 import javafx.application.Application;
 

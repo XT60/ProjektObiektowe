@@ -5,37 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f670219e-a327-4105-84e3-bc7896776e1c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/gui/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/oop/AnimalVariant.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/oop/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/oop/CellType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/oop/CrazyGenIndexChanger.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/oop/GenIndexChanger.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/oop/GlobeMap.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/oop/MapCell.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/oop/MapInhabitant.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/oop/Plant.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/oop/PortalMap.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/oop/PredestinationGenIndexChanger.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/oop/WorldMap.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/oop/ideas.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/oop/AnimalTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/oop/InputValidation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/oop/PlantVariant.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/oop/mapVariant.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/oop/mutationVariant.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/MapDirection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapDirection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Vector2d.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/Vector2d.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/notUsedYet/AbstractWorldMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/AbstractWorldMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/notUsedYet/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/Animal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/notUsedYet/Direction.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/notUsedYet/IEngine.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/notUsedYet/MapInhabitant.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/notUsedYet/OptionsParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/notUsedYet/SimulationEngine.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/notUsedYet/gui/App.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/notUsedYet/gui/GuiElementBox.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/MapDirectionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/oop/MapDirectionTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gui/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oop/AnimalVariant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/AnimalVariant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oop/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oop/ideas.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/ideas.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,10 +28,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
-        <option value="Interface" />
         <option value="JavaFXApplication" />
+        <option value="Enum" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -99,7 +77,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.MapDirectionTest.toStringTest">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="oop.Main" />
       <module name="Project1.main" />
@@ -154,7 +132,8 @@
       <workItem from="1669652735735" duration="2153000" />
       <workItem from="1670257416518" duration="2931000" />
       <workItem from="1670587130920" duration="11745000" />
-      <workItem from="1670618940688" duration="4461000" />
+      <workItem from="1670618940688" duration="4889000" />
+      <workItem from="1670687051498" duration="5635000" />
     </task>
     <servers />
   </component>

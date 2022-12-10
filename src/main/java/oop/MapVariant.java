@@ -1,12 +1,12 @@
 package oop;
 
-public enum AnimalVariant implements InputValidation {
-    PREDESTINAION, SOME_CRAZYNESS;
+public enum MapVariant implements InputValidation {
+    GLOBE, PORTAL;
 
     public PlantVariant parse(String inputValue){
         String[][] validValues = {
-                {"predestination"},
-                {"some crazyness", "some_crazyness", "some-crazyness"}
+                {"globe"},
+                {"portal"}
         };
 
         int y = InputValidation.getValueIndex(validValues, inputValue);

@@ -27,7 +27,7 @@ enum mutationVariant
     SLIGHT_REVISION
     FULL_RANDOMNESS
 
-enum animalVariant
+enum animalVariant -
     PREDESTINAION
     SOME_CRAZYNESS
 
