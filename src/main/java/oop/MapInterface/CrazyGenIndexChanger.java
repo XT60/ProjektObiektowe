@@ -1,4 +1,4 @@
-package oop;
+package oop.MapInterface;
 
 import java.util.Random;
 

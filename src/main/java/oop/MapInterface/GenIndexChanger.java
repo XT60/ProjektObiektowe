@@ -1,4 +1,4 @@
-package oop;
+package oop.MapInterface;
 
 public interface GenIndexChanger {
     /**

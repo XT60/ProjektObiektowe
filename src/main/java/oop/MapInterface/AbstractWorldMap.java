@@ -1,7 +1,6 @@
-package oop;
+package oop.MapInterface;
 
 import java.util.ArrayList;
-import java.util.Set;
 
 abstract class AbstractWorldMap implements WorldMap{
     private ArrayList<ArrayList<MapCell>> worldMap;

@@ -1,4 +1,6 @@
-package oop;
+package oop.MapInterface;
+
+import oop.Vector2d;
 
 abstract class MapInhabitant {
     protected Vector2d position;

@@ -1,4 +1,6 @@
-package oop;
+package oop.MapInterface;
+
+import oop.ConfigParameters.AnimalVariant;
 
 import java.util.Arrays;
 import java.util.Random;

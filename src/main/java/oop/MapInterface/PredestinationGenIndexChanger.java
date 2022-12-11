@@ -1,4 +1,4 @@
-package oop;
+package oop.MapInterface;
 
 public class PredestinationGenIndexChanger implements GenIndexChanger {
     int genomeLength;

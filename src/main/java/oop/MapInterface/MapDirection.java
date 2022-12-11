@@ -1,5 +1,7 @@
-package oop;
+package oop.MapInterface;
 
+
+import oop.Vector2d;
 
 public enum MapDirection {
     N, NE, E, SE, S, SW, W, NW;

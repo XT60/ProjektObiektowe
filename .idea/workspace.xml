@@ -5,15 +5,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f670219e-a327-4105-84e3-bc7896776e1c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/oop/InputValidation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/oop/PlantVariant.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/oop/mapVariant.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/oop/mutationVariant.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/oop/Config.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/oop/ConfigParameters/WorldParamType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/oop/World.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/oop/gui/ConfigurationWindow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/oop/gui/SimulationWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/AnimalVariant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/AnimalVariant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gui/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/gui/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oop/AbstractWorldMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/AbstractWorldMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oop/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/Animal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oop/AnimalVariant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/ConfigParameters/AnimalVariant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oop/App.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oop/CellType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/CellType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oop/CrazyGenIndexChanger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/CrazyGenIndexChanger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oop/GenIndexChanger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/GenIndexChanger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oop/GlobeMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/GlobeMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oop/InputValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/ConfigParameters/InputValidation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/oop/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/ideas.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/ideas.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/MapCell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapDirection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/MapDirection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapInhabitant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/MapInhabitant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapVariant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/ConfigParameters/MapVariant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MutationVariant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/ConfigParameters/MutationVariant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oop/Plant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/Plant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oop/PlantVariant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/ConfigParameters/PlantVariant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oop/PortalMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/PortalMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oop/PredestinationGenIndexChanger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/PredestinationGenIndexChanger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oop/WorldMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/WorldMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/oop/MapDirectionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/oop/MapDirectionTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,9 +48,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaFXApplication" />
+        <option value="Interface" />
         <option value="Enum" />
         <option value="Class" />
-        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -83,7 +102,7 @@
       <module name="Project1.main" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="oop.*" />
+          <option name="PATTERN" value="oop.ConfigParameters.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -133,7 +152,8 @@
       <workItem from="1670257416518" duration="2931000" />
       <workItem from="1670587130920" duration="11745000" />
       <workItem from="1670618940688" duration="4889000" />
-      <workItem from="1670687051498" duration="5635000" />
+      <workItem from="1670687051498" duration="17624000" />
+      <workItem from="1670747231577" duration="14928000" />
     </task>
     <servers />
   </component>
@@ -152,6 +172,20 @@
     </option>
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/oop/IntParameter.java</url>
+          <line>2</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/oop/World.java</url>
+          <line>31</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="GradleRunConfiguration">
         <watch expression="beginValues[i].turned(arguments[i]) == resutls[i]" language="JAVA" />
