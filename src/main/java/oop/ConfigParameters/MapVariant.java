@@ -1,18 +1,24 @@
 package oop.ConfigParameters;
 
-public enum MapVariant implements InputValidation {
+public enum MapVariant{
     GLOBE, PORTAL;
 
-     static MapVariant parse(String inputValue){
-        String[][] validValues = {
-                {"globe"},
-                {"portal"}
+     static MapVariant parse(int value){
+        return switch (value){
+            case 0 -> MapVariant.GLOBE;
+            case 1 -> MapVariant.PORTAL;
+            default -> null;
         };
+    }
 
-        int y = InputValidation.getValueIndex(validValues, inputValue);
-        if (y == -1){
-            throw new IllegalArgumentException(InputValidation.getErrorMessage(validValues, inputValue));
+    static boolean mustBeValid(int value) throws IllegalArgumentException{
+        if (value != 0 && value != 1){
+            throw new IllegalArgumentException("value for " + getParamType() + "has to be 0 or 1");
         }
-        return MapVariant.values()[y];
+        return true;
+    }
+
+    static WorldParamType getParamType(){
+        return WorldParamType.MAP_VARIANT;
     }
 }

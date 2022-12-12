@@ -5,34 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f670219e-a327-4105-84e3-bc7896776e1c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/oop/Config.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/oop/ConfigParameters/WorldParamType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/oop/World.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/oop/gui/ConfigurationWindow.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/oop/gui/SimulationWindow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ConfigFiles/instruction.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/gui/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/AbstractWorldMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/AbstractWorldMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/Animal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/AnimalVariant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/ConfigParameters/AnimalVariant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/App.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/CellType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/CellType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/CrazyGenIndexChanger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/CrazyGenIndexChanger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/GenIndexChanger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/GenIndexChanger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/GlobeMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/GlobeMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/InputValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/ConfigParameters/InputValidation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/MapCell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapDirection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/MapDirection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapInhabitant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/MapInhabitant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapVariant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/ConfigParameters/MapVariant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MutationVariant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/ConfigParameters/MutationVariant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/Plant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/Plant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/PlantVariant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/ConfigParameters/PlantVariant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/PortalMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/PortalMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/PredestinationGenIndexChanger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/PredestinationGenIndexChanger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/WorldMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/WorldMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/oop/MapDirectionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/oop/MapDirectionTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConfigFiles/config1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ConfigFiles/config1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oop/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oop/ConfigParameters/AnimalVariant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/ConfigParameters/AnimalVariant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oop/ConfigParameters/InputValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/ConfigParameters/EnumParameter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oop/ConfigParameters/MapVariant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/ConfigParameters/MapVariant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oop/ConfigParameters/MutationVariant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/ConfigParameters/MutationVariant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oop/ConfigParameters/PlantVariant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/ConfigParameters/PlantVariant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oop/ConfigParameters/WorldParamType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/ConfigParameters/WorldParamType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oop/World.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/World.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oop/gui/ConfigurationWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/gui/ConfigurationWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oop/gui/SimulationWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/gui/SimulationWindow.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,6 +70,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Jakub\OneDrive\Pulpit\studia\obiektowe\Project1" />
       <recent name="C:\Users\Jakub\OneDrive\Pulpit\studia\obiektowe\Project1\src\main\java\oop" />
       <recent name="C:\Users\Jakub\OneDrive\Pulpit\studia\obiektowe\Project1\src\test\java" />
       <recent name="C:\Users\Jakub\OneDrive\Pulpit\studia\obiektowe\Project1\src\main\java\notUsedYet" />
@@ -135,8 +121,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.MapDirectionTest.toStringTest" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Gradle.MapDirectionTest.toStringTest" />
       </list>
     </recent_temporary>
   </component>
@@ -153,7 +139,8 @@
       <workItem from="1670587130920" duration="11745000" />
       <workItem from="1670618940688" duration="4889000" />
       <workItem from="1670687051498" duration="17624000" />
-      <workItem from="1670747231577" duration="14928000" />
+      <workItem from="1670747231577" duration="23158000" />
+      <workItem from="1670830687625" duration="1155000" />
     </task>
     <servers />
   </component>
@@ -179,11 +166,6 @@
           <line>2</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/oop/World.java</url>
-          <line>31</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
@@ -201,5 +183,10 @@
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
     <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Project1$Main.ic" NAME="Main Coverage Results" MODIFIED="1670831772234" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>oop.ConfigParameters.*</FILTER>
+    </SUITE>
   </component>
 </project>

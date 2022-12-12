@@ -7,15 +7,45 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import oop.Config;
 import oop.ConfigParameters.WorldParamType;
 import oop.World;
 
-import java.util.Map;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.*;
 
 public class SimulationWindow {
     World world;
-    public SimulationWindow(Map<WorldParamType, String> paramData){
-        world = new World(paramData);
+    public SimulationWindow(String configFileName) throws FileNotFoundException, IllegalArgumentException, NumberFormatException{
+        List<String> lines = new ArrayList<>();
+        File myObj = new File(Config.CONFIG_DIR_PATH +configFileName);
+        Scanner myReader = new Scanner(myObj);
+        while (myReader.hasNextLine()) {
+            String data = myReader.nextLine();
+            lines.add(data);
+        }
+        myReader.close();
+        int len = Config.CONFIG_FILE_STRUCTURE.length;
+        if (lines.size() < len){
+            throw new IllegalArgumentException("Config file has to little arguments");
+        }
+        if (lines.size() > len){
+            throw new IllegalArgumentException("Config file has much little arguments");
+        }
+
+        Map<WorldParamType, Object> paramValues = new HashMap<>();
+        for(int i = 0; i < len; i++){
+            String[] parts = lines.get(i).split(" ");
+            WorldParamType type = Config.CONFIG_FILE_STRUCTURE[i];
+            if (parts.length != 2){
+                throw new IllegalArgumentException("Invalid input for " + type);
+            }
+            int value = Integer.parseInt(parts[1]);
+            Object parsedValue = type.parse(value);
+            paramValues.put(type, parsedValue);
+        }
+        world = new World(paramValues);
         showSimulationWindow();
     }
 

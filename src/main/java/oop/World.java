@@ -8,52 +8,24 @@ import java.util.Map;
 
 public class World {
     WorldMap map;
-    Integer mapHeight;
-    Integer mapWidth;
+    int mapHeight;
+    int mapWidth;
     MapVariant mapVariant;
-    Integer initPlantCount;
-    Integer plantEnergy;
-    Integer plantGrowthRate;
+    int initPlantCount;
+    int plantEnergy;
+    int plantGrowthRate;
     PlantVariant plantVariant;
-    Integer initAnimalCount;
-    Integer initAnimalEnergy;
-    Integer reproductionEnergyThreshold;
-    Integer reproductionCost;
-    Integer minMutationCount;
-    Integer maxMutationCount;
+    int initAnimalCount;
+    int initAnimalEnergy;
+    int reproductionEnergyThreshold;
+    int reproductionCost;
+    int minMutationCount;
+    int maxMutationCount;
     MutationVariant mutationVariant;
-    Integer animalGenomeLength;
+    int animalGenomeLength;
     AnimalVariant animalVariant;
 
-    public World (Map<WorldParamType, String> paramData) throws IllegalArgumentException{
-        // parse data to variables
-        Map<WorldParamType, Object> paramValues = new HashMap<WorldParamType, Object>();
-        for (Map.Entry<WorldParamType, String> entry : paramData.entrySet()) {
-            paramValues.put(entry.getKey(), entry.getKey().parse(entry.getValue()));
-        }
-
-        // check consistency of variables (throw exceptions)
-        WorldParamType[] intParamTypes = {
-                WorldParamType.MAP_HEIGHT,
-                WorldParamType.MAP_WIDTH,
-                WorldParamType.INIT_PLANT_COUNT,
-                WorldParamType.PLANT_ENERGY,
-                WorldParamType.PLANT_GROWTH_RATE,
-                WorldParamType.INIT_ANIMAL_COUNT,
-                WorldParamType.INIT_ANIMAL_ENERGY,
-                WorldParamType.REPRODUCTION_ENERGY_THRESHOLD,
-                WorldParamType.REPRODUCTION_COST,
-                WorldParamType.MIN_MUTATION_COUNT,
-                WorldParamType.MAX_MUTATION_COUNT,
-                WorldParamType.ANIMAL_GENOME_LENGTH,
-        };
-        Map<WorldParamType, Integer> intParamsMap = new HashMap<>();
-        for (WorldParamType param : intParamTypes){
-            Integer val = (Integer)paramValues.get(param);
-            intParamsMap.put(param, val);
-        }
-        checkConsistency(intParamsMap);
-
+    public World (Map<WorldParamType, Object> paramValues) throws IllegalArgumentException{
         // initialize "this" variables
         mapHeight = (Integer)paramValues.get(WorldParamType.MAP_HEIGHT);
         mapWidth = (Integer)paramValues.get(WorldParamType.MAP_WIDTH);

@@ -1,16 +1,5 @@
 package oop.ConfigParameters;
 
-import oop.Config;
-import oop.Vector2d;
-
-import oop.ConfigParameters.*;
-import oop.MapInterface.WorldMap;
-
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-
-
 public enum WorldParamType {
     MAP_HEIGHT, MAP_WIDTH, MAP_VARIANT,
     INIT_PLANT_COUNT, PLANT_ENERGY, PLANT_GROWTH_RATE, PLANT_VARIANT,
@@ -62,61 +51,44 @@ public enum WorldParamType {
 
     }
 
+    /**
+     * check validity of a value (doesn't check if it is valid in relation to other values)
+     * @param value
+     * @return
+     * @throws IllegalArgumentException
+     */
+    private boolean mustBeValid(int value) throws IllegalArgumentException{
+        return switch (this){
+            case MAP_HEIGHT, MAP_WIDTH , INIT_PLANT_COUNT, PLANT_ENERGY, PLANT_GROWTH_RATE, INIT_ANIMAL_COUNT,
+                    INIT_ANIMAL_ENERGY, REPRODUCTION_ENERGY_THRESHOLD, REPRODUCTION_COST, MIN_MUTATION_COUNT,
+                    MAX_MUTATION_COUNT, ANIMAL_GENOME_LENGTH -> mustBePositive(value);
+            case PLANT_VARIANT -> PlantVariant.mustBeValid(value);
+            case MUTATION_VARIANT -> MutationVariant.mustBeValid(value);
+            case MAP_VARIANT -> MapVariant.mustBeValid(value);
+            case ANIMAL_VARIANT -> AnimalVariant.mustBeValid(value);
+        };
+    }
 
-    public Object parse(String text) throws IllegalArgumentException{
+    private boolean mustBePositive (int value) throws IllegalArgumentException{
+        if (value < 0){
+            throw new IllegalArgumentException(this + " must be positive");
+        }
+        return true;
+    }
+
+    public Object parse(int value) throws IllegalArgumentException{
+        this.mustBeValid(value);
         return switch(this){
             case MAP_HEIGHT, MAP_WIDTH,
                     INIT_PLANT_COUNT, PLANT_ENERGY, PLANT_GROWTH_RATE,
                     INIT_ANIMAL_COUNT, INIT_ANIMAL_ENERGY, REPRODUCTION_ENERGY_THRESHOLD, REPRODUCTION_COST,
                     MIN_MUTATION_COUNT, MAX_MUTATION_COUNT, ANIMAL_GENOME_LENGTH
-                    -> Integer.parseInt(text);
-            case MAP_VARIANT -> MapVariant.parse(text);
-            case PLANT_VARIANT -> PlantVariant.parse(text);
-            case MUTATION_VARIANT -> MutationVariant.parse(text);
-            case ANIMAL_VARIANT -> AnimalVariant.parse(text);
+                    -> Integer.valueOf(value);
+            case MAP_VARIANT -> MapVariant.parse(value);
+            case PLANT_VARIANT -> PlantVariant.parse(value);
+            case MUTATION_VARIANT -> MutationVariant.parse(value);
+            case ANIMAL_VARIANT -> AnimalVariant.parse(value);
         };
     }
-
-
-    private Vector2d getRange(){
-        return switch(this){
-            case MAP_HEIGHT, MAP_WIDTH,
-                    INIT_PLANT_COUNT, PLANT_ENERGY, PLANT_GROWTH_RATE,
-                    INIT_ANIMAL_COUNT, INIT_ANIMAL_ENERGY, REPRODUCTION_ENERGY_THRESHOLD, REPRODUCTION_COST,
-                    MIN_MUTATION_COUNT, MAX_MUTATION_COUNT, ANIMAL_GENOME_LENGTH
-                    -> new Vector2d(0, Config.MAX_INT);
-            case MAP_VARIANT -> new Vector2d(0, MapVariant.values().length);
-            case PLANT_VARIANT -> new Vector2d(0, PlantVariant.values().length);
-            case MUTATION_VARIANT -> new Vector2d(0, MutationVariant.values().length);
-            case ANIMAL_VARIANT -> new Vector2d(0, AnimalVariant.values().length);
-        };
-    }
-
-
-
-
-
-
-//    public String toString(){
-//        return switch (this){
-//            case MAP_HEIGHT -> "MapHeight";
-//            case MAP_WIDTH -> "MapWidth";
-//            case MAP_VARIANT -> "MapVariant";
-//            case INIT_PLANT_COUNT -> "InitPlantCount";
-//            case PLANT_ENERGY -> "PlantEnergy";
-//            case PLANT_GROWTH_RATE -> "PlantGrowthRate";
-//            case PLANT_VARIANT -> "PlantVariant";
-//            case INIT_ANIMAL_COUNT -> "InitAnimalCount";
-//            case INIT_ANIMAL_ENERGY -> "InitAnimalEnergy";
-//            case REPRODUCTION_ENERGY_THRESHOLD -> "ReproductionEnergyTreshold";
-//            case REPRODUCTION_COST -> "ReproductionCost";
-//            case MIN_MUTATION_COUNT -> "MinMutationCount";
-//            case MAX_MUTATION_COUNT -> "MaxMutationCount";
-//            case MUTATION_VARIANT -> "MutationVariant";
-//            case ANIMAL_GENOME_LENGTH -> "AnimalGenomeLength";
-//            case ANIMAL_VARIANT -> "AnimalVariant";
-//        };
-//    }
-
 }
 

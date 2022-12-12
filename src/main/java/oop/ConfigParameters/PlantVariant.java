@@ -1,19 +1,24 @@
 package oop.ConfigParameters;
 
-public enum PlantVariant implements InputValidation {
+public enum PlantVariant{
     TOXIC_CORPSE, FERTILE_EQUATOR;
 
-    static PlantVariant parse(String inputValue){
-        String[][] validValues = {
-                {"toxic corpse", "toxic_corpse", "toxic-corpse"},
-                {"fertile equator", "fertile_equator", "fertile-equator"}
+    static PlantVariant parse(int value){
+        return switch (value){
+            case 0 -> PlantVariant.TOXIC_CORPSE;
+            case 1 -> PlantVariant.FERTILE_EQUATOR;
+            default -> null;
         };
-
-        int y = InputValidation.getValueIndex(validValues, inputValue);
-        if (y == -1){
-            throw new IllegalArgumentException(InputValidation.getErrorMessage(validValues, inputValue));
+    }
+    static boolean mustBeValid(int value) throws IllegalArgumentException{
+        if (value != 0 && value != 1){
+            throw new IllegalArgumentException("value for " + getParamType() + "has to be 0 or 1");
         }
-        return PlantVariant.values()[y];
+        return true;
+    }
+
+    static WorldParamType getParamType(){
+        return WorldParamType.PLANT_VARIANT;
     }
 }
 

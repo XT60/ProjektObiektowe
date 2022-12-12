@@ -1,19 +1,26 @@
 package oop.ConfigParameters;
 
-public enum MutationVariant implements InputValidation {
+import java.util.Set;
+
+public enum MutationVariant{
     SLIGHT_REVISION, FULL_RANDOMNESS;
 
-    static MutationVariant parse(String inputValue) throws IllegalArgumentException{
-        String[][] validValues = {
-                {"slight revision", "slight_revision", "slight-revision"},
-                {"full randomness", "full_randomness", "full-randomness"}
+    static MutationVariant parse(int value){
+        return switch (value){
+            case 0 -> MutationVariant.SLIGHT_REVISION;
+            case 1 -> MutationVariant.FULL_RANDOMNESS;
+            default -> null;
         };
-
-        int y = InputValidation.getValueIndex(validValues, inputValue);
-        if (y == -1){
-            throw new IllegalArgumentException(InputValidation.getErrorMessage(validValues, inputValue));
-        }
-        return MutationVariant.values()[y];
     }
 
+    static boolean mustBeValid(int value) throws IllegalArgumentException{
+        if (value != 0 && value != 1){
+            throw new IllegalArgumentException("value for " + getParamType() + "has to be 0 or 1");
+        }
+        return true;
+    }
+
+    static WorldParamType getParamType(){
+        return WorldParamType.MUTATION_VARIANT;
+    }
 }
