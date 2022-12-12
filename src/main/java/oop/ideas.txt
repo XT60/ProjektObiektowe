@@ -15,21 +15,86 @@ int animalGenomeLength              długość genomu zwierzaków,
 enum animalVariant                  wariant zachowania zwierzaków (wyjaśnione w sekcji poniżej),
 
 
-enum mapVariant
-    GLOBE
-    PORTAL
 
-enum plantVariant
-    TOXIC_CORPSE
-    FERTILE_EQUATOR
 
-enum mutationVariant
-    SLIGHT_REVISION
-    FULL_RANDOMNESS
+mapVariant                     wariant mapy (wyjaśnione w sekcji poniżej),
+initPlantCount                  startowa liczba roślin,
+plantEnergy                     energia zapewniana przez zjedzenie jednej rośliny,
+plantGrowthRate                 liczba roślin wyrastająca każdego dnia,
+plantVariant                   wariant wzrostu roślin (wyjaśnione w sekcji poniżej),
 
-enum animalVariant -
-    PREDESTINAION
-    SOME_CRAZYNESS
+startowa liczba zwierzaków,
+startowa energia zwierzaków,
+energia konieczna, by uznać zwierzaka za najedzonego (i gotowego do rozmnażania),
+energia rodziców zużywana by stworzyć potomka,
+minimalna liczba mutacji u potomków (może być równa 0)
+maksymalna
+wariant mutacji (wyjaśnione w sekcji poniżej),
+długość genomu zwierzaków,
+wariant zachowania zwierzaków (wyjaśnione w sekcji poniżej),
 
+
+
+
+<<< VARIABLES >>>
+Map:        mapHeight
+            mapWidth
+            mapVariant
+
+AnimalMap:  initAnimalCount
+            initAnimalEnergy
+
+            reproductionEnergyThreshold
+            reproductionCost
+            animalVariant
+            animalGenomeLength
+            minMutationCount
+            maxMutationCount
+            mutationVariant
+
+PlantMap:   initPlantCount
+            plantEnergy
+            plantGrowthRate
+            plantVariant
+
+
+<<< METHODS >>>
+Map:
+    update()
+
+AnimalMap:
+    public:
+        eatPlant(vec2d position)        -> true / false
+    private:
+        handleProcreation()
+        handleDeath()
+        handleMovement()
+
+PlantMap:
+    public:
+        removePlant(vec2d position)
+    private:
+        growNewPlants()
+
+
+<<< METHODS INSIGHTS >>>
+Map.Update()
+    AnimalMap.update()      // ruchy zwierząt, umieranie, rozmnażanie
+    Map.eatPlants()         // zjadanie roslin przez zwierzęta (usuwanie roślin, zwiększanie energii zwierząt)
+    PlantMap.update()       // wzrost nowych roślin
+
+
+
+Czego brakuje w animalu?
+    procreate(Animal animal)
+    feed()
+    isDead()
+    jak trzymać zmienne konfiguracyjne? (static chyba nie przejdzie)
+        jakiś wrapper zrobić?
+
+
+AnimalWrapper()
+    procreate
+    feed
 
 

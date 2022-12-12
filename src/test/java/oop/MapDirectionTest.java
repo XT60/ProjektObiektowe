@@ -32,7 +32,7 @@ public class MapDirectionTest {
         };
 
         for(int i = 0; i < beginValues.length; i++){
-            assertTrue(beginValues[i].turned(arguments[i]) == resutls[i]);
+            assertTrue(beginValues[i].turn(arguments[i]) == resutls[i]);
         }
     }
 }

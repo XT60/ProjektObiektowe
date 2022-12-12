@@ -29,7 +29,7 @@ public enum MapDirection {
         return "";
     }
 
-    public MapDirection turned(int moveValue){
+    public MapDirection turn(int moveValue){
         return MapDirection.values()[(moveValue + this.ordinal()) % 8];
     }
 

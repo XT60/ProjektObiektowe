@@ -11,7 +11,7 @@ import java.util.Random;
 //import java.util.ArrayList;
 //import java.util.List;
 //
-public class Animal{
+public class Animal extends MapInhabitant{
     private MapDirection direction;
     private int[] genome;
     private int currGenIndex;
@@ -19,6 +19,8 @@ public class Animal{
     private int energy;
     private int age = 0;
     private int childrenCount = 0;
+
+
 
     public Animal(AnimalVariant animalVariant, int genomeLength, int energy){
         this.initAllButGenome(animalVariant, genomeLength, energy);
@@ -74,6 +76,13 @@ public class Animal{
         return 1;
     }
 
+
+
+//    public Animal procreate(Animal partner){
+//
+//    }
+
+
     /**
      * retrives part of genome (used in animal reproduction process)
      * @param count     - count of genes to retrive
@@ -111,4 +120,5 @@ public class Animal{
     public int getChildrenCount() {
         return childrenCount;
     }
+
 }

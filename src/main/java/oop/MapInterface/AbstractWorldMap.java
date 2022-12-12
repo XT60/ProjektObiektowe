@@ -6,6 +6,12 @@ abstract class AbstractWorldMap implements WorldMap{
     private ArrayList<ArrayList<MapCell>> worldMap;
     private ArrayList<Animal> animals;
     private ArrayList<Plant> plants;
+
+
+//    public AbstractWorldMap(Map)
+
+
+
 //    Map<oop.Vector2d, IMapElement> elementList = new HashMap<oop.Vector2d, IMapElement>();
 //    MapVisualizer visualizer;
 
