@@ -3,9 +3,9 @@ package oop.MapInterface;
 import java.util.ArrayList;
 
 abstract class AbstractWorldMap implements WorldMap{
-    private ArrayList<ArrayList<MapCell>> worldMap;
-    private ArrayList<Animal> animals;
-    private ArrayList<Plant> plants;
+//    private ArrayList<ArrayList<MapCell>> worldMap;
+//    private ArrayList<Animal> animals;
+//    private ArrayList<Plant> plants;
 
 
 //    public AbstractWorldMap(Map)

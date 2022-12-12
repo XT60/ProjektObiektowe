@@ -62,6 +62,12 @@ PlantMap:   initPlantCount
 Map:
     update()
 
+
+Map:
+
+
+
+
 AnimalMap:
     public:
         eatPlant(vec2d position)        -> true / false
@@ -69,6 +75,7 @@ AnimalMap:
         handleProcreation()
         handleDeath()
         handleMovement()
+
 
 PlantMap:
     public:
@@ -98,3 +105,4 @@ AnimalWrapper()
     feed
 
 
+zrobić typy animali które dziedziczą z animala

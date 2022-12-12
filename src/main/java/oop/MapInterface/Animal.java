@@ -1,6 +1,7 @@
 package oop.MapInterface;
 
 import oop.ConfigParameters.AnimalVariant;
+import oop.ConfigParameters.MutationVariant;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -11,7 +12,7 @@ import java.util.Random;
 //import java.util.ArrayList;
 //import java.util.List;
 //
-public class Animal extends MapInhabitant{
+public abstract class Animal extends MapInhabitant{
     private MapDirection direction;
     private int[] genome;
     private int currGenIndex;
@@ -19,7 +20,6 @@ public class Animal extends MapInhabitant{
     private int energy;
     private int age = 0;
     private int childrenCount = 0;
-
 
 
     public Animal(AnimalVariant animalVariant, int genomeLength, int energy){
@@ -76,11 +76,7 @@ public class Animal extends MapInhabitant{
         return 1;
     }
 
-
-
-//    public Animal procreate(Animal partner){
-//
-//    }
+    public abstract boolean procreate(Animal animal);
 
 
     /**

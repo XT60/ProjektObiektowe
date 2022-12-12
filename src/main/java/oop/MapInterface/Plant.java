@@ -1,6 +1,5 @@
 package oop.MapInterface;
 
-public class Plant extends MapInhabitant{
-
+public class Plant extends MapInhabitant {
 
 }
