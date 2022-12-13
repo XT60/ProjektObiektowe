@@ -26,5 +26,4 @@ public class Config {
             WorldParamType.ANIMAL_GENOME_LENGTH,
             WorldParamType.ANIMAL_VARIANT
     };
-//    static Map<String, String> ParamLabels = new HashMap<String, String>()
 }

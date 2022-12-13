@@ -106,3 +106,4 @@ AnimalWrapper()
 
 
 zrobić typy animali które dziedziczą z animala
+animal musi mieć funkcje handleMovenet

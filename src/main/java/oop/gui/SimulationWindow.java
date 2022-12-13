@@ -17,31 +17,39 @@ import java.util.*;
 
 public class SimulationWindow {
     World world;
-    public SimulationWindow(String configFileName) throws FileNotFoundException, IllegalArgumentException, NumberFormatException{
-        List<String> lines = new ArrayList<>();
-        File myObj = new File(Config.CONFIG_DIR_PATH +configFileName);
-        Scanner myReader = new Scanner(myObj);
-        while (myReader.hasNextLine()) {
-            String data = myReader.nextLine();
-            lines.add(data);
-        }
-        myReader.close();
+
+    /**
+     * attempts to create simulation instance
+     * if not successful throws exception with error message
+     * @param configFileName        name of config file in config directory
+     * @throws FileNotFoundException
+     * @throws IllegalArgumentException
+     */
+    public SimulationWindow(String configFileName) throws FileNotFoundException, IllegalArgumentException{
+        List<String> fileContent = getFileContent(Config.CONFIG_DIR_PATH + configFileName);
+
         int len = Config.CONFIG_FILE_STRUCTURE.length;
-        if (lines.size() < len){
+        if (fileContent.size() < len){
             throw new IllegalArgumentException("Config file has to little arguments");
         }
-        if (lines.size() > len){
+        if (fileContent.size() > len){
             throw new IllegalArgumentException("Config file has much little arguments");
         }
 
         Map<WorldParamType, Object> paramValues = new HashMap<>();
         for(int i = 0; i < len; i++){
-            String[] parts = lines.get(i).split(" ");
+            String[] parts = fileContent.get(i).split(" ");
             WorldParamType type = Config.CONFIG_FILE_STRUCTURE[i];
             if (parts.length != 2){
                 throw new IllegalArgumentException("Invalid input for " + type);
             }
-            int value = Integer.parseInt(parts[1]);
+            int value;
+            try{
+                value = Integer.parseInt(parts[1]);
+            }
+            catch (NumberFormatException e){
+                throw new IllegalArgumentException("Invalid input for " + type);
+            }
             Object parsedValue = type.parse(value);
             paramValues.put(type, parsedValue);
         }
@@ -49,6 +57,30 @@ public class SimulationWindow {
         showSimulationWindow();
     }
 
+
+    /**
+     * retrieve file content
+     * @param filePath  path to file for read
+     * @return          ArrayList where index relate to one line in file
+     * @throws FileNotFoundException
+     */
+    private List<String> getFileContent(String filePath) throws FileNotFoundException{
+        List<String> lines = new ArrayList<>();
+        File myObj = new File(filePath);
+        Scanner myReader = new Scanner(myObj);
+        while (myReader.hasNextLine()) {
+            String data = myReader.nextLine();
+            lines.add(data);
+        }
+        myReader.close();
+        return lines;
+    }
+
+
+    // not finished yet
+    /**
+     * creates GUI for simulation
+     */
     private void showSimulationWindow(){
         //Create Stage
         Stage newWindow = new Stage();
@@ -65,6 +97,5 @@ public class SimulationWindow {
         newWindow.setScene(new Scene(container));
         //Launch
         newWindow.show();
-
     }
 }

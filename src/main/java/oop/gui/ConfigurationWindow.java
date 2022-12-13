@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import oop.Config;
 import oop.Vector2d;
 
 import java.io.File;
@@ -22,17 +23,12 @@ public class ConfigurationWindow {
 
     private final static String windowName = "Configuration window";
     private final static Vector2d windowSize = new Vector2d(300, 400);
-    private final static String configFilesDirPath = "./ConfigFiles";
 
+    private final static String submitButtonMessage = "Create New Simulation";
+    private static final int inputVBoxesSpacing = 10;
+    private final static Vector2d submitButtonSize = new Vector2d(200, 50);
     private final static String choiceBoxNotCheckedExceptionMsg = "Configuration file must be chosen";
 
-//    private final static Vector2d inputFieldSize = new Vector2d(300, 20);
-//
-//    private static final int labelInputSpacing = 5;
-    private static final int inputVBoxesSpacing = 10;
-
-    private final static Vector2d submitButtonSize = new Vector2d(200, 50);
-    private final static String submitButtonMessage = "Create New World";
 
     /**
      * creates window with fields to input data for simulation
@@ -50,11 +46,10 @@ public class ConfigurationWindow {
         errorMsg.setTextFill(Color.RED);
 
         // create choiceBox
-        List fileList = listConfigFiles(configFilesDirPath);
+        List fileList = listFiles(Config.CONFIG_DIR_PATH);
         choiceBox = new ChoiceBox(FXCollections.observableArrayList(fileList));
 
-
-        // create submition button
+        // create submission button
         Button button = new Button(submitButtonMessage);
         button.minHeight(submitButtonSize.x);
         button.maxHeight(submitButtonSize.y);
@@ -72,33 +67,34 @@ public class ConfigurationWindow {
         inputWindow.show();
     }
 
-    public List<String> listConfigFiles(String dir) {
-        return Stream.of(new File(dir).listFiles())
+    /**
+     * lists files that are in given directory
+     * @param dirPath   directory path
+     * @return          list of file names
+     */
+    public List<String> listFiles(String dirPath) {
+        return Stream.of(new File(dirPath).listFiles())
                 .filter(file -> !file.isDirectory())
                 .map(File::getName)
                 .collect(Collectors.toList());
     }
 
-//    String absolutePath = FileSystems.getDefault().getPath(dir).normalize().toAbsolutePath().toString();
     /**
-     * creates new simulation instance
-     * @return
+     * attempts to create new simulation instance
+     * if not successful shows error in errorMsg label and in console
      */
-    public boolean createNewSimulation(String fileName){
+    public void createNewSimulation(String fileName){
         try{
             new SimulationWindow(fileName);
             errorMsg.setText("");
-            return true;
         }
         catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             errorMsg.setText(e.getMessage());
-            return false;
         }
         catch (FileNotFoundException e){
             System.out.println(e.getMessage());
             errorMsg.setText(e.getMessage());
-            return false;
         }
     }
 }
