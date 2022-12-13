@@ -5,19 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f670219e-a327-4105-84e3-bc7896776e1c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/AnimalGenome.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/AbstractGenomeHolder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/ConfigParameters/EnumParameter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/ConfigParameters/PlantVariant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/ConfigParameters/PlantVariant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/ConfigParameters/WorldParamType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/ConfigParameters/WorldParamType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapInterface/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/Animal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapInterface/CrazyGenIndexChanger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/CrazyAnimalGenome.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapInterface/GenIndexChanger.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapInterface/MapDirection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/MapDirection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapInterface/MapInhabitant.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapInterface/Plant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/Plant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapInterface/PredestinationGenIndexChanger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/PredestinationAnimalGenome.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/oop/MapDirectionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/oop/MapDirectionTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ideas.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapInterface/AbstractAnimal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/Animal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapInterface/AbstractAnimalGenome.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapInterface/CorrectionAnimal.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapInterface/CrazyAnimalGenome.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/CrazyGenomeHolder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapInterface/PredestinationAnimalGenome.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/PredestinationGenomeHolder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapInterface/RandomAnimal.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +78,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.MapDirectionTest.turnedTest">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="oop.Main" />
       <module name="Project1.main" />
@@ -168,7 +164,7 @@
       <workItem from="1670859775029" duration="5137000" />
       <workItem from="1670876620372" duration="11000" />
       <workItem from="1670877157230" duration="612000" />
-      <workItem from="1670918688520" duration="9852000" />
+      <workItem from="1670918688520" duration="18094000" />
     </task>
     <servers />
   </component>

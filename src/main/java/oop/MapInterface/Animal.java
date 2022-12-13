@@ -1,6 +1,7 @@
 package oop.MapInterface;
 
 import oop.ConfigParameters.AnimalVariant;
+import oop.ConfigParameters.MutationVariant;
 
 import java.util.Random;
 
@@ -10,12 +11,12 @@ import java.util.Random;
 //import java.util.ArrayList;
 //import java.util.List;
 //
-public abstract class AbstractAnimal {
+public class Animal {
     private MapDirection direction;
-    private AbstractAnimalGenome genome;
+    protected AbstractGenomeHolder genome;
     private int energy;
     private int age = 0;
-    private int childrenCount = 0;
+    protected int childrenCount = 0;
 
 
     /**
@@ -24,11 +25,11 @@ public abstract class AbstractAnimal {
      * @param genomeLength      genome length
      * @param energy            intial animal energy
      */
-    public AbstractAnimal(AnimalVariant animalVariant, int genomeLength, int energy){
+    public Animal(AnimalVariant animalVariant, int genomeLength, int energy){
         Random rand = new Random();
         this.genome = switch (animalVariant){
-            case SOME_CRAZYNESS -> new CrazyAnimalGenome(genomeLength);
-            case PREDESTINAION -> new PredestinationAnimalGenome(genomeLength);
+            case SOME_CRAZYNESS -> new CrazyGenomeHolder(genomeLength);
+            case PREDESTINAION -> new PredestinationGenomeHolder(genomeLength);
         };
         this.energy = energy;
         this.direction = MapDirection.values()[rand.nextInt(8)];
@@ -39,13 +40,33 @@ public abstract class AbstractAnimal {
      * @param energy        initial energy
      * @param genome        genome
      */
-    public AbstractAnimal(int energy, AbstractAnimalGenome genome){
+    public Animal(int energy, AbstractGenomeHolder genome){
         Random rand = new Random();
         this.genome = genome;
         this.energy = energy;
         this.direction = MapDirection.values()[rand.nextInt(8)];
     }
 
+
+//    private Animal(Animal parrentA, Animal parrentB, MutationVariant mutationVariant,
+//                   int minMutationCount, int maxMutationCount, int reproductionCost){
+//        Random rand = new Random();
+//        this.direction = MapDirection.values()[rand.nextInt(8)];
+//        this.energy = 2 * reproductionCost;
+//        Animal stronger, weaker;
+//        if (parrentA.getEnergy() > parrentB.getEnergy()){
+//            stronger = parrentA;
+//            weaker = parrentB;
+//        }
+//        else{
+//            stronger = parrentB;
+//            weaker = parrentA;
+//        }
+//        boolean fromTheLeft = rand.nextBoolean();
+//        float strongerShare = (float)stronger.getEnergy() / (stronger.getEnergy() + weaker.getEnergy());
+//
+//        this.genome = new G;
+//    }
 
     // should be called before movement to get new direction
     /**
@@ -75,13 +96,18 @@ public abstract class AbstractAnimal {
         return energy > 0;
     }
 
+//    public Animal procreate(Animal partner, MutationVariant mutationVariant,
+//                            int minMutationCount, int maxMutationCount, int reproductionCost){
+//
+//        return Animal(partner, mutationVariant, minMutationCount, maxMutationCount, reproductionCost)
+//    }
 
     /**
      * Compares priority of 2 animals (used when competing for same plant)
      * @param otherAnimal
      * @return cmpResult -1/0/1
      */
-    public int compareTo(AbstractAnimal otherAnimal){
+    public int compareTo(Animal otherAnimal){
         int[] otherParams = {otherAnimal.getEnergy(), otherAnimal.getAge(), otherAnimal.getChildrenCount()};
         int[] myParams = {this.energy, this.age, this.childrenCount};
         for(int i = 0; i < 3; i++){
@@ -107,6 +133,15 @@ public abstract class AbstractAnimal {
         return energy;
     }
 
+    public void setAsParrent(int reproductionCost){
+        childrenCount += 1;
+        this.energy -= 1;
+    }
+
+    public boolean canReproduce(int reporoductionEnergyTreshold){
+        return this.energy >= reporoductionEnergyTreshold;
+    }
+
     public int getAge() {
         return age;
     }
@@ -118,4 +153,5 @@ public abstract class AbstractAnimal {
     public MapDirection getDirection() {
         return direction;
     }
+
 }
