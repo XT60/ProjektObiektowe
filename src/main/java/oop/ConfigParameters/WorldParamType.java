@@ -40,7 +40,7 @@ public enum WorldParamType {
             case PLANT_VARIANT -> "Plant variant";
             case INIT_ANIMAL_COUNT -> "Init animal count";
             case INIT_ANIMAL_ENERGY -> "Init animal energy";
-            case REPRODUCTION_ENERGY_THRESHOLD -> "Reproduction energy treshold";
+            case REPRODUCTION_ENERGY_THRESHOLD -> "Reproduction energy threshold";
             case REPRODUCTION_COST -> "Reproduction cost";
             case MIN_MUTATION_COUNT -> "Min mutation count";
             case MAX_MUTATION_COUNT -> "Max mutation count";

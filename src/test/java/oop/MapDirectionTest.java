@@ -18,9 +18,9 @@ public class MapDirectionTest {
                 MapDirection.W,
                 MapDirection.NW
         };
-        int arguments[] = {0, 1, 2, 3, 4, 5, 6, 7};
+        int[] arguments = {0, 1, 2, 3, 4, 5, 6, 7};
 
-        MapDirection[] resutls = {
+        MapDirection[] results = {
                 MapDirection.N,
                 MapDirection.E,
                 MapDirection.S,
@@ -32,7 +32,7 @@ public class MapDirectionTest {
         };
 
         for(int i = 0; i < beginValues.length; i++){
-            assertTrue(beginValues[i].turn(arguments[i]) == resutls[i]);
+            assertSame(beginValues[i].turn(arguments[i]), results[i]);
         }
     }
 }

@@ -1,7 +1,8 @@
 package oop.ConfigParameters;
 
 public enum PlantVariant{
-    TOXIC_CORPSE, FERTILE_EQUATOR;
+    TOXIC_CORPSE,
+    FERTILE_EQUATOR;
 
     static PlantVariant parse(int value){
         return switch (value){

@@ -4,55 +4,52 @@ package oop.MapInterface;
 import oop.Vector2d;
 
 public enum MapDirection {
-    N, NE, E, SE, S, SW, W, NW;
+    N(0),
+    NE(1),
+    E(2),
+    SE(3),
+    S(4),
+    SW(5),
+    W(6),
+    NW(7);
+
+    private final static MapDirection[] clockWiseOrder = {MapDirection.N, MapDirection.NE, MapDirection.E, MapDirection.SE,
+            MapDirection.S, MapDirection.SW, MapDirection.W, MapDirection.NW};
+    private final int orderIndex;
+
+    private MapDirection(int orderIndex){
+        this.orderIndex = orderIndex;
+    };
 
     @Override
     public String toString() {
-        switch (this){
-            case N:
-                return "north";
-            case NE:
-                return "north-east";
-            case E:
-                return "east";
-            case SE:
-                return "south-east";
-            case S:
-                return "south";
-            case SW:
-                return "south-west";
-            case W:
-                return "west";
-            case NW:
-                return "north-west";
-        }
-        return "";
+        return switch (this) {
+            case N -> "north";
+            case NE -> "north-east";
+            case E -> "east";
+            case SE -> "south-east";
+            case S -> "south";
+            case SW -> "south-west";
+            case W -> "west";
+            case NW -> "north-west";
+        };
     }
 
     public MapDirection turn(int moveValue){
-        return MapDirection.values()[(moveValue + this.ordinal()) % 8];
+        return clockWiseOrder[(this.orderIndex + moveValue) % clockWiseOrder.length];
     }
 
     public Vector2d toUnitVector(){
-        switch (this){
-            case N:
-                return new Vector2d(0, -1);
-            case NE:
-                return new Vector2d(1, -1);
-            case E:
-                return new Vector2d(1, 0);
-            case SE:
-                return new Vector2d(1, 1);
-            case S:
-                return new Vector2d(0, 1);
-            case SW:
-                return new Vector2d(-1, 1);
-            case W:
-                return new Vector2d(-1, 0);
-            case NW:
-                return new Vector2d(-1, -1);
-        }
-        return null;
+        return switch (this) {
+            case N -> new Vector2d(0, -1);
+            case NE -> new Vector2d(1, -1);
+            case E -> new Vector2d(1, 0);
+            case SE -> new Vector2d(1, 1);
+            case S -> new Vector2d(0, 1);
+            case SW -> new Vector2d(-1, 1);
+            case W -> new Vector2d(-1, 0);
+            case NW -> new Vector2d(-1, -1);
+        };
     }
 
 }

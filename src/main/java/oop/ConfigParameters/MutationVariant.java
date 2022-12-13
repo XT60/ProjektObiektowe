@@ -1,13 +1,11 @@
 package oop.ConfigParameters;
 
-import java.util.Set;
-
 public enum MutationVariant{
-    SLIGHT_REVISION, FULL_RANDOMNESS;
+    SLIGHT_CORRECTION, FULL_RANDOMNESS;
 
     static MutationVariant parse(int value){
         return switch (value){
-            case 0 -> MutationVariant.SLIGHT_REVISION;
+            case 0 -> MutationVariant.SLIGHT_CORRECTION;
             case 1 -> MutationVariant.FULL_RANDOMNESS;
             default -> null;
         };
