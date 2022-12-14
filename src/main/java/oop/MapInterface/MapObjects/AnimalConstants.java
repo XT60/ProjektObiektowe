@@ -2,6 +2,10 @@ package oop.MapInterface.MapObjects;
 
 import oop.ConfigParameters.WorldParamType;
 
+/**
+ * unmodifiable animal constants data structure ('map'),
+ * one object of that class can be shared between many instances of Animal class
+ */
 public class AnimalConstants {
     private final int PLANT_ENERGY;
     private final int REPRODUCTION_ENERGY_THRESHOLD;

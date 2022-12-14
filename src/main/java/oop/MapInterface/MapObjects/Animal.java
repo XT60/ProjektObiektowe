@@ -11,12 +11,7 @@ import oop.Vector2d;
 
 import java.util.Random;
 
-//
-//import javafx.scene.layout.VBox;
-//
-//import java.util.ArrayList;
-//import java.util.List;
-//
+
 public class Animal {
     private MapDirection direction;
     protected AbstractGenomeHolder genomeHolder;
@@ -43,8 +38,8 @@ public class Animal {
         int minMutationCount = constants.get(WorldParamType.MIN_MUTATION_COUNT);
         int maxMutationCount = constants.get(WorldParamType.MIN_MUTATION_COUNT);
         this.genomeHolder = switch (mutationVariant){
-            case SLIGHT_CORRECTION -> new CorrectionGenomeHolder(animalVariant, genomeLength, minMutationCount, maxMutationCount);
-            case FULL_RANDOMNESS -> new RandomGenomeHolder(animalVariant, genomeLength, minMutationCount, maxMutationCount);
+            case SLIGHT_CORRECTION -> new CorrectionGenomeHolder(animalVariant, genomeLength);
+            case FULL_RANDOMNESS -> new RandomGenomeHolder(animalVariant, genomeLength);
         };
     }
 
@@ -75,22 +70,25 @@ public class Animal {
     public MapDirection turn(){
         int gen = genomeHolder.getNextGen();
         direction = direction.turn(gen);
+        energy -= 1;
+        age += 1;
         return direction;
     }
 
-    // should be called on movement or just after
     /**
-     * handles current movement and prepares animal for next one (changes gen index)
+     * handles animal movement
      */
     public void move(Vector2d position){
-        energy -= 1;
-        age += 1;
         this.position = position;
     }
 
+    /**
+     * increases animal energy of PLANT_ENERGY constant value
+     */
     public void feed(){
         this.energy += constants.get(WorldParamType.PLANT_ENERGY);
     }
+
 
     public boolean isDead(){
         return energy > 0;
@@ -98,9 +96,16 @@ public class Animal {
 
 
     private boolean canProcreate(){
-        return this.energy >= constants.get(WorldParamType.REPRODUCTION_ENERGY_THRESHOLD);
+        return constants.get(WorldParamType.REPRODUCTION_ENERGY_THRESHOLD) <= this.energy;
     }
 
+    /**
+     * creates new Animal instance of the same type (with same AnimalVariant and MutationVariant behaviours)
+     * if both parents are capable to procreate -> creates new Animal (child)
+     * otherwise                                -> null is returned
+     * @param partner   other potential parent of new child
+     * @return          child Animal | null
+     */
     public Animal procreate(Animal partner){
         if (!canProcreate() || !partner.canProcreate()){
             return null;
@@ -135,16 +140,18 @@ public class Animal {
             leftPart = weakerPart;
             rightPart = strongerPart;
         }
-        AbstractGenomeHolder newGenomeHolder = this.genomeHolder.getNewGenomeHolder(leftPart, rightPart,
+        AbstractGenomeHolder newGenomeHolder = this.genomeHolder.createGenomeHolder(leftPart, rightPart,
                 minMutationCount, maxMutationCount);
 
-        return new Animal(constants, newGenomeHolder , this.getPosition());
+        setAsParent();
+        return new Animal(constants, newGenomeHolder, this.getPosition());
     }
+
 
     /**
      * Compares priority of 2 animals (used when competing for same plant)
-     * @param otherAnimal
-     * @return cmpResult -1/0/1
+     * @param otherAnimal       other animal
+     * @return                  compare result (-1|0|1)
      */
     public int compareTo(Animal otherAnimal){
         int[] otherParams = {otherAnimal.getEnergy(), otherAnimal.getAge(), otherAnimal.getChildrenCount()};
@@ -172,13 +179,12 @@ public class Animal {
         return energy;
     }
 
-    public void setAsParrent(int reproductionCost){
+    /**
+     * updates object variables after procreation process
+     */
+    private void setAsParent(){
         childrenCount += 1;
-        this.energy -= 1;
-    }
-
-    public boolean canReproduce(int reporoductionEnergyTreshold){
-        return this.energy >= reporoductionEnergyTreshold;
+        this.energy -= this.constants.get(WorldParamType.REPRODUCTION_COST);
     }
 
     public int getAge() {

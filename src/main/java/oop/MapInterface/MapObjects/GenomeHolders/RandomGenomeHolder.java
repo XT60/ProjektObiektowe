@@ -6,25 +6,25 @@ import java.util.Random;
 
 public class RandomGenomeHolder extends AbstractGenomeHolder{
 
+    /** used in animal procreation process */
     private RandomGenomeHolder(int[] genome, GenomeIndexChanger indexChanger,
                               int minMutationCount, int maxMutationCount){
         super(genome, indexChanger);
         mutateGenome(minMutationCount, maxMutationCount);
     }
 
-
-    public RandomGenomeHolder(AnimalVariant animalVariant, int genomeLength,
-                              int minMutationCount, int maxMutationCount) {
+    /** initializes genome with random values */
+    public RandomGenomeHolder(AnimalVariant animalVariant, int genomeLength) {
         super(animalVariant, genomeLength);
-        mutateGenome(minMutationCount, maxMutationCount);
     }
 
 
     @Override
-    protected AbstractGenomeHolder getNewGenomeHolder(int[] genome, GenomeIndexChanger indexChanger,
+    protected AbstractGenomeHolder createGenomeHolder(int[] genome, GenomeIndexChanger indexChanger,
                                                       int minMutationCount, int maxMutationCount) {
         return new RandomGenomeHolder(genome, indexChanger, minMutationCount, maxMutationCount);
     }
+
 
     @Override
     protected int mutateGen(int gen){

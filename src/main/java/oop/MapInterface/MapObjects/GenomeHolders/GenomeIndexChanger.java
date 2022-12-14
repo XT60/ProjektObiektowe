@@ -1,10 +1,20 @@
 package oop.MapInterface.MapObjects.GenomeHolders;
 
 public interface GenomeIndexChanger {
+    /**
+     * changes gen that genome is currently
+     * @return  new current genome index
+     */
+    int next();
 
-    public int next();
+    /**
+     * @return current genome index
+     */
+    int getIndex();
 
-    public int getIndex();
-
-    public GenomeIndexChanger createNewIndexChanger();
+    /**
+     * creates new GenomeIndexChanger instance of the same type (with same AnimalVariant behaviours)
+     * @return GenomeIndexChanger instance of the same type
+     */
+    GenomeIndexChanger createNewIndexChanger();
 }
