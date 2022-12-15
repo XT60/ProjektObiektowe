@@ -1,5 +1,6 @@
 package oop.MapInterface;
 
-public interface WorldMap {
+public class Engine {
+
 
 }

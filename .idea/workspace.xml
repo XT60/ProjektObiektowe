@@ -5,13 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f670219e-a327-4105-84e3-bc7896776e1c" name="Changes" comment="cleaned up code Animal and connected classes  &#10;&#10;added comments and documentation&#10;made cosmetic changes">
+      <change afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/Engine.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/IWorldMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapInterface/MapObjects/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/MapObjects/Animal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapInterface/MapObjects/AnimalConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/MapObjects/AnimalConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapInterface/MapObjects/GenomeHolders/AbstractGenomeHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/MapObjects/GenomeHolders/AbstractGenomeHolder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapInterface/MapObjects/GenomeHolders/CorrectionGenomeHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/MapObjects/GenomeHolders/CorrectionGenomeHolder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapInterface/MapObjects/GenomeHolders/GenomeIndexChanger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/MapObjects/GenomeHolders/GenomeIndexChanger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapInterface/MapObjects/GenomeHolders/RandomGenomeHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/MapObjects/GenomeHolders/RandomGenomeHolder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapInterface/AbstractWorldMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/AbstractWorldMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapInterface/GlobeMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/GlobeMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapInterface/MapObjects/Plant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/MapObjects/Plant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapInterface/PortalMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/PortalMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapInterface/WorldMap.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oop/World.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/World.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,8 +31,8 @@
       <list>
         <option value="JavaFXApplication" />
         <option value="Enum" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -50,11 +53,17 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/endrew/Github/ProjektObiektowe&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
     &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
@@ -166,6 +175,10 @@
       <workItem from="1670943544464" duration="66000" />
       <workItem from="1670962370119" duration="7861000" />
       <workItem from="1671001507977" duration="10660000" />
+      <workItem from="1671018097392" duration="968000" />
+      <workItem from="1671019090061" duration="3364000" />
+      <workItem from="1671090460773" duration="291000" />
+      <workItem from="1671100199160" duration="6336000" />
     </task>
     <task id="LOCAL-00001" summary="hopefully last Animal class implementation version&#10;&#10;changed Animal class structure and inheritance&#10;created new IndexChanger type classes&#10;rewrote GenomeHolder classses&#10;expanded Animal class to most (full) functionality needed&#10;added position to Animal class">
       <created>1671008526184</created>

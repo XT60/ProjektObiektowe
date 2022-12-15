@@ -1,13 +1,13 @@
 package oop;
 
 import oop.ConfigParameters.*;
-import oop.MapInterface.WorldMap;
+import oop.MapInterface.IWorldMap;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class World {
-    WorldMap map;
+    IWorldMap map;
     int mapHeight;
     int mapWidth;
     MapVariant mapVariant;

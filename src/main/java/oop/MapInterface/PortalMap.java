@@ -1,4 +1,4 @@
 package oop.MapInterface;
 
-public class PortalMap {
+public class PortalMap extends AbstractWorldMap{
 }
