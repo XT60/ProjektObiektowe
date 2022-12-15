@@ -19,6 +19,10 @@ public class World {
 //        map = new
     }
 
+    /**
+     * checks if data inside worldParams Map is consistent between one another
+     * @throws IllegalArgumentException     if parameters are not consistent
+     */
     private void checkConsistency() throws IllegalArgumentException{
         WorldParamType[] mustBePositiveParams = {
             WorldParamType.MAP_HEIGHT,
@@ -64,6 +68,12 @@ public class World {
                 "" + WorldParamType.ANIMAL_GENOME_LENGTH);
     }
 
+    /**
+     * retrieves value associated with paramType from paramValues Map
+     * @param paramType     type of parameter
+     * @return              parameter value
+     * @throws IllegalArgumentException     if parameter is not present in paramValues or its value is null
+     */
     private Object getParamValue(WorldParamType paramType) throws IllegalArgumentException {
         Object val = worldParams.get(paramType);
         if (val == null)
@@ -71,15 +81,27 @@ public class World {
         return val;
     }
 
-    private void mustBePositive(WorldParamType param) throws IllegalArgumentException{
-        Integer val = (Integer) getParamValue(param);
+    /**
+     * makes sure that value of given parameter type is positive
+     * @param paramType          parameter type
+     * @throws IllegalArgumentException if value of parameter type is not positive
+     */
+    private void mustBePositive(WorldParamType paramType) throws IllegalArgumentException{
+        Integer val = (Integer) getParamValue(paramType);
         if(val < 0)
-            throw new IllegalArgumentException(param + "must be positive");
+            throw new IllegalArgumentException(paramType + "must be positive");
     }
 
-    private void mustBeLower(WorldParamType param, Integer limit, String limitDesc) throws IllegalArgumentException{
-        Integer val = (Integer) getParamValue(param);
+    /**
+     * makes sure that value of given parameter type lower than given limit
+     * @param paramType     parameter type
+     * @param limit         upper limit
+     * @param limitDesc     description of a limit (used in thrown exception message)
+     * @throws IllegalArgumentException if condition is not fulfilled
+     */
+    private void mustBeLower(WorldParamType paramType, Integer limit, String limitDesc) throws IllegalArgumentException{
+        Integer val = (Integer) getParamValue(paramType);
         if(limit < val)
-            throw new IllegalArgumentException(param + "cannot be greater than" + limitDesc);
+            throw new IllegalArgumentException(paramType + "cannot be greater than" + limitDesc);
     }
 }
