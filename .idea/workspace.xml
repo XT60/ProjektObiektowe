@@ -5,15 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f670219e-a327-4105-84e3-bc7896776e1c" name="Changes" comment="cleaned up code Animal and connected classes  &#10;&#10;added comments and documentation&#10;made cosmetic changes">
-      <change afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/Engine.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/IWorldMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapInterface/AbstractWorldMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/AbstractWorldMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapInterface/GlobeMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/GlobeMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapInterface/MapObjects/Plant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/MapObjects/Plant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapInterface/PortalMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/PortalMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapInterface/WorldMap.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/oop/World.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/World.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

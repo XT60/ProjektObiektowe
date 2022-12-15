@@ -1,0 +1,50 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	
++++ b/.idea/workspace.xml	
+@@ -4,15 +4,7 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="f670219e-a327-4105-84e3-bc7896776e1c" name="Changes" comment="cleaned up code Animal and connected classes  &#10;&#10;added comments and documentation&#10;made cosmetic changes">
+-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapInterface/MapObjects/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/MapObjects/Animal.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapInterface/MapObjects/AnimalConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/MapObjects/AnimalConstants.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapInterface/MapObjects/GenomeHolders/AbstractGenomeHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/MapObjects/GenomeHolders/AbstractGenomeHolder.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapInterface/MapObjects/GenomeHolders/CorrectionGenomeHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/MapObjects/GenomeHolders/CorrectionGenomeHolder.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapInterface/MapObjects/GenomeHolders/GenomeIndexChanger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/MapObjects/GenomeHolders/GenomeIndexChanger.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapInterface/MapObjects/GenomeHolders/RandomGenomeHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/MapObjects/GenomeHolders/RandomGenomeHolder.java" afterDir="false" />
+-    </list>
++    <list default="true" id="f670219e-a327-4105-84e3-bc7896776e1c" name="Changes" comment="cleaned up code Animal and connected classes  &#10;&#10;added comments and documentation&#10;made cosmetic changes" />
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -165,7 +157,7 @@
+       <workItem from="1670918688520" duration="18917000" />
+       <workItem from="1670943544464" duration="66000" />
+       <workItem from="1670962370119" duration="7861000" />
+-      <workItem from="1671001507977" duration="10660000" />
++      <workItem from="1671001507977" duration="11420000" />
+     </task>
+     <task id="LOCAL-00001" summary="hopefully last Animal class implementation version&#10;&#10;changed Animal class structure and inheritance&#10;created new IndexChanger type classes&#10;rewrote GenomeHolder classses&#10;expanded Animal class to most (full) functionality needed&#10;added position to Animal class">
+       <created>1671008526184</created>
+@@ -174,7 +166,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1671008526184</updated>
+     </task>
+-    <option name="localTasksCounter" value="2" />
++    <task id="LOCAL-00002" summary="cleaned up code Animal and connected classes  &#10;&#10;added comments and documentation&#10;made cosmetic changes">
++      <created>1671015256315</created>
++      <option name="number" value="00002" />
++      <option name="presentableId" value="LOCAL-00002" />
++      <option name="project" value="LOCAL" />
++      <updated>1671015256315</updated>
++    </task>
++    <option name="localTasksCounter" value="3" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
