@@ -58,7 +58,7 @@ public class Animal {
         Random rand = new Random();
         this.direction = MapDirection.values()[rand.nextInt(8)];
         this.constants = constants;
-        this.position = position;
+        this.position = new Vector2d(position);
     }
 
 
@@ -73,6 +73,13 @@ public class Animal {
         energy -= 1;
         age += 1;
         return direction;
+    }
+
+    /**
+     * change animal direction 180 degrees
+     */
+    public void reverse(){
+        this.direction = this.direction.turn(4);
     }
 
     /**

@@ -23,20 +23,16 @@ public class World {
         WorldParamType[] mustBePositiveParams = {
             WorldParamType.MAP_HEIGHT,
             WorldParamType.MAP_WIDTH,
-            WorldParamType.MAP_VARIANT,
             WorldParamType.INIT_PLANT_COUNT,
             WorldParamType.PLANT_ENERGY,
             WorldParamType.PLANT_GROWTH_RATE,
-            WorldParamType.PLANT_VARIANT,
             WorldParamType.INIT_ANIMAL_COUNT,
             WorldParamType.INIT_ANIMAL_ENERGY,
             WorldParamType.REPRODUCTION_ENERGY_THRESHOLD,
             WorldParamType.REPRODUCTION_COST,
             WorldParamType.MIN_MUTATION_COUNT,
             WorldParamType.MAX_MUTATION_COUNT,
-            WorldParamType.MUTATION_VARIANT,
             WorldParamType.ANIMAL_GENOME_LENGTH,
-            WorldParamType.ANIMAL_VARIANT
         };
 
         for (WorldParamType param : mustBePositiveParams){

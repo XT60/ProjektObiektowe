@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f670219e-a327-4105-84e3-bc7896776e1c" name="Changes" comment="cleaned up code Animal and connected classes  &#10;&#10;added comments and documentation&#10;made cosmetic changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapInterface/MapObjects/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/MapObjects/Animal.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/oop/World.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/World.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -220,6 +221,7 @@
         <watch expression="resutls.length" language="JAVA" />
         <watch expression="arguments.length" language="JAVA" />
         <watch expression="resutls.length" language="JAVA" />
+        <watch expression="param" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>
