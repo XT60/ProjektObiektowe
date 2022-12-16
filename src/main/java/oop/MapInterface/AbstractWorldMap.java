@@ -7,18 +7,19 @@ import oop.Vector2d;
 import java.util.*;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Comparator;
 
 abstract class AbstractWorldMap implements IWorldMap{
-
     protected Map<Vector2d, Plant> plants = new HashMap<>();
-    protected Map<Vector2d, LinkedList<Animal>> animals = new HashMap<>();
+    protected Map<Vector2d, SortedSet<Animal>> animals = new HashMap<>();
     protected Set<Vector2d> positions = new HashSet<>();
 
     @Override
     public void addAnimal(Animal animal){
         Vector2d position = animal.getPosition();
         if(!animals.containsKey(position)){
-            animals.put(position, new LinkedList<Animal>());
+            animals.put(position, new TreeSet<>(new AnimalComparator()) {
+            });
         }
         animals.get(position).add(animal);
         positions.add(position);
@@ -55,8 +56,10 @@ abstract class AbstractWorldMap implements IWorldMap{
         }
     }
 
+    abstract public boolean canMoveTo(Vector2d position);
+
     public void changePosition(Animal animal, Vector2d newPosition){
-        
+
     }
 
 }

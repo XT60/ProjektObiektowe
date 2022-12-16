@@ -2,6 +2,7 @@ package oop.MapInterface;
 
 import oop.MapInterface.MapObjects.Animal;
 import oop.MapInterface.MapObjects.Plant;
+import oop.Vector2d;
 
 public interface IWorldMap {
 
@@ -12,5 +13,7 @@ public interface IWorldMap {
     void addPlant(Plant plant);
 
     void removePlant(Plant plant);
+
+    boolean canMoveTo(Vector2d position);
 
 }

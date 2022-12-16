@@ -1,4 +1,4 @@
-package oop.MapInterface;
+package oop;
 
 public class Engine {
 
