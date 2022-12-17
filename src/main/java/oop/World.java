@@ -3,94 +3,105 @@ package oop;
 import oop.ConfigParameters.*;
 import oop.MapInterface.IWorldMap;
 
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
 
 public class World {
     IWorldMap map;
-    int mapHeight;
-    int mapWidth;
-    MapVariant mapVariant;
-    int initPlantCount;
-    int plantEnergy;
-    int plantGrowthRate;
-    PlantVariant plantVariant;
-    int initAnimalCount;
-    int initAnimalEnergy;
-    int reproductionEnergyThreshold;
-    int reproductionCost;
-    int minMutationCount;
-    int maxMutationCount;
-    MutationVariant mutationVariant;
-    int animalGenomeLength;
-    AnimalVariant animalVariant;
+    Map<WorldParamType, Object> worldParams;
 
-    public World (Map<WorldParamType, Object> paramValues) throws IllegalArgumentException{
-        // initialize "this" variables
-        mapHeight = (Integer)paramValues.get(WorldParamType.MAP_HEIGHT);
-        mapWidth = (Integer)paramValues.get(WorldParamType.MAP_WIDTH);
-        initPlantCount = (Integer)paramValues.get(WorldParamType.INIT_PLANT_COUNT);
-        plantEnergy = (Integer)paramValues.get(WorldParamType.PLANT_ENERGY);
-        plantGrowthRate = (Integer)paramValues.get(WorldParamType.PLANT_GROWTH_RATE);
-        initAnimalCount = (Integer)paramValues.get(WorldParamType.INIT_ANIMAL_COUNT);
-        initAnimalEnergy = (Integer)paramValues.get(WorldParamType.INIT_ANIMAL_ENERGY);
-        reproductionEnergyThreshold = (Integer)paramValues.get(WorldParamType.REPRODUCTION_ENERGY_THRESHOLD);
-        reproductionCost = (Integer)paramValues.get(WorldParamType.REPRODUCTION_COST);
-        minMutationCount = (Integer)paramValues.get(WorldParamType.MIN_MUTATION_COUNT);
-        maxMutationCount = (Integer)paramValues.get(WorldParamType.MAX_MUTATION_COUNT);
-        animalGenomeLength = (Integer)paramValues.get(WorldParamType.ANIMAL_GENOME_LENGTH);
-
-        mapVariant = (MapVariant)paramValues.get(WorldParamType.MAP_VARIANT);
-        mutationVariant = (MutationVariant) paramValues.get(WorldParamType.MUTATION_VARIANT);
-        plantVariant = (PlantVariant) paramValues.get(WorldParamType.PLANT_VARIANT);
-        animalVariant = (AnimalVariant) paramValues.get(WorldParamType.ANIMAL_VARIANT);
+    public World (Map<WorldParamType, Object> worldParams) throws IllegalArgumentException{
+        this.worldParams = worldParams;
+        checkConsistency();
 
         //initialize map variable
 //        map = new
     }
 
+    /**
+     * checks if data inside worldParams Map is consistent between one another
+     * @throws IllegalArgumentException     if parameters are not consistent
+     */
+    private void checkConsistency() throws IllegalArgumentException{
+        WorldParamType[] mustBePositiveParams = {
+            WorldParamType.MAP_HEIGHT,
+            WorldParamType.MAP_WIDTH,
+            WorldParamType.INIT_PLANT_COUNT,
+            WorldParamType.PLANT_ENERGY,
+            WorldParamType.PLANT_GROWTH_RATE,
+            WorldParamType.INIT_ANIMAL_COUNT,
+            WorldParamType.INIT_ANIMAL_ENERGY,
+            WorldParamType.REPRODUCTION_ENERGY_THRESHOLD,
+            WorldParamType.REPRODUCTION_COST,
+            WorldParamType.MIN_MUTATION_COUNT,
+            WorldParamType.MAX_MUTATION_COUNT,
+            WorldParamType.ANIMAL_GENOME_LENGTH,
+        };
 
-
-    private void checkConsistency(Map<WorldParamType, Integer> intParamsMap ) throws IllegalArgumentException{
-        for (WorldParamType param : intParamsMap.keySet()){
-            mustBePositive(intParamsMap, param);
+        for (WorldParamType param : mustBePositiveParams){
+            mustBePositive(param);
         }
 
-        Integer mapHeight = intParamsMap.get(WorldParamType.MAP_HEIGHT);
-        Integer mapWidth = intParamsMap.get(WorldParamType.MAP_WIDTH);
-        Integer mapCellCount = mapHeight * mapWidth;
-        String mapCellCountLabel = WorldParamType.MAP_WIDTH + " * " + WorldParamType.MAP_HEIGHT;
+        Integer mapHeight = (Integer) getParamValue(WorldParamType.MAP_HEIGHT);
+        Integer mapWidth = (Integer) getParamValue(WorldParamType.MAP_WIDTH);
+        Integer mapCellCountVal = mapHeight * mapWidth;
+        String mapCellCountDesc = WorldParamType.MAP_WIDTH + " * " + WorldParamType.MAP_HEIGHT;
 
 //        INIT_PLANT_COUNT < MAP_HEIGHT * MAP_WIDTH
-        mustBeLower(intParamsMap, WorldParamType.INIT_PLANT_COUNT, mapCellCount, mapCellCountLabel);
+        mustBeLower(WorldParamType.INIT_PLANT_COUNT, mapCellCountVal, mapCellCountDesc);
 
 //        PLANT_GROWTH_RATE < MAP_HEIGHT * MAP_WIDTH
-        mustBeLower(intParamsMap, WorldParamType.PLANT_GROWTH_RATE, mapCellCount, mapCellCountLabel);
+        mustBeLower(WorldParamType.PLANT_GROWTH_RATE, mapCellCountVal, mapCellCountDesc);
 
 //        MIN_MUTATION_COUNT < MAX_MUTATION_COUNT + 1
-        mustBeLower(intParamsMap, WorldParamType.MIN_MUTATION_COUNT,
-                intParamsMap.get(WorldParamType.MAX_MUTATION_COUNT) + 1 , "" + WorldParamType.MAX_MUTATION_COUNT);
+        mustBeLower(
+                WorldParamType.MIN_MUTATION_COUNT,
+                (Integer)getParamValue(WorldParamType.MAX_MUTATION_COUNT) + 1,
+                "" + WorldParamType.MAX_MUTATION_COUNT
+        );
 
 //        MAX_MUTATION_COUNT < ANIMAL_GENOME_LENGTH
-        mustBeLower(intParamsMap, WorldParamType.MIN_MUTATION_COUNT,
-                intParamsMap.get(WorldParamType.ANIMAL_GENOME_LENGTH), "" + WorldParamType.ANIMAL_GENOME_LENGTH);
+        mustBeLower(
+                WorldParamType.MIN_MUTATION_COUNT,
+                (Integer) getParamValue(WorldParamType.ANIMAL_GENOME_LENGTH),
+                "" + WorldParamType.ANIMAL_GENOME_LENGTH);
     }
 
-    private void mustBePositive(Map<WorldParamType, Integer> intParamsMap, WorldParamType param) throws IllegalArgumentException{
-        Integer val = intParamsMap.get(param);
-        if(val < 0){
-            throw new IllegalArgumentException(
-                    param + "must be positive"
-            );
-        }
+    /**
+     * retrieves value associated with paramType from paramValues Map
+     * @param paramType     type of parameter
+     * @return              parameter value
+     * @throws IllegalArgumentException     if parameter is not present in paramValues or its value is null
+     */
+    private Object getParamValue(WorldParamType paramType) throws IllegalArgumentException {
+        Object val = worldParams.get(paramType);
+        if (val == null)
+            throw new IllegalArgumentException("no value for " + paramType + "provided");
+        return val;
     }
 
-    private void mustBeLower(Map<WorldParamType, Integer> intParamsMap, WorldParamType param, Integer upperBorder, String borderLabel) throws IllegalArgumentException{
-        Integer val = intParamsMap.get(param);
-        if(upperBorder < val){
-            throw new IllegalArgumentException(
-                    param+ "cannot be geater than" + borderLabel
-            );
-        }
+    /**
+     * makes sure that value of given parameter type is positive
+     * @param paramType          parameter type
+     * @throws IllegalArgumentException if value of parameter type is not positive
+     */
+    private void mustBePositive(WorldParamType paramType) throws IllegalArgumentException{
+        Integer val = (Integer) getParamValue(paramType);
+        if(val < 0)
+            throw new IllegalArgumentException(paramType + "must be positive");
+    }
+
+    /**
+     * makes sure that value of given parameter type lower than given limit
+     * @param paramType     parameter type
+     * @param limit         upper limit
+     * @param limitDesc     description of a limit (used in thrown exception message)
+     * @throws IllegalArgumentException if condition is not fulfilled
+     */
+    private void mustBeLower(WorldParamType paramType, Integer limit, String limitDesc) throws IllegalArgumentException{
+        Integer val = (Integer) getParamValue(paramType);
+        if(limit < val)
+            throw new IllegalArgumentException(paramType + "cannot be greater than" + limitDesc);
     }
 }

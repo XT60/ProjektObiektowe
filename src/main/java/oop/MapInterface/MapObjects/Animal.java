@@ -58,7 +58,7 @@ public class Animal {
         Random rand = new Random();
         this.direction = MapDirection.values()[rand.nextInt(8)];
         this.constants = constants;
-        this.position = position;
+        this.position = new Vector2d(position);
     }
 
 
@@ -74,13 +74,32 @@ public class Animal {
         age += 1;
         return direction;
     }
-
     /**
      * handles animal movement
      */
     public void move(Vector2d position){
         this.position = position;
     }
+
+
+    /**
+     * change animal direction 180 degrees
+     */
+    public void reverse(){
+        this.direction = this.direction.turn(4);
+    }
+
+
+    /**
+     * teleports animal to given position, subtracts same amount of energy as for procreation
+     * (used with hell portal map variant)
+     * @param newPosition   new animal position
+     */
+    public void teleport(Vector2d newPosition){
+        this.energy -= constants.get(WorldParamType.REPRODUCTION_COST) - 1;
+        this.position = new Vector2d(newPosition);
+    }
+
 
     /**
      * increases animal energy of PLANT_ENERGY constant value
