@@ -1,5 +1,6 @@
 package oop.MapInterface;
 
+import oop.ConfigParameters.WorldParamType;
 import oop.Vector2d;
 
 public class PortalMap extends AbstractWorldMap{

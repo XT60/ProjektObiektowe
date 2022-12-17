@@ -14,6 +14,6 @@ public interface IWorldMap {
 
     void removePlant(Plant plant);
 
-    boolean canMoveTo(Vector2d position);
+//    boolean canMoveTo(Vector2d position);
 
 }

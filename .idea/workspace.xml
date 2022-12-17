@@ -5,16 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f670219e-a327-4105-84e3-bc7896776e1c" name="Changes" comment="cleaned up code Animal and connected classes  &#10;&#10;added comments and documentation&#10;made cosmetic changes">
-      <change afterPath="$PROJECT_DIR$/src/main/java/oop/Engine.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/AnimalComparator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/oop/MapTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapInterface/AbstractWorldMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/AbstractWorldMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapInterface/Engine.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapInterface/GlobeMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/GlobeMap.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapInterface/IWorldMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/IWorldMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapInterface/MapObjects/Plant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/MapObjects/Plant.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/oop/MapInterface/PortalMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/oop/MapInterface/PortalMap.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -180,7 +173,7 @@
       <workItem from="1671019090061" duration="3364000" />
       <workItem from="1671090460773" duration="291000" />
       <workItem from="1671100199160" duration="9600000" />
-      <workItem from="1671193306214" duration="1427000" />
+      <workItem from="1671193306214" duration="5094000" />
     </task>
     <task id="LOCAL-00001" summary="hopefully last Animal class implementation version&#10;&#10;changed Animal class structure and inheritance&#10;created new IndexChanger type classes&#10;rewrote GenomeHolder classses&#10;expanded Animal class to most (full) functionality needed&#10;added position to Animal class">
       <created>1671008526184</created>

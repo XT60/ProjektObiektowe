@@ -8,11 +8,14 @@ import java.util.*;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Comparator;
+import java.lang.Math;
 
 abstract class AbstractWorldMap implements IWorldMap{
-    protected Map<Vector2d, Plant> plants = new HashMap<>();
+    protected Set<Vector2d> plants = new HashSet<>();
     protected Map<Vector2d, SortedSet<Animal>> animals = new HashMap<>();
+
     protected Set<Vector2d> positions = new HashSet<>();
+    // contains only animals positions
 
     @Override
     public void addAnimal(Animal animal){
@@ -31,35 +34,34 @@ abstract class AbstractWorldMap implements IWorldMap{
         animals.get(position).remove(animal);
         if (animals.get(position).isEmpty()){
             animals.remove(position);
-            if (!plants.containsKey(position)){
-                positions.remove(position);
-            }
         }
     }
 
     @Override
     public void addPlant(Plant plant){
-        plants.put(plant.getPosition(),plant);
-        positions.add(plant.getPosition());
+        plants.add(plant.getPosition());
     }
 
     public Boolean canAddPlantAtPosition(Vector2d position){
-        return !plants.containsKey(position);
+        return !plants.contains(position);
     }
 
     @Override
     public void removePlant(Plant plant){
-        Vector2d position = plant.getPosition();
-        plants.remove(position);
-        if (!animals.containsKey(position)){
-            positions.remove(position);
-        }
+        plants.remove(plant.getPosition());
     }
 
     abstract public boolean canMoveTo(Vector2d position);
 
-    public void changePosition(Animal animal, Vector2d newPosition){
 
+    public void changePosition(Animal animal, Vector2d newPosition){
+        removeAnimal(animal);
+        addAnimal(animal);
     }
+
+    public void growPlant(){
+        int chance = Math.random();
+    }
+
 
 }
