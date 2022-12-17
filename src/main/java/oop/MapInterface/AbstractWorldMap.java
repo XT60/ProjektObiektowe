@@ -11,6 +11,8 @@ import java.util.Comparator;
 import java.lang.Math;
 
 abstract class AbstractWorldMap implements IWorldMap{
+
+
     protected Set<Vector2d> plants = new HashSet<>();
     protected Map<Vector2d, SortedSet<Animal>> animals = new HashMap<>();
 
@@ -18,8 +20,7 @@ abstract class AbstractWorldMap implements IWorldMap{
     // contains only animals positions
 
     @Override
-    public void addAnimal(Animal animal){
-        Vector2d position = animal.getPosition();
+    public void addAnimal(Animal animal, Vector2d position){
         if(!animals.containsKey(position)){
             animals.put(position, new TreeSet<>(new AnimalComparator()) {
             });
@@ -53,15 +54,17 @@ abstract class AbstractWorldMap implements IWorldMap{
 
     abstract public boolean canMoveTo(Vector2d position);
 
+    // idea how to implement animal movement:
+    // Vector2d newPosition = animal.turn();
+    // if map.canMoveTo(newPosition)
+    //      animal.move(map.changePosition(newPosition))
+    // else
+    //      animal.turn
 
-    public void changePosition(Animal animal, Vector2d newPosition){
+    public Vector2d changePosition(Animal animal, Vector2d newPosition){
         removeAnimal(animal);
-        addAnimal(animal);
+        addAnimal(animal, newPosition);
+        return newPosition;
     }
-
-    public void growPlant(){
-        int chance = Math.random();
-    }
-
 
 }
