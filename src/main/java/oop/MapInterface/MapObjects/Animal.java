@@ -91,13 +91,11 @@ public class Animal {
 
 
     /**
-     * teleports animal to given position, subtracts same amount of energy as for procreation
+     * lowers animal energy by penalty for teleport action
      * (used with hell portal map variant)
-     * @param newPosition   new animal position
      */
-    public void teleport(Vector2d newPosition){
+    public void applyTeleportPenalty(){
         this.energy -= constants.get(WorldParamType.REPRODUCTION_COST) - 1;
-        this.position = new Vector2d(newPosition);
     }
 
 
