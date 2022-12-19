@@ -1,6 +1,7 @@
 package oop.gui;
 
 import javafx.collections.FXCollections;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -18,11 +19,11 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class ConfigurationWindow {
-    private ChoiceBox choiceBox;
+    private ChoiceBox<Object> choiceBox;
     private Label errorMsg;
 
     private final static String windowName = "Configuration window";
-    private final static Vector2d windowSize = new Vector2d(300, 400);
+    private final static Vector2d windowSize = new Vector2d(200,150);
 
     private final static String submitButtonMessage = "Create New Simulation";
     private static final int inputVBoxesSpacing = 10;
@@ -37,6 +38,7 @@ public class ConfigurationWindow {
         Stage inputWindow = new Stage();
         inputWindow.setTitle(windowName);
         VBox vBox = new VBox(inputVBoxesSpacing);
+        vBox.setAlignment(Pos.CENTER);
 
         //create main label
         Label mainLabel = new Label("Choose configuration file");
@@ -46,8 +48,8 @@ public class ConfigurationWindow {
         errorMsg.setTextFill(Color.RED);
 
         // create choiceBox
-        List fileList = listFiles(Config.CONFIG_DIR_PATH);
-        choiceBox = new ChoiceBox(FXCollections.observableArrayList(fileList));
+        List<String> fileList = listFiles(Config.CONFIG_DIR_PATH);
+        choiceBox = new ChoiceBox<Object>(FXCollections.observableArrayList(fileList));
 
         // create submission button
         Button button = new Button(submitButtonMessage);
@@ -62,7 +64,7 @@ public class ConfigurationWindow {
             createNewSimulation((String)val);
         });
 
-        vBox.getChildren().addAll(mainLabel, choiceBox, errorMsg, button);
+        vBox.getChildren().addAll(mainLabel, choiceBox, button, errorMsg);
         inputWindow.setScene(new Scene(vBox, windowSize.x, windowSize.y));
         inputWindow.show();
     }
@@ -88,11 +90,7 @@ public class ConfigurationWindow {
             new SimulationWindow(fileName);
             errorMsg.setText("");
         }
-        catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
-            errorMsg.setText(e.getMessage());
-        }
-        catch (FileNotFoundException e){
+        catch (IllegalArgumentException | FileNotFoundException e){
             System.out.println(e.getMessage());
             errorMsg.setText(e.getMessage());
         }
