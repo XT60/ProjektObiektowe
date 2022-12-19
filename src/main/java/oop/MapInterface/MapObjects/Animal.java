@@ -33,10 +33,7 @@ public class Animal {
                   AnimalVariant animalVariant, MutationVariant mutationVariant, Vector2d position){
         this(constants, position);
         this.energy = constants.get(WorldParamType.INIT_ANIMAL_ENERGY);
-
         int genomeLength = constants.get(WorldParamType.ANIMAL_GENOME_LENGTH);
-        int minMutationCount = constants.get(WorldParamType.MIN_MUTATION_COUNT);
-        int maxMutationCount = constants.get(WorldParamType.MIN_MUTATION_COUNT);
         this.genomeHolder = switch (mutationVariant){
             case SLIGHT_CORRECTION -> new CorrectionGenomeHolder(animalVariant, genomeLength);
             case FULL_RANDOMNESS -> new RandomGenomeHolder(animalVariant, genomeLength);
