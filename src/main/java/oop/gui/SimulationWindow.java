@@ -26,7 +26,7 @@ public class SimulationWindow {
      * @throws IllegalArgumentException
      */
     public SimulationWindow(String configFileName) throws FileNotFoundException, IllegalArgumentException{
-        List<String> fileContent = getFileContent(Config.CONFIG_DIR_PATH + configFileName);
+        List<String> fileContent = getFileContent(Config.CONFIG_DIR_PATH  + '/' + configFileName);
 
         int len = Config.CONFIG_FILE_STRUCTURE.length;
         if (fileContent.size() < len){
@@ -57,6 +57,19 @@ public class SimulationWindow {
         showSimulationWindow();
     }
 
+    /**
+     * attempts to create simulation instance
+     * if not successful throws exception with error message
+     * @param configFileName        name of config file in config directory
+     * @param csvFileName           name of csv file for saving simulation statistics
+     * @throws FileNotFoundException        when config file was not found
+     * @throws IllegalArgumentException     when given config file is not well-formatted
+     */
+    public SimulationWindow(String configFileName, String csvFileName) throws FileNotFoundException, IllegalArgumentException{
+        this(configFileName);
+//        csvFileName <-- save simulation statistics here, before that check if file still doesn't exists, do not overwrite!
+    }
+
 
     /**
      * retrieve file content
@@ -74,6 +87,35 @@ public class SimulationWindow {
         }
         myReader.close();
         return lines;
+    }
+
+    /**
+     * attempts to create new simulation instance
+     * if not successful returns error message
+     * @param ConfigFileName  new simulation from filename
+     * @return          error message or "" otherwise
+     */
+
+    static String createNewSimulation(String ConfigFileName){
+        try{
+            new SimulationWindow(ConfigFileName);
+            return "";
+        }
+        catch (IllegalArgumentException | FileNotFoundException e){
+            System.out.println(e.getMessage());
+            return e.getMessage();
+        }
+    }
+
+    static String createNewSimulation(String ConfigFileName, String csvFileName){
+        try{
+            new SimulationWindow(ConfigFileName, csvFileName);
+            return "";
+        }
+        catch (IllegalArgumentException | FileNotFoundException e){
+            System.out.println(e.getMessage());
+            return e.getMessage();
+        }
     }
 
 
