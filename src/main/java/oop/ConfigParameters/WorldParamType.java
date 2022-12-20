@@ -1,11 +1,14 @@
 package oop.ConfigParameters;
 
+import oop.Vector2d;
+
 public enum WorldParamType {
     MAP_HEIGHT, MAP_WIDTH, MAP_VARIANT,
     INIT_PLANT_COUNT, PLANT_ENERGY, PLANT_GROWTH_RATE, PLANT_VARIANT,
     INIT_ANIMAL_COUNT, INIT_ANIMAL_ENERGY, REPRODUCTION_ENERGY_THRESHOLD,
     REPRODUCTION_COST, MIN_MUTATION_COUNT, MAX_MUTATION_COUNT, MUTATION_VARIANT,
     ANIMAL_GENOME_LENGTH, ANIMAL_VARIANT;
+
 
 
     public String getDescription(){
@@ -48,33 +51,48 @@ public enum WorldParamType {
             case ANIMAL_GENOME_LENGTH -> "Animal genome length";
             case ANIMAL_VARIANT -> "Animal variant";
         };
-
     }
 
+    // variant ranges should be retrieved from variant classes
     /**
-     * check validity of a value (doesn't check if it is valid in relation to other values)
+     * get range of permitted values for variable type
+     * @return      range vector
+     */
+    public Vector2d getValueRange(){
+        return switch(this){
+            case MAP_VARIANT,
+                    PLANT_VARIANT,
+                    MUTATION_VARIANT,
+                    ANIMAL_VARIANT -> new Vector2d(0, 1);
+            case PLANT_ENERGY,
+                    PLANT_GROWTH_RATE,
+                    INIT_ANIMAL_ENERGY,
+                    REPRODUCTION_ENERGY_THRESHOLD,
+                    REPRODUCTION_COST,
+                    MIN_MUTATION_COUNT,
+                    MAX_MUTATION_COUNT,
+                    ANIMAL_GENOME_LENGTH -> new Vector2d(0, 100);
+            case INIT_ANIMAL_COUNT -> new Vector2d(0, 1000);
+            case MAP_HEIGHT,
+                    MAP_WIDTH,
+                    INIT_PLANT_COUNT -> new Vector2d(0, 10000);
+        };
+    }
+
+
+    /**
+     * check validity of a value (doesn't check if it's valid in relation to other values)
      * @param value
      * @return
      * @throws IllegalArgumentException
      */
-    private boolean mustBeValid(int value) throws IllegalArgumentException{
-        return switch (this){
-            case MAP_HEIGHT, MAP_WIDTH , INIT_PLANT_COUNT, PLANT_ENERGY, PLANT_GROWTH_RATE, INIT_ANIMAL_COUNT,
-                    INIT_ANIMAL_ENERGY, REPRODUCTION_ENERGY_THRESHOLD, REPRODUCTION_COST, MIN_MUTATION_COUNT,
-                    MAX_MUTATION_COUNT, ANIMAL_GENOME_LENGTH -> mustBePositive(value);
-            case PLANT_VARIANT -> PlantVariant.mustBeValid(value);
-            case MUTATION_VARIANT -> MutationVariant.mustBeValid(value);
-            case MAP_VARIANT -> MapVariant.mustBeValid(value);
-            case ANIMAL_VARIANT -> AnimalVariant.mustBeValid(value);
-        };
+    private void mustBeValid(int value) throws IllegalArgumentException{
+        Vector2d range = this.getValueRange();
+        if (value < range.x || range.y < value){
+            throw new IllegalArgumentException(this + "must be in range: " + range);
+        }
     }
 
-    private boolean mustBePositive (int value) throws IllegalArgumentException{
-        if (value < 0){
-            throw new IllegalArgumentException(this + " must be positive");
-        }
-        return true;
-    }
 
     public Object parse(int value) throws IllegalArgumentException{
         this.mustBeValid(value);
