@@ -11,24 +11,24 @@ public enum WorldParamType {
 
 
 
-    public String getDescription(){
+    public String getKey(){
         return switch(this){
-            case MAP_HEIGHT -> "map height";
-            case MAP_WIDTH -> "map width";
-            case MAP_VARIANT -> "map border variant";
-            case INIT_PLANT_COUNT -> "initial plant count ";
-            case PLANT_ENERGY -> "amount of energy provided by one plant";
-            case PLANT_GROWTH_RATE -> "amount of plants that appear every day";
-            case PLANT_VARIANT -> "plant growth variant";
-            case INIT_ANIMAL_COUNT -> "initial animal population";
-            case INIT_ANIMAL_ENERGY -> "initial animal energy";
-            case REPRODUCTION_ENERGY_THRESHOLD -> "energy needed to start procreation";
-            case REPRODUCTION_COST -> "procreation energy cost";
-            case MIN_MUTATION_COUNT -> "minimal mutation count";
-            case MAX_MUTATION_COUNT -> "maximal mutation count";
-            case MUTATION_VARIANT -> "mutation variant";
-            case ANIMAL_GENOME_LENGTH -> "animal genome length";
-            case ANIMAL_VARIANT -> "animal behaviour variant";
+            case MAP_HEIGHT -> "MAP_HEIGHT";
+            case MAP_WIDTH -> "MAP_WIDTH";
+            case MAP_VARIANT -> "MAP_VARIANT";
+            case INIT_PLANT_COUNT -> "INIT_PLANT_COUNT";
+            case PLANT_ENERGY -> "PLANT_ENERGY";
+            case PLANT_GROWTH_RATE -> "PLANT_GROWTH_RATE";
+            case PLANT_VARIANT -> "PLANT_VARIANT";
+            case INIT_ANIMAL_COUNT -> "INIT_ANIMAL_COUNT";
+            case INIT_ANIMAL_ENERGY -> "INIT_ANIMAL_ENERGY";
+            case REPRODUCTION_ENERGY_THRESHOLD -> "REPRODUCTION_ENERGY_THRESHOLD";
+            case REPRODUCTION_COST -> "REPRODUCTION_COST";
+            case MIN_MUTATION_COUNT -> "MIN_MUTATION_COUNT";
+            case MAX_MUTATION_COUNT -> "MAX_MUTATION_COUNT";
+            case MUTATION_VARIANT -> "MUTATION_VARIANT";
+            case ANIMAL_GENOME_LENGTH -> "ANIMAL_GENOME_LENGTH";
+            case ANIMAL_VARIANT -> "ANIMAL_VARIANT";
         };
     }
 
@@ -79,12 +79,32 @@ public enum WorldParamType {
         };
     }
 
+    public int getDefaultValue(){
+        return switch(this){
+            case MAP_HEIGHT,
+                    INIT_ANIMAL_ENERGY,
+                    MAP_WIDTH -> 10;
+            case MAP_VARIANT,
+                    PLANT_VARIANT,
+                    MIN_MUTATION_COUNT,
+                    MUTATION_VARIANT,
+                    ANIMAL_VARIANT -> 0;
+            case INIT_PLANT_COUNT,
+                    REPRODUCTION_COST,
+                    MAX_MUTATION_COUNT -> 2;
+            case PLANT_ENERGY,
+                    PLANT_GROWTH_RATE,
+                    REPRODUCTION_ENERGY_THRESHOLD -> 1;
+            case INIT_ANIMAL_COUNT -> 3;
+            case ANIMAL_GENOME_LENGTH -> 7;
+        };
+    }
+
 
     /**
      * check validity of a value (doesn't check if it's valid in relation to other values)
-     * @param value
-     * @return
-     * @throws IllegalArgumentException
+     * @param value                         param value
+     * @throws IllegalArgumentException     if value is not in expected range
      */
     private void mustBeValid(int value) throws IllegalArgumentException{
         Vector2d range = this.getValueRange();
@@ -101,7 +121,7 @@ public enum WorldParamType {
                     INIT_PLANT_COUNT, PLANT_ENERGY, PLANT_GROWTH_RATE,
                     INIT_ANIMAL_COUNT, INIT_ANIMAL_ENERGY, REPRODUCTION_ENERGY_THRESHOLD, REPRODUCTION_COST,
                     MIN_MUTATION_COUNT, MAX_MUTATION_COUNT, ANIMAL_GENOME_LENGTH
-                    -> Integer.valueOf(value);
+                    -> value;
             case MAP_VARIANT -> MapVariant.parse(value);
             case PLANT_VARIANT -> PlantVariant.parse(value);
             case MUTATION_VARIANT -> MutationVariant.parse(value);

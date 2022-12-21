@@ -76,8 +76,8 @@ public abstract class AbstractGenomeHolder {
      */
     private void initIndexChanger(AnimalVariant animalVariant, int genomeLength){
         indexChanger = switch (animalVariant){
-            case PREDESTINAION -> new PredistinationGenomeIndexChanger(genomeLength);
-            case SOME_CRAZYNESS -> new CrazyGenomeIndexChanger(genomeLength);
+            case PREDESTINATION -> new PredistinationGenomeIndexChanger(genomeLength);
+            case SOME_CRAZINESS -> new CrazyGenomeIndexChanger(genomeLength);
         };
     }
 
