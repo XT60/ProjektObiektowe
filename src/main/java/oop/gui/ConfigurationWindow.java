@@ -31,6 +31,8 @@ public class ConfigurationWindow {
     private final TextField csvFileNameField = new TextField();
     private VBox csvPathSelection;
 
+    private final Spinner<Integer> epochCountSpinner = new Spinner<>(1, 10000, 100);
+    private final Spinner<Double> epochDurationSpinner = new Spinner<>(0.1, 5, 0.5, 0.1);
 
     /**
      * Creates window with fields to chose simulation course
@@ -61,8 +63,18 @@ public class ConfigurationWindow {
             attemptToCreateSimulation(val);
         });
 
+        //
+        HBox epochCountContainer = createParamInput("Epoch count:", epochCountSpinner);
+        HBox epochDurationContainer = createParamInput("Epoch Duration:", epochDurationSpinner);
+
         //Create container
-        VBox container = new VBox(configFileSelectionVbox, csvBox, errorMsg, submitButton);
+        VBox container = new VBox(
+                configFileSelectionVbox,
+                csvBox, epochCountContainer,
+                epochDurationContainer,
+                errorMsg,
+                submitButton
+        );
         container.setAlignment(Pos.CENTER);
         container.setSpacing(20);
 
@@ -74,11 +86,42 @@ public class ConfigurationWindow {
         //Set view in window
         inputWindow.setScene(new Scene(container));
         inputWindow.setWidth(350);
-        inputWindow.setHeight(300);
+        inputWindow.setHeight(380);
 
         //Launch
         inputWindow.show();
     }
+
+    /**
+     * Creates HBox containing parameter setup interface,
+     * updates spinner value referencing to key of given paramType
+     * @param labelMsg      spinner label Message
+     * @param spinner       parameter spinner
+     * @return              container
+     */
+    private HBox createParamInput(String labelMsg, Spinner spinner){
+        //Label
+        Label label = new Label(labelMsg);
+
+        //Spacing
+        HBox spacingBox = new HBox();
+        HBox.setHgrow(spacingBox, Priority.ALWAYS);
+
+        //Spinner
+        spinner.setMaxWidth(Double.MAX_VALUE);
+        HBox.setHgrow(spinner, Priority.NEVER);
+
+        //Main container
+        HBox mainBox = new HBox(
+                label,
+                spacingBox,
+                spinner
+        );
+
+        mainBox.setAlignment(Pos.CENTER_LEFT);
+        return mainBox;
+    }
+
 
 
     /**
@@ -231,7 +274,12 @@ public class ConfigurationWindow {
             try{
                 String csvFilePath = getFullCsvFilePath();
                 handleSimulationCreationResult(
-                        ParameterValidator.startNewSimulation(ConfigFileName, csvFilePath)
+                        ParameterValidator.startNewSimulation(
+                                ConfigFileName,
+                                csvFilePath,
+                                epochCountSpinner.getValue(),
+                                epochDurationSpinner.getValue()
+                        )
                 );
             }
             catch (IllegalArgumentException e){
@@ -240,7 +288,11 @@ public class ConfigurationWindow {
         }
         else{
             handleSimulationCreationResult(
-                    ParameterValidator.startNewSimulation(ConfigFileName)
+                    ParameterValidator.startNewSimulation(
+                            ConfigFileName,
+                            epochCountSpinner.getValue(),
+                            epochDurationSpinner.getValue()
+                    )
             );
         }
     }

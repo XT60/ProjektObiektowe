@@ -19,10 +19,10 @@ public class ParameterValidator {
      * @throws FileNotFoundException        if file was not found
      * @throws IllegalArgumentException     if given arguments are not fitting the standard
      */
-    public ParameterValidator(String configFileName) throws FileNotFoundException, IllegalArgumentException{
+    public ParameterValidator(String configFileName, Integer epochCount, Double epochDuration) throws FileNotFoundException, IllegalArgumentException{
         worldParams = loadParamWorld(configFileName);
         checkConsistency();
-        world = new World(worldParams);
+        world = new World(worldParams, epochCount, epochDuration);
         new SimulationWindow(world);
     }
 
@@ -35,10 +35,11 @@ public class ParameterValidator {
      * @throws FileNotFoundException        when config file was not found
      * @throws IllegalArgumentException     when given config file is not well-formatted
      */
-    public ParameterValidator(String configFileName, String csvFilePath) throws FileNotFoundException, IllegalArgumentException{
+    public ParameterValidator(String configFileName, Integer epochCount, Double epochDuration, String csvFilePath)
+            throws FileNotFoundException, IllegalArgumentException{
         worldParams = loadParamWorld(configFileName);
         checkConsistency();
-        world = new World(worldParams, csvFilePath);    //        csvFileName <-- save simulation statistics here, before that check if file still doesn't exists, do not overwrite!
+        world = new World(worldParams, epochCount, epochDuration, csvFilePath);    //        csvFileName <-- save simulation statistics here, before that check if file still doesn't exists, do not overwrite!
         new SimulationWindow(world);
 
     }
@@ -111,9 +112,9 @@ public class ParameterValidator {
      * @param ConfigFileName  new simulation from filename
      * @return          error message or "" otherwise
      */
-    public static String startNewSimulation(String ConfigFileName){
+    public static String startNewSimulation(String ConfigFileName, Integer epochCount, Double epochDuration){
         try{
-            new ParameterValidator(ConfigFileName);
+            new ParameterValidator(ConfigFileName, epochCount, epochDuration);
             return "";
         }
         catch (IllegalArgumentException | FileNotFoundException e){
@@ -130,9 +131,10 @@ public class ParameterValidator {
      * @param csvFilePath       csv file for saving statistics
      * @return          error message or "" otherwise
      */
-    public static String startNewSimulation(String ConfigFileName, String csvFilePath){
+    public static String startNewSimulation(
+            String ConfigFileName, String csvFilePath, Integer epochCount, Double epochDuration){
         try{
-            new ParameterValidator(ConfigFileName, csvFilePath);
+            new ParameterValidator(ConfigFileName, epochCount, epochDuration,  csvFilePath);
             return "";
         }
         catch (IllegalArgumentException | FileNotFoundException e){

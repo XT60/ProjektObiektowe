@@ -22,7 +22,7 @@ public class InputConfigurationWindow {
     private final Map<WorldParamType, Spinner<Integer>> paramSpinners= new HashMap<>();
 
     private final TextField fileNameInputField = new TextField();
-    private final Label errorMsg = new Label();;
+    private final Label errorMsg = new Label();
 
     /**
      * Creates setup window for choosing new configuration file parameters values
@@ -87,7 +87,7 @@ public class InputConfigurationWindow {
 
         //Spinner
         Vector2d paramValueRange = paramType.getValueRange();
-        Spinner<Integer> spinner = new Spinner<Integer>(
+        Spinner<Integer> spinner = new Spinner<>(
                 paramValueRange.x,
                 paramValueRange.y,
                 paramType.getDefaultValue()
