@@ -28,10 +28,9 @@ public class PlantsEquator implements IPlant{
         this.mapHeight = mapConstants.get(WorldParamType.MAP_HEIGHT);
         this.mapWidth = mapConstants.get(WorldParamType.MAP_WIDTH);
         setPreferredParameters();
-
-        for(int i=0; i<mapHeight; i++){
-            for(int j=0; j<mapWidth; j++){
-                Vector2d newPosition = new Vector2d(j,i);
+        for(int i=0; i<mapWidth; i++){
+            for(int j=0; j<mapHeight; j++){
+                Vector2d newPosition = new Vector2d(i,j);
                 if(isInPreferredPosition(newPosition)){
                     prefFields.add(newPosition);
                 }
@@ -41,9 +40,8 @@ public class PlantsEquator implements IPlant{
             }
         }
     }
-    
+
     public void addPlant() {
-        Vector2d position = new Vector2d(0,0);
         Random rand = new Random();
         int randomInt = rand.nextInt(10);
         if (randomInt<=7 && prefFields.size()>0){
@@ -67,6 +65,10 @@ public class PlantsEquator implements IPlant{
         else{
             otherFields.add(plantPosition);
         }
+    }
+
+    public boolean isPlantAtPosition(Vector2d position){
+        return plants.isPlantAtPosition(position);
     }
 
     private void setPreferredParameters(){

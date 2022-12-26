@@ -10,42 +10,39 @@ import java.util.Random;
 public class ToxicCorpse implements IPlant{
     PlantsHolder plants = new PlantsHolder();
     MapConstants mapConstants;
-    LinkedList<Vector2d> prefFields = new LinkedList<>();
-    LinkedList<Vector2d> otherFields = new LinkedList<>();
-    
-    private int mapHeight = mapConstants.get(WorldParamType.MAP_HEIGHT);
-    private int mapWidth = mapConstants.get(WorldParamType.MAP_WIDTH);
-    
-    
-    public ToxicCorpse(MapConstants mapConstants){
-        this.mapConstants=mapConstants;
 
+    DeadAnimalsHolder deadAnimalsHolder;
+
+    private final int mapHeight;
+    private final int mapWidth;
+    
+    public ToxicCorpse(MapConstants mapConstants, DeadAnimalsHolder deadAnimalsHolder){
+        this.mapConstants=mapConstants;
+        this.deadAnimalsHolder=deadAnimalsHolder;
+        this.mapHeight = mapConstants.get(WorldParamType.MAP_HEIGHT);
+        this.mapWidth = mapConstants.get(WorldParamType.MAP_WIDTH);
     }
+
 
     public void addPlant() {
-        Vector2d position=new Vector2d(0,0);
-
-
-
-        while (plants.isPlantAtPosition(position))
-        {
-            plants.add(new Plant(position));
-        }
-    }
-
-    private boolean isInPreferredPosition(Vector2d position){
-        
-        return false;
-    }
-    
-    public void removePlant(Plant plant){
-        plants.removePlant(plant);
-        Vector2d plantPosition = plant.getPosition();
-        if(isInPreferredPosition(plantPosition)){
-            prefFields.add(plantPosition);
+        Random rand = new Random();
+        int randomInt = rand.nextInt(10);
+        Vector2d newPlantPosition;
+        if (randomInt<=7) {
+            newPlantPosition = deadAnimalsHolder.getPreferredField();
         }
         else{
-            otherFields.add(plantPosition);
+            newPlantPosition = deadAnimalsHolder.getOtherField();
         }
+        if(newPlantPosition != null){ plants.add(new Plant(newPlantPosition));}
+    }
+
+    public void removePlant(Plant plant){
+        plants.removePlant(plant);
+        deadAnimalsHolder.freePosition(plant.getPosition());
+    }
+
+    public boolean isPlantAtPosition(Vector2d position){
+        return plants.isPlantAtPosition(position);
     }
 }
