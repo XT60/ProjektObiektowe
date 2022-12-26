@@ -1,13 +1,12 @@
 package oop;
 
 import oop.ConfigParameters.*;
-import oop.MapInterface.IWorldMap;
-
+import oop.MapInterface.IMap;
 
 import java.util.Map;
 
 public class World {
-    IWorldMap map;
+    IMap map;
     Map<WorldParamType, Object> worldParams;
 
 

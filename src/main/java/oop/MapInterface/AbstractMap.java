@@ -1,25 +1,15 @@
 package oop.MapInterface;
 
 import oop.MapInterface.MapObjects.Animal;
-import oop.MapInterface.MapObjects.Plant;
 import oop.Vector2d;
 
 import java.util.*;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Comparator;
-import java.lang.Math;
 
-abstract class AbstractWorldMap implements IWorldMap{
 
-    protected Set<Vector2d> plants = new HashSet<>();
+abstract class AbstractMap implements IMap {
+
     protected Map<Vector2d, SortedSet<Animal>> animals = new HashMap<>();
-
-    /**
-    *contains only animals positions
-     */
-    protected Set<Vector2d> positions = new HashSet<>();
-
 
     @Override
     public void addAnimal(Animal animal, Vector2d position){
@@ -28,7 +18,6 @@ abstract class AbstractWorldMap implements IWorldMap{
             });
         }
         animals.get(position).add(animal);
-        positions.add(position);
     }
 
     @Override
@@ -38,20 +27,6 @@ abstract class AbstractWorldMap implements IWorldMap{
         if (animals.get(position).isEmpty()){
             animals.remove(position);
         }
-    }
-
-    @Override
-    public void addPlant(Plant plant){
-        plants.add(plant.getPosition());
-    }
-
-    public Boolean canAddPlantAtPosition(Vector2d position){
-        return !plants.contains(position);
-    }
-
-    @Override
-    public void removePlant(Plant plant){
-        plants.remove(plant.getPosition());
     }
 
     abstract public boolean canMoveTo(Vector2d position);
