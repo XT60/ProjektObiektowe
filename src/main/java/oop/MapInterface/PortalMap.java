@@ -10,6 +10,7 @@ public class PortalMap extends AbstractMap {
 
     public PortalMap(MapConstants mapConstants){
         this.mapConstants=mapConstants;
+        this.deadAnimalsHolder= new DeadAnimalsHolder(mapConstants);
     }
 
     public boolean canMoveTo(Vector2d position){

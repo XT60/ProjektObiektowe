@@ -8,6 +8,7 @@ public class GlobeMap extends AbstractMap {
     MapConstants mapConstants;
     public GlobeMap(MapConstants mapConstants){
         this.mapConstants=mapConstants;
+        this.deadAnimalsHolder = new DeadAnimalsHolder(mapConstants);
     }
 
     public boolean canMoveTo(Vector2d position){

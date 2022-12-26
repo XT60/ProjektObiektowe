@@ -10,6 +10,8 @@ import java.util.HashMap;
 abstract class AbstractMap implements IMap {
 
     protected Map<Vector2d, SortedSet<Animal>> animals = new HashMap<>();
+    DeadAnimalsHolder deadAnimalsHolder;
+
 
     @Override
     public void addAnimal(Animal animal, Vector2d position){
@@ -27,6 +29,7 @@ abstract class AbstractMap implements IMap {
         if (animals.get(position).isEmpty()){
             animals.remove(position);
         }
+        deadAnimalsHolder.deathAtPosition(position);
     }
 
     abstract public boolean canMoveTo(Vector2d position);
@@ -37,10 +40,8 @@ abstract class AbstractMap implements IMap {
         return newPosition;
     }
 
+    public DeadAnimalsHolder getDeadAnimalsHolder(){
+        return this.deadAnimalsHolder;
+    }
+
 }
-// idea how to implement animal movement:
-// Vector2d newPosition = animal.turn();
-// if map.canMoveTo(newPosition)
-//      animal.move(map.changePosition(newPosition))
-// else
-//      animal.turn
