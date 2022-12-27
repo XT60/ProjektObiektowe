@@ -1,5 +1,6 @@
 package oop.MapInterface.MapBorders;
 
+import oop.MapInterface.MapConstants;
 import oop.MapInterface.MapObjects.Animal;
 import oop.Vector2d;
 
@@ -13,4 +14,8 @@ public interface IMap {
 
     boolean canMoveTo(Vector2d position);
 
+    int getHeight();
+    int getWidth();
+
+    MapConstants getMapConstants();
 }

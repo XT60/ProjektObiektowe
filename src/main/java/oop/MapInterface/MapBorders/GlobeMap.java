@@ -8,9 +8,14 @@ import oop.Vector2d;
 
 public class GlobeMap extends AbstractMap {
     MapConstants mapConstants;
+    int height;
+    int width;
+
     public GlobeMap(MapConstants mapConstants){
         this.mapConstants=mapConstants;
         this.deadAnimalsHolder = new DeadAnimalsHolder(mapConstants);
+        height=mapConstants.get(WorldParamType.MAP_HEIGHT);
+        width=mapConstants.get(WorldParamType.MAP_WIDTH);
     }
 
     public boolean canMoveTo(Vector2d position){
@@ -29,4 +34,14 @@ public class GlobeMap extends AbstractMap {
             return super.changePosition(animal,new Vector2d(0,newPosition.y));
         return super.changePosition(animal, newPosition);
     }
+
+    public int getHeight(){
+        return this.height;
+    }
+    public int getWidth(){
+        return this.width;
+    }
+
+    public MapConstants getMapConstants(){ return this.mapConstants;}
+
 }

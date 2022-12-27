@@ -1,5 +1,6 @@
 package oop.MapInterface.MapBorders;
 
+import oop.MapInterface.MapConstants;
 import oop.MapInterface.PlantsOnMap.DeadAnimalsHolder;
 import oop.MapInterface.MapObjects.Animal;
 import oop.Vector2d;
@@ -44,5 +45,11 @@ abstract class AbstractMap implements IMap {
     public DeadAnimalsHolder getDeadAnimalsHolder(){
         return this.deadAnimalsHolder;
     }
+
+    public abstract int getHeight();
+    public abstract int getWidth();
+
+    public abstract MapConstants getMapConstants();
+
 
 }
