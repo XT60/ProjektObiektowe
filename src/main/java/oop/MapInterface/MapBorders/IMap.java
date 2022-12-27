@@ -2,6 +2,7 @@ package oop.MapInterface.MapBorders;
 
 import oop.MapInterface.MapConstants;
 import oop.MapInterface.MapObjects.Animal;
+import oop.MapInterface.PlantsOnMap.IPlant;
 import oop.Vector2d;
 
 public interface IMap {
@@ -9,6 +10,8 @@ public interface IMap {
     void addAnimal(Animal animal, Vector2d position);
 
     void removeAnimal(Animal animal);
+
+    void feedAnimals(IPlant plants);
 
     Vector2d changePosition(Animal animal, Vector2d newPosition);
 

@@ -3,6 +3,7 @@ package oop.MapInterface.MapBorders;
 import oop.MapInterface.MapConstants;
 import oop.MapInterface.PlantsOnMap.DeadAnimalsHolder;
 import oop.MapInterface.MapObjects.Animal;
+import oop.MapInterface.PlantsOnMap.IPlant;
 import oop.Vector2d;
 
 import java.util.*;
@@ -34,7 +35,6 @@ abstract class AbstractMap implements IMap {
         deadAnimalsHolder.deathAtPosition(position);
     }
 
-    abstract public boolean canMoveTo(Vector2d position);
 
     public Vector2d changePosition(Animal animal, Vector2d newPosition){
         removeAnimal(animal);
@@ -46,6 +46,16 @@ abstract class AbstractMap implements IMap {
         return this.deadAnimalsHolder;
     }
 
+    public void feedAnimals(IPlant plants) {
+        for (Vector2d position : animals.keySet()) {
+            if (plants.isPlantAtPosition(position)) {
+                (animals.get(position)).first().feed();
+//                plants.removePlant();
+            }
+        }
+    }
+
+    abstract public boolean canMoveTo(Vector2d position);
     public abstract int getHeight();
     public abstract int getWidth();
 
