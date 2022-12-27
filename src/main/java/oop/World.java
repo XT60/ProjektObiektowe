@@ -1,7 +1,7 @@
 package oop;
 
 import oop.ConfigParameters.*;
-import oop.MapInterface.IMap;
+import oop.MapInterface.MapBorders.IMap;
 
 import java.util.Map;
 

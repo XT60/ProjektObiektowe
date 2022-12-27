@@ -1,4 +1,4 @@
-package oop.MapInterface;
+package oop.MapInterface.PlantsOnMap;
 
 public class DeadAnimalsHolderComparator implements java.util.Comparator<DeadAnimalsHolderElement>{
 

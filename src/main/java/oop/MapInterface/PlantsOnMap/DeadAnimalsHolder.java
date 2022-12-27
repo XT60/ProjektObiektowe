@@ -1,6 +1,7 @@
-package oop.MapInterface;
+package oop.MapInterface.PlantsOnMap;
 
 import oop.ConfigParameters.WorldParamType;
+import oop.MapInterface.MapConstants;
 import oop.Vector2d;
 
 import java.util.*;

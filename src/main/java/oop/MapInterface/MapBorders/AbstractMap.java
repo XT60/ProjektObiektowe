@@ -1,5 +1,6 @@
-package oop.MapInterface;
+package oop.MapInterface.MapBorders;
 
+import oop.MapInterface.PlantsOnMap.DeadAnimalsHolder;
 import oop.MapInterface.MapObjects.Animal;
 import oop.Vector2d;
 

@@ -1,10 +1,10 @@
-package oop.MapInterface;
+package oop.MapInterface.PlantsOnMap;
 
 import oop.ConfigParameters.WorldParamType;
+import oop.MapInterface.MapConstants;
 import oop.MapInterface.MapObjects.Plant;
 import oop.Vector2d;
 
-import java.util.LinkedList;
 import java.util.Random;
 
 public class ToxicCorpse implements IPlant{

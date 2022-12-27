@@ -1,6 +1,8 @@
-package oop.MapInterface;
+package oop.MapInterface.MapBorders;
 import java.lang.Math;
 import oop.ConfigParameters.WorldParamType;
+import oop.MapInterface.PlantsOnMap.DeadAnimalsHolder;
+import oop.MapInterface.MapConstants;
 import oop.MapInterface.MapObjects.Animal;
 import oop.Vector2d;
 

@@ -1,4 +1,4 @@
-package oop.MapInterface;
+package oop.MapInterface.PlantsOnMap;
 
 import oop.Vector2d;
 
