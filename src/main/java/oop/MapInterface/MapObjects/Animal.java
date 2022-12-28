@@ -3,6 +3,7 @@ package oop.MapInterface.MapObjects;
 import oop.ConfigParameters.AnimalVariant;
 import oop.ConfigParameters.MutationVariant;
 import oop.ConfigParameters.WorldParamType;
+import oop.MapInterface.IMapElement;
 import oop.MapInterface.MapDirection;
 import oop.MapInterface.MapObjects.GenomeHolders.AbstractGenomeHolder;
 import oop.MapInterface.MapObjects.GenomeHolders.CorrectionGenomeHolder;
@@ -12,7 +13,7 @@ import oop.Vector2d;
 import java.util.Random;
 
 
-public class Animal {
+public class Animal implements IMapElement {
     private MapDirection direction;
     protected AbstractGenomeHolder genomeHolder;
     private int energy;
@@ -217,4 +218,15 @@ public class Animal {
         return new Vector2d(position);
     }
 
+
+    public String getView(){
+        return "src/main/resources/up.png";
+//        return switch(this.direction){
+//            case NORTH -> "src/main/resources/up.png";
+//            case EAST -> "src/main/resources/right.png";
+//            case SOUTH -> "src/main/resources/down.png";
+//            case WEST -> "src/main/resources/left.png";
+//            };
+
+    }
 }
