@@ -65,7 +65,8 @@ public class ParameterValidator {
                 (Integer)worldParams.get(WorldParamType.REPRODUCTION_COST),
                 (Integer)worldParams.get(WorldParamType.MIN_MUTATION_COUNT),
                 (Integer)worldParams.get(WorldParamType.MAX_MUTATION_COUNT),
-                (Integer)worldParams.get(WorldParamType.ANIMAL_GENOME_LENGTH)
+                (Integer)worldParams.get(WorldParamType.ANIMAL_GENOME_LENGTH),
+                (Integer)worldParams.get(WorldParamType.INIT_ANIMAL_ENERGY)
         );
 
         if (csvFilePath == null){

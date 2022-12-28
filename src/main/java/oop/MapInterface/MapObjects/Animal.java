@@ -63,7 +63,7 @@ public class Animal implements IMapElement {
     // should be called before movement to get new direction
     /**
      * turns animal according to new gen (changes current gen in genome)
-     * @return      direction which animal turned
+     * @return      position where animal wants to go
      */
     public Vector2d turn(){
         int gen = genomeHolder.getNextGen();
