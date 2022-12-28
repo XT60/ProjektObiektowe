@@ -59,6 +59,9 @@ abstract class AbstractMap implements IMap {
     public abstract int getHeight();
     public abstract int getWidth();
 
+    abstract public Vector2d getUpperRight();
+    abstract public Vector2d getLowerLeft();
+
     public abstract MapConstants getMapConstants();
 
 

@@ -20,5 +20,8 @@ public interface IMap {
     int getHeight();
     int getWidth();
 
+    Vector2d getLowerLeft();
+    Vector2d getUpperRight();
+
     MapConstants getMapConstants();
 }

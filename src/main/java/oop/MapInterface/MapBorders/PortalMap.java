@@ -37,6 +37,17 @@ public class PortalMap extends AbstractMap {
     public int getWidth(){
         return this.width;
     }
+
+    @Override
+    public Vector2d getLowerLeft() {
+        return new Vector2d(0,0);
+    }
+
+    @Override
+    public Vector2d getUpperRight() {
+        return new Vector2d(this.width,this.height);
+    }
+
     public MapConstants getMapConstants(){ return this.mapConstants;}
 
 }
