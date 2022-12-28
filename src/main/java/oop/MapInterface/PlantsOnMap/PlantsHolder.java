@@ -3,21 +3,21 @@ package oop.MapInterface.PlantsOnMap;
 import oop.MapInterface.MapObjects.Plant;
 import oop.Vector2d;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.HashMap;
+
 
 public class PlantsHolder {
-    protected Set<Vector2d> plants = new HashSet<>();
+    protected HashMap<Vector2d,Plant> plantStorage = new HashMap<>();
 
     public void add(Plant plant){
-        plants.add(plant.getPosition());
+        plantStorage.put(plant.getPosition(),plant);
     }
 
     public void removePlant(Plant plant){
-        plants.remove(plant.getPosition());
+        plantStorage.remove(plant.getPosition());
     }
 
-    public Boolean isPlantAtPosition(Vector2d position){
-        return !plants.contains(position);
+    public Plant plantAtPosition(Vector2d position){
+        return plantStorage.get(position);
     }
 }

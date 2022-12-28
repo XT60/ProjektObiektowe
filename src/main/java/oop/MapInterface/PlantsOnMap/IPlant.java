@@ -9,5 +9,5 @@ public interface IPlant {
 
     void removePlant(Plant plant);
 
-    boolean isPlantAtPosition(Vector2d position);
+    Plant plantAtPosition(Vector2d position);
 }

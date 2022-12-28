@@ -68,8 +68,8 @@ public class PlantsEquator implements IPlant{
         }
     }
 
-    public boolean isPlantAtPosition(Vector2d position){
-        return plants.isPlantAtPosition(position);
+    public Plant plantAtPosition(Vector2d position){
+        return plants.plantAtPosition(position);
     }
 
     private void setPreferredParameters(){

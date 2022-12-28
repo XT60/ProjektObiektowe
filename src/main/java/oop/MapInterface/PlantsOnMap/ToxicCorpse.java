@@ -42,7 +42,7 @@ public class ToxicCorpse implements IPlant{
         deadAnimalsHolder.freePosition(plant.getPosition());
     }
 
-    public boolean isPlantAtPosition(Vector2d position){
-        return plants.isPlantAtPosition(position);
+    public Plant plantAtPosition(Vector2d position){
+        return plants.plantAtPosition(position);
     }
 }
