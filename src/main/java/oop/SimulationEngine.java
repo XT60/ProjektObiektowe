@@ -39,15 +39,14 @@ public class SimulationEngine {
         this.epochCount=epochCount;
         this.epochDuration=epochDuration;
         this.simulationWindow = simulationWindow;
-
         Random rand = new Random();
         for(int i=0; i<numberOfAnimals; i++){
             int x=rand.nextInt(width);
             int y=rand.nextInt(height);
             Vector2d animalPosition = new Vector2d(x,y);
-            Animal animal = new Animal(animalConstants,animalVariant,mutationVariant,animalPosition);
-            this.map.addAnimal(animal,animalPosition);
-            animalList.add(animal);
+//            Animal animal = new Animal(animalConstants,animalVariant,mutationVariant,animalPosition);
+//            this.map.addAnimal(animal,animalPosition);
+//            animalList.add(animal);
         }
 
         for(int i = 0; i<map.getMapConstants().get(WorldParamType.INIT_PLANT_COUNT); i++){

@@ -43,14 +43,12 @@ public class SimulationWindow {
         container.setSpacing(15);
         container.setAlignment(Pos.CENTER);
         //Set view in window
-//        newWindow.setScene(new Scene(container));
 
         createMap(map, plantMap);
-//        placeObjectsOnGrid();
         HBox hBox = new HBox(this.gridPane);
         Scene scene = new Scene(hBox, 800, 800);
         newWindow.setScene(scene);
-        //Launch
+
         newWindow.show();
     }
 
@@ -90,24 +88,25 @@ public class SimulationWindow {
         }
 
     public void placeObjectsOnGrid(IMap map, IPlant plants) throws FileNotFoundException {
-        for (int x = 1; x <= horizontal; x++)
+        for (int x = 1; x <= horizontal; x++) {
             for (int y = 1; y <= vertical; y++) {
-                Vector2d position = new Vector2d((x-1) + lowerLeft.x, upperRight.y - (y ));
+                Vector2d position = new Vector2d((x - 1) + lowerLeft.x, upperRight.y - (y));
                 IMapElement mapObject = map.objectAt(position);
                 if (mapObject != null) {
                     GuiElementBox guiElementBox = new GuiElementBox(mapObject);
                     this.gridPane.add(guiElementBox.getvBox(), x, y, 1, 1);
                     GridPane.setHalignment(guiElementBox.getvBox(), HPos.CENTER);
                 }
-                else{
+                else {
                     mapObject = plants.plantAtPosition(position);
-                    if(mapObject != null){
+                    if (mapObject != null) {
                         GuiElementBox guiElementBox = new GuiElementBox(mapObject);
                         this.gridPane.add(guiElementBox.getvBox(), x, y, 1, 1);
                         GridPane.setHalignment(guiElementBox.getvBox(), HPos.CENTER);
                     }
                 }
             }
+        }
     }
 
     public void createMap(IMap map, IPlant plantMap) throws FileNotFoundException {
@@ -117,7 +116,10 @@ public class SimulationWindow {
         this.gridPane.setGridLinesVisible(false);
         this.gridPane.setGridLinesVisible(true);
         createGrid(map);
-        placeObjectsOnGrid(map,plantMap);
-
+        try {
+            placeObjectsOnGrid(map,plantMap);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
