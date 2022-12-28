@@ -102,7 +102,7 @@ public class SimulationWindow {
         }
 
 
-    public SimulationWindow(World world){
+    public SimulationWindow(){
         //Create Stage
         Stage newWindow = new Stage();
         newWindow.setTitle("New Scene");

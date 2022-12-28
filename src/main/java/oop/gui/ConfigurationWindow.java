@@ -93,8 +93,7 @@ public class ConfigurationWindow {
     }
 
     /**
-     * Creates HBox containing parameter setup interface,
-     * updates spinner value referencing to key of given paramType
+     * Creates HBox containing parameter input interface,
      * @param labelMsg      spinner label Message
      * @param spinner       parameter spinner
      * @return              container

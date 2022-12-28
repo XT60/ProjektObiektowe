@@ -3,6 +3,7 @@ package oop.MapInterface.MapBorders;
 import oop.MapInterface.IMapElement;
 import oop.MapInterface.MapConstants;
 import oop.MapInterface.MapObjects.Animal;
+import oop.MapInterface.PlantsOnMap.DeadAnimalsHolder;
 import oop.MapInterface.PlantsOnMap.IPlant;
 import oop.Vector2d;
 
@@ -27,4 +28,6 @@ public interface IMap {
     Vector2d getUpperRight();
 
     MapConstants getMapConstants();
+
+    DeadAnimalsHolder getDeadAnimalsHolder();
 }

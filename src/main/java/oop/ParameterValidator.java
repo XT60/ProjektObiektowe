@@ -1,6 +1,14 @@
 package oop;
 
-import oop.ConfigParameters.WorldParamType;
+import oop.ConfigParameters.*;
+import oop.MapInterface.MapBorders.GlobeMap;
+import oop.MapInterface.MapBorders.IMap;
+import oop.MapInterface.MapBorders.PortalMap;
+import oop.MapInterface.MapConstants;
+import oop.MapInterface.MapObjects.AnimalConstants;
+import oop.MapInterface.PlantsOnMap.IPlant;
+import oop.MapInterface.PlantsOnMap.PlantsEquator;
+import oop.MapInterface.PlantsOnMap.ToxicCorpse;
 import oop.gui.SimulationWindow;
 
 import java.io.File;
@@ -22,8 +30,51 @@ public class ParameterValidator {
     public ParameterValidator(String configFileName, Integer epochCount, Double epochDuration) throws FileNotFoundException, IllegalArgumentException{
         worldParams = loadParamWorld(configFileName);
         checkConsistency();
-        world = new World(worldParams, epochCount, epochDuration);
-        new SimulationWindow(world);
+        SimulationWindow simulationWindow = new SimulationWindow();
+        createSimulationEngine(worldParams, epochCount, epochDuration, simulationWindow, null);
+    }
+
+
+
+    public SimulationEngine createSimulationEngine(Map<WorldParamType, Object> worldParams, int epochCount,
+                                       Double epochDuration, SimulationWindow simulationWindow, String csvFilePath){
+        int numberOfAnimals = (Integer) worldParams.get(WorldParamType.INIT_ANIMAL_COUNT);
+        MapConstants mapConstants = new MapConstants(
+                (Integer) worldParams.get(WorldParamType.MAP_WIDTH),
+                (Integer) worldParams.get(WorldParamType.MAP_HEIGHT),
+                (Integer)worldParams.get(WorldParamType.INIT_PLANT_COUNT),
+                (Integer)worldParams.get(WorldParamType.PLANT_ENERGY),
+                (Integer)worldParams.get(WorldParamType.PLANT_GROWTH_RATE)
+        );
+
+        IMap map = switch ((MapVariant)worldParams.get(WorldParamType.MAP_VARIANT)){
+            case GLOBE -> new GlobeMap(mapConstants);
+            case PORTAL -> new PortalMap(mapConstants);
+        };
+
+        IPlant plantMap =  switch ((PlantVariant)worldParams.get(WorldParamType.PLANT_VARIANT)){
+            case TOXIC_CORPSE -> new ToxicCorpse(mapConstants, map.getDeadAnimalsHolder());
+            case FERTILE_EQUATOR -> new PlantsEquator(mapConstants);
+        };
+
+        AnimalVariant animalVariant = (AnimalVariant)worldParams.get(WorldParamType.ANIMAL_VARIANT);
+        MutationVariant mutationVariant = (MutationVariant) worldParams.get(WorldParamType.MUTATION_VARIANT);
+        AnimalConstants animalConstants = new AnimalConstants(
+                (Integer)worldParams.get(WorldParamType.PLANT_ENERGY),
+                (Integer)worldParams.get(WorldParamType.REPRODUCTION_ENERGY_THRESHOLD),
+                (Integer)worldParams.get(WorldParamType.REPRODUCTION_COST),
+                (Integer)worldParams.get(WorldParamType.MIN_MUTATION_COUNT),
+                (Integer)worldParams.get(WorldParamType.MAX_MUTATION_COUNT),
+                (Integer)worldParams.get(WorldParamType.ANIMAL_GENOME_LENGTH)
+        );
+
+        if (csvFilePath == null){
+            return new SimulationEngine(numberOfAnimals, map, plantMap, animalVariant,
+                    mutationVariant, animalConstants, simulationWindow, epochCount, epochDuration);
+        }
+        return new SimulationEngine(numberOfAnimals, map, plantMap, animalVariant,
+                mutationVariant, animalConstants, simulationWindow, epochCount, epochDuration, csvFilePath);
+
     }
 
 
@@ -39,9 +90,9 @@ public class ParameterValidator {
             throws FileNotFoundException, IllegalArgumentException{
         worldParams = loadParamWorld(configFileName);
         checkConsistency();
-        world = new World(worldParams, epochCount, epochDuration, csvFilePath);    //        csvFileName <-- save simulation statistics here, before that check if file still doesn't exists, do not overwrite!
-        new SimulationWindow(world);
-
+        SimulationWindow simulationWindow = new SimulationWindow();
+        createSimulationEngine(worldParams, epochCount, epochDuration, simulationWindow, csvFilePath);
+//        csvFileName <-- save simulation statistics here, before that check if file still doesn't exists, do not overwrite!
     }
 
 

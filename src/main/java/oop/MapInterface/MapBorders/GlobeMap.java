@@ -54,4 +54,6 @@ public class GlobeMap extends AbstractMap {
 
     public MapConstants getMapConstants(){ return this.mapConstants;}
 
+
+
 }

@@ -12,6 +12,7 @@ import oop.MapInterface.PlantsOnMap.IPlant;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 public class SimulationEngine {
@@ -26,7 +27,7 @@ public class SimulationEngine {
 
     public SimulationEngine(int numberOfAnimals, IMap map, IPlant plantMap, AnimalVariant animalVariant,
                             MutationVariant mutationVariant, AnimalConstants animalConstants,
-                            MapConstants init, SimulationWindow simulationWindow){
+                            SimulationWindow simulationWindow, int epochCount, double epochDuration){
 
         this.map = map;
         this.plantMap = plantMap;
@@ -46,6 +47,14 @@ public class SimulationEngine {
         for(int i = 0; i<map.getMapConstants().get(WorldParamType.INIT_PLANT_COUNT); i++){
             this.plantMap.addPlant();
         }
+    }
+
+    public SimulationEngine(int numberOfAnimals, IMap map, IPlant plantMap, AnimalVariant animalVariant,
+                            MutationVariant mutationVariant, AnimalConstants animalConstants,
+                            SimulationWindow simulationWindow, int epochCount, double epochDuration, String csvFilePath){
+        this(numberOfAnimals, map, plantMap, animalVariant,
+                mutationVariant, animalConstants, simulationWindow, epochCount, epochDuration);
+        // csvFilePath
     }
 
 
