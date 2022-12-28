@@ -10,6 +10,7 @@ import oop.MapInterface.MapBorders.IMap;
 import oop.MapInterface.MapObjects.Animal;
 import oop.MapInterface.PlantsOnMap.IPlant;
 
+import java.io.FileNotFoundException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -17,6 +18,8 @@ import java.util.Random;
 
 public class SimulationEngine {
 
+    int epochCount;
+    double epochDuration;
     private final IMap map;
     private final IPlant plantMap;
     private final List<Animal> animalList = new LinkedList<>();
@@ -27,13 +30,14 @@ public class SimulationEngine {
 
     public SimulationEngine(int numberOfAnimals, IMap map, IPlant plantMap, AnimalVariant animalVariant,
                             MutationVariant mutationVariant, AnimalConstants animalConstants,
-                            SimulationWindow simulationWindow, int epochCount, double epochDuration){
-
+                            SimulationWindow simulationWindow, int epochCount, double epochDuration) throws FileNotFoundException {
 
         this.map = map;
         this.plantMap = plantMap;
         int height = map.getHeight();
         int width = map.getWidth();
+        this.epochCount=epochCount;
+        this.epochDuration=epochDuration;
         this.simulationWindow = simulationWindow;
 
         Random rand = new Random();
@@ -45,14 +49,18 @@ public class SimulationEngine {
             this.map.addAnimal(animal,animalPosition);
             animalList.add(animal);
         }
+
         for(int i = 0; i<map.getMapConstants().get(WorldParamType.INIT_PLANT_COUNT); i++){
             this.plantMap.addPlant();
         }
+
+        this.simulationWindow.launchSimulationWindow(map,plantMap);
+
     }
 
     public SimulationEngine(int numberOfAnimals, IMap map, IPlant plantMap, AnimalVariant animalVariant,
                             MutationVariant mutationVariant, AnimalConstants animalConstants,
-                            SimulationWindow simulationWindow, int epochCount, double epochDuration, String csvFilePath){
+                            SimulationWindow simulationWindow, int epochCount, double epochDuration, String csvFilePath) throws FileNotFoundException {
         this(numberOfAnimals, map, plantMap, animalVariant,
                 mutationVariant, animalConstants, simulationWindow, epochCount, epochDuration);
         // csvFilePath
@@ -68,14 +76,14 @@ public class SimulationEngine {
             }
             // move all animals on map
 
-//            else {
-//                Vector2d newPosition = animal.turn(); // newPositon musi zwrócić Vector2d na jaki zwierze chicałoby wejść
-//                if (map.canMoveTo(newPosition)) {
-//                    animal.move(map.changePosition(newPosition));
-//                } else {
-//                    animal.reverse();
-//                }
-//            }
+            else {
+                Vector2d newPosition = animal.turn(); // newPositon musi zwrócić Vector2d na jaki zwierze chicałoby wejść
+                if (map.canMoveTo(newPosition)) {
+                    animal.move(map.changePosition(animal,newPosition));
+                } else {
+                    animal.reverse();
+                }
+            }
         }
 
         // feed all animals
@@ -90,10 +98,5 @@ public class SimulationEngine {
         }
     }
 }
-
-// tworzenie granic mapy:
-    // IMap map = new GlobeMap(MapConstants)    lub     new PortalMap(MapConstants)
-// tworzenie mapy roślin
-    // IPlant plants = new ToxicCorpse(MapConstants, AbstractMap.getDeadAnimalHolder)   lub  PlantsEquator(MapConstants)
 
 

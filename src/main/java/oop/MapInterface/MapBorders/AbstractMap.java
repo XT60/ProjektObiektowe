@@ -21,8 +21,7 @@ abstract class AbstractMap implements IMap {
     @Override
     public void addAnimal(Animal animal, Vector2d position){
         if(!animals.containsKey(position)){
-            animals.put(position, new TreeSet<>(new AnimalComparator()) {
-            });
+            animals.put(position, new TreeSet<>(new AnimalComparator()) {});
         }
         animals.get(position).add(animal);
     }

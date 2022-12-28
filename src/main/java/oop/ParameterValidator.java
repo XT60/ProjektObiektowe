@@ -37,7 +37,7 @@ public class ParameterValidator {
 
 
     public SimulationEngine createSimulationEngine(Map<WorldParamType, Object> worldParams, int epochCount,
-                                       Double epochDuration, SimulationWindow simulationWindow, String csvFilePath){
+                                       Double epochDuration, SimulationWindow simulationWindow, String csvFilePath) throws FileNotFoundException {
         int numberOfAnimals = (Integer) worldParams.get(WorldParamType.INIT_ANIMAL_COUNT);
         MapConstants mapConstants = new MapConstants(
                 (Integer) worldParams.get(WorldParamType.MAP_WIDTH),
