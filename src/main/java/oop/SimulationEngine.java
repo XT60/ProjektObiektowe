@@ -57,19 +57,20 @@ public class SimulationEngine {
                 animalList.remove(animal);
             }
             // move all animals on map
-            else {
-                Vector2d newPosition = animal.turn(); // newPositon musi zwrócić Vector2d na jaki zwierze chicałoby wejść
-                if (map.canMoveTo(newPosition)) {
-                    animal.move(map.changePosition(newPosition));
-                } else {
-                    animal.reverse();
-                }
-            }
+//            else {
+//                Vector2d newPosition = animal.turn(); // newPositon musi zwrócić Vector2d na jaki zwierze chicałoby wejść
+//                if (map.canMoveTo(newPosition)) {
+//                    animal.move(map.changePosition(newPosition));
+//                } else {
+//                    animal.reverse();
+//                }
+//            }
         }
 
 
         // feed all animals
         this.map.feedAnimals(this.plantMap);
+
 
         // growing all new plants
         int plantGrowthPerDay = this.map.getMapConstants().get(WorldParamType.PLANT_GROWTH_RATE);
