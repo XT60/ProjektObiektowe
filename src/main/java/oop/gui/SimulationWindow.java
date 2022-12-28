@@ -14,6 +14,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.RowConstraints;
 import java.io.FileNotFoundException;
 
+import oop.MapInterface.IMapElement;
+import oop.MapInterface.PlantsOnMap.IPlant;
 import oop.World;
 import oop.MapInterface.MapBorders.*;
 import oop.*;
@@ -67,17 +69,26 @@ public class SimulationWindow {
             }
         }
 
-//        public void placeObjectsOnGrid(IMap map) throws FileNotFoundException {
-//            for (int x = 1; x <= horizontal; x++)
-//                for (int y = 1; y <= vertical; y++) {
-//                    IMapElement mapObject = (IMapElement) map.objectAt(new Vector2d((x - 1) + lowerLeft.x, upperRight.y - (y - 1)));
-//                    if (mapObject != null) {
-//                        GuiElementBox guiElementBox = new GuiElementBox(mapObject);
-//                        this.gridPane.add(guiElementBox.getvBox(), x, y, 1, 1);
-//                        GridPane.setHalignment(guiElementBox.getvBox(), HPos.CENTER);
-//                    }
-//                }
-//        }
+        public void placeObjectsOnGrid(IMap map, IPlant plants) throws FileNotFoundException {
+            for (int x = 1; x <= horizontal; x++)
+                for (int y = 1; y <= vertical; y++) {
+                    Vector2d position = new Vector2d((x - 1) + lowerLeft.x, upperRight.y - (y - 1));
+                    IMapElement mapObject = map.objectAt(position);
+                    if (mapObject != null) {
+                        GuiElementBox guiElementBox = new GuiElementBox(mapObject);
+                        this.gridPane.add(guiElementBox.getvBox(), x, y, 1, 1);
+                        GridPane.setHalignment(guiElementBox.getvBox(), HPos.CENTER);
+                    }
+                    else{
+                        mapObject = plants.plantAtPosition(position);
+                        if(mapObject != null){
+                            GuiElementBox guiElementBox = new GuiElementBox(mapObject);
+                            this.gridPane.add(guiElementBox.getvBox(), x, y, 1, 1);
+                            GridPane.setHalignment(guiElementBox.getvBox(), HPos.CENTER);
+                        }
+                    }
+                }
+        }
 
         public void createMap(){
             this.gridPane.getChildren().clear();
@@ -86,10 +97,9 @@ public class SimulationWindow {
             this.gridPane.setGridLinesVisible(false);
             this.gridPane.setGridLinesVisible(true);
             createGrid();
+//            placeObjectsOnGrid();
 
         }
-
-
 
 
     public SimulationWindow(World world){
@@ -110,6 +120,7 @@ public class SimulationWindow {
 //        newWindow.setScene(new Scene(container));
 
         createMap();
+//        placeObjectsOnGrid();
         HBox hBox = new HBox(this.gridPane);
         Scene scene = new Scene(hBox, 800, 800);
         newWindow.setScene(scene);

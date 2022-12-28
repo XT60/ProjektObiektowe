@@ -57,6 +57,7 @@ public class SimulationEngine {
                 animalList.remove(animal);
             }
             // move all animals on map
+            
 //            else {
 //                Vector2d newPosition = animal.turn(); // newPositon musi zwrócić Vector2d na jaki zwierze chicałoby wejść
 //                if (map.canMoveTo(newPosition)) {
@@ -67,10 +68,10 @@ public class SimulationEngine {
 //            }
         }
 
-
         // feed all animals
         this.map.feedAnimals(this.plantMap);
 
+        //procreate animals
 
         // growing all new plants
         int plantGrowthPerDay = this.map.getMapConstants().get(WorldParamType.PLANT_GROWTH_RATE);
@@ -85,20 +86,9 @@ public class SimulationEngine {
 
 
 
-// tworzenie mapy:
+// tworzenie granic mapy:
     // IMap map = new GlobeMap(MapConstants)    lub     new PortalMap(MapConstants)
-// tworzenie roślin
+// tworzenie mapy roślin
     // IPlant plants = new ToxicCorpse(MapConstants, AbstractMap.getDeadAnimalHolder)   lub  PlantsEquator(MapConstants)
 
-// dodawanie roślin do mapy:
-    //
-
-
-// zjadanie roślin:
-    // animals = map.getAnimals()
-    // for position in animals.keys():
-    //      if(plants.isPlantAtPositoin(position)){
-    //          animals.get(position).get(0).feed()
-    //          plants.removePlant
-    //      }
 

@@ -1,11 +1,12 @@
-package agh.ics.oop.gui;
+package oop.gui;
 
-import agh.ics.oop.*;
 import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
+import oop.MapInterface.IMapElement;
+
 import java.awt.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -13,7 +14,6 @@ import java.io.FileNotFoundException;
 public class GuiElementBox {
     Image image;
     ImageView imageView;
-    Label label;
     VBox vBox;
 
     public GuiElementBox(IMapElement mapElement) throws FileNotFoundException{
@@ -22,8 +22,7 @@ public class GuiElementBox {
             this.imageView = new ImageView(this.image);
             this.imageView.setFitWidth(20);
             this.imageView.setFitHeight(20);
-            this.label = new Label(mapElement.label());
-            this.vBox = new VBox(this.imageView, this.label);
+            this.vBox = new VBox(this.imageView);
             this.vBox.setAlignment(Pos.CENTER);
         }
         catch(FileNotFoundException exception){
