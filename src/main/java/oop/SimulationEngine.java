@@ -29,6 +29,7 @@ public class SimulationEngine {
                             MutationVariant mutationVariant, AnimalConstants animalConstants,
                             SimulationWindow simulationWindow, int epochCount, double epochDuration){
 
+
         this.map = map;
         this.plantMap = plantMap;
         int height = map.getHeight();
@@ -66,7 +67,7 @@ public class SimulationEngine {
                 animalList.remove(animal);
             }
             // move all animals on map
-            
+
 //            else {
 //                Vector2d newPosition = animal.turn(); // newPositon musi zwrócić Vector2d na jaki zwierze chicałoby wejść
 //                if (map.canMoveTo(newPosition)) {
@@ -89,11 +90,6 @@ public class SimulationEngine {
         }
     }
 }
-
-
-
-
-
 
 // tworzenie granic mapy:
     // IMap map = new GlobeMap(MapConstants)    lub     new PortalMap(MapConstants)

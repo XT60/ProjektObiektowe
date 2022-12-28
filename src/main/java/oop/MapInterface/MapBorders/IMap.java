@@ -20,14 +20,17 @@ public interface IMap {
     boolean canMoveTo(Vector2d position);
 
     int getHeight();
+
     int getWidth();
 
-    IMapElement objectAt (Vector2d position);
+    IMapElement objectAt(Vector2d position);
 
     Vector2d getLowerLeft();
+
     Vector2d getUpperRight();
 
     MapConstants getMapConstants();
 
     DeadAnimalsHolder getDeadAnimalsHolder();
 }
+
