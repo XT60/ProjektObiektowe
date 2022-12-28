@@ -1,6 +1,8 @@
 package oop.MapInterface.MapBorders;
 
+import oop.MapInterface.IMapElement;
 import oop.MapInterface.MapConstants;
+import oop.MapInterface.MapObjects.Plant;
 import oop.MapInterface.PlantsOnMap.DeadAnimalsHolder;
 import oop.MapInterface.MapObjects.Animal;
 import oop.MapInterface.PlantsOnMap.IPlant;
@@ -48,11 +50,19 @@ abstract class AbstractMap implements IMap {
 
     public void feedAnimals(IPlant plants) {
         for (Vector2d position : animals.keySet()) {
-            if (plants.isPlantAtPosition(position)) {
+            Plant plant = plants.plantAtPosition(position);
+            if (plant != null) {
                 (animals.get(position)).first().feed();
-//                plants.removePlant();
+                plants.removePlant(plant);
             }
         }
+    }
+
+    public IMapElement objectAt(Vector2d position){
+        if(animals.containsKey(position)){
+            return animals.get(position).first();
+        }
+        return null;
     }
 
     abstract public boolean canMoveTo(Vector2d position);

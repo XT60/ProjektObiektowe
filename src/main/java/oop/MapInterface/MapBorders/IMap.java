@@ -1,5 +1,6 @@
 package oop.MapInterface.MapBorders;
 
+import oop.MapInterface.IMapElement;
 import oop.MapInterface.MapConstants;
 import oop.MapInterface.MapObjects.Animal;
 import oop.MapInterface.PlantsOnMap.IPlant;
@@ -19,6 +20,8 @@ public interface IMap {
 
     int getHeight();
     int getWidth();
+
+    IMapElement objectAt (Vector2d position);
 
     Vector2d getLowerLeft();
     Vector2d getUpperRight();
