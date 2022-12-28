@@ -1,5 +1,7 @@
 package oop;
 
+import oop.MapInterface.MapDirection;
+
 import java.util.Objects;
 
 public class Vector2d {
@@ -78,6 +80,10 @@ public class Vector2d {
 
     Vector2d opposite(){
         return new Vector2d(this.y, this.x);
+    }
+
+    public Vector2d applyDirection(MapDirection mapDirection){
+        return this.add(mapDirection.toUnitVector());
     }
 
 }
