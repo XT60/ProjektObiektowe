@@ -14,7 +14,7 @@ import java.util.HashMap;
 
 abstract class AbstractMap implements IMap {
 
-    protected Map<Vector2d, SortedSet<Animal>> animals = new HashMap<>();
+    protected Map<Vector2d, SortedSet<Animal>> animals = new HashMap<Vector2d, SortedSet<Animal>>();
     DeadAnimalsHolder deadAnimalsHolder;
 
 
@@ -29,8 +29,13 @@ abstract class AbstractMap implements IMap {
     @Override
     public void removeAnimal(Animal animal){
         Vector2d position = animal.getPosition();
-        animals.get(position).remove(animal);
-        if (animals.get(position).isEmpty()){
+        System.out.println("USUAM ANIMALA Z POZYCJI: " + animal.getPosition().toString());
+
+        (animals.get(position)).remove(animal);
+
+        System.out.println((animals.get(position)).size());
+        if ((animals.get(position)).isEmpty()){
+            System.out.println("USUAM LISTE: " + animal.getPosition());
             animals.remove(position);
         }
         deadAnimalsHolder.deathAtPosition(position);
@@ -59,6 +64,7 @@ abstract class AbstractMap implements IMap {
 
     public IMapElement objectAt(Vector2d position){
         if(animals.containsKey(position)){
+            System.out.println("ZWIERZE NA POZYCJI: " + position.toString());
             return animals.get(position).first();
         }
         return null;

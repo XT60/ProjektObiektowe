@@ -64,7 +64,7 @@ public class SimulationWindow {
             column++;
         }
 
-        int row = yMax;
+        int row = yMax-1;
         for (int i = 1; i <vertical; i++) {
             Label rowNumber = new Label("" + row);
             this.gridPane.add(rowNumber, 0, i, 1, 1);

@@ -229,4 +229,20 @@ public class Animal implements IMapElement {
 //            };
 
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Animal animal = (Animal) o;
+        if (!position.equals(animal.position)) return false;
+        return constants.equals(animal.constants);
+    }
+
+    @Override
+    public int hashCode() {
+        int  result = position.hashCode();
+        result = 31 * result + constants.hashCode();
+        return result;
+    }
 }

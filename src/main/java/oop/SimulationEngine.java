@@ -12,10 +12,8 @@ import oop.MapInterface.MapObjects.Animal;
 import oop.MapInterface.PlantsOnMap.IPlant;
 
 import java.io.FileNotFoundException;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
+
 import static java.lang.Thread.sleep;
 
 
@@ -67,7 +65,7 @@ public class SimulationEngine implements Runnable {
     public void run() {
         Platform.runLater(() -> this.simulationWindow.launchSimulationWindow(this.map, this.plantMap));
 
-        for(int tmp =0; tmp<epochCount; tmp++) {
+        for (int tmp = 0; tmp < epochCount; tmp++) {
             try {
                 sleep(700);
             } catch (InterruptedException e) {
@@ -75,13 +73,15 @@ public class SimulationEngine implements Runnable {
             }
 
             Platform.runLater(() -> this.simulationWindow.createMap(this.map, this.plantMap));
+            Iterator<Animal> iterator = animalList.iterator();
+            while (iterator.hasNext()) {
 
-            for (Animal animal : animalList) {
                 // remove dead animals
-                System.out.println("IDE PO ANIMALACH");
+                Animal animal = iterator.next();
+                System.out.println("IDE PO ANIMALACH " + tmp + " " + animal.getEnergy());
                 if (animal.isDead()) {
                     map.removeAnimal(animal);
-                    animalList.remove(animal);
+                    iterator.remove();
                 }
 
                 // move all animals on map
@@ -92,28 +92,36 @@ public class SimulationEngine implements Runnable {
                     } else {
                         animal.reverse();
                     }
-
-                    Platform.runLater(() -> this.simulationWindow.createMap(this.map, this.plantMap));
-                    try {
-                        sleep(100);
-                    } catch (InterruptedException g) {
-                        throw new RuntimeException(g);
-                    }
                 }
+//                Platform.runLater(() -> this.simulationWindow.createMap(this.map, this.plantMap));
+                try {
+                    sleep(2000);
+                } catch (InterruptedException g) {
+                    throw new RuntimeException(g);
+                }
+
             }
-        }
+
 //        // feed all animals
 //        this.map.feedAnimals(this.plantMap);
 //
 //        //procreate animals
 //
-//        // growing all new plants
-//        int plantGrowthPerDay = this.map.getMapConstants().get(WorldParamType.PLANT_GROWTH_RATE);
-//        for(int i=0; i<plantGrowthPerDay; i++){
-//            plantMap.addPlant();
-//        }
+            // growing all new plants
+//            Platform.runLater(() -> this.simulationWindow.createMap(this.map, this.plantMap));
+            try {
+                sleep(300);
+            } catch (InterruptedException g) {
+                throw new RuntimeException(g);
+            }
+            int plantGrowthPerDay = this.map.getMapConstants().get(WorldParamType.PLANT_GROWTH_RATE);
+            for (int i = 0; i < plantGrowthPerDay; i++) {
+                plantMap.addPlant();
+            }
 
         }
+
+    }
 }
 
 
