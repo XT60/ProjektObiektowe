@@ -7,6 +7,8 @@ import oop.MapInterface.PlantsOnMap.DeadAnimalsHolder;
 import oop.MapInterface.PlantsOnMap.IPlant;
 import oop.Vector2d;
 
+import java.util.LinkedList;
+
 public interface IMap {
 
     void addAnimal(Animal animal, Vector2d position);
@@ -32,5 +34,8 @@ public interface IMap {
     MapConstants getMapConstants();
 
     DeadAnimalsHolder getDeadAnimalsHolder();
+
+    LinkedList<Animal> procreateAnimals();
+
 }
 

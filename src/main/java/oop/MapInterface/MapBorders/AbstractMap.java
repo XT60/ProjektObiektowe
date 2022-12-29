@@ -53,7 +53,6 @@ abstract class AbstractMap implements IMap {
             Plant plant = plants.plantAtPosition(position);
             if (plant != null) {
                 (animals.get(position)).first().feed();
-                System.out.println("USUWAM PLANTA");
                 plants.removePlant(plant);
             }
         }
@@ -64,6 +63,24 @@ abstract class AbstractMap implements IMap {
             return animals.get(position).first();
         }
         return null;
+    }
+
+    @Override
+    public LinkedList<Animal> procreateAnimals() {
+        LinkedList<Animal> procreatedAnimals = new LinkedList<Animal>();
+        for (Vector2d position : animals.keySet()) {
+            if ((animals.get(position)).size()>1) {
+                Iterator<Animal> iterator = animals.get(position).iterator();
+                Animal firstAnimal = iterator.next();
+                Animal secondAnimal = iterator.next();
+                Animal newAnimal = firstAnimal.procreate(secondAnimal);
+                if(newAnimal!=null){
+                    this.addAnimal(newAnimal,newAnimal.getPosition());
+                    procreatedAnimals.add(newAnimal);
+                }
+            }
+        }
+        return procreatedAnimals;
     }
 
     abstract public boolean canMoveTo(Vector2d position);

@@ -97,13 +97,15 @@ public class SimulationEngine implements Runnable {
             }
 
 
-
             // feed all animals
             this.map.feedAnimals(this.plantMap);
 
             //procreate animals
+            LinkedList<Animal> children = this.map.procreateAnimals();
+            animalList.addAll(children);
 
-            // growing all new plants
+
+            // grow all new plants
             int plantGrowthPerDay = this.map.getMapConstants().get(WorldParamType.PLANT_GROWTH_RATE);
             for (int i = 0; i < plantGrowthPerDay; i++) {
                 plantMap.addPlant();
