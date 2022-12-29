@@ -12,6 +12,10 @@ public class DeadAnimalsHolder {
     TreeSet<DeadAnimalsHolderElement> elements = new TreeSet<>( new DeadAnimalsHolderComparator());
     Map<Vector2d,DeadAnimalsHolderElement> positions = new HashMap<>();
 
+
+
+
+
     public DeadAnimalsHolder(MapConstants mapConstants){
         int mapHeight = mapConstants.get(WorldParamType.MAP_HEIGHT);
         int mapWidth = mapConstants.get(WorldParamType.MAP_WIDTH);
@@ -26,7 +30,6 @@ public class DeadAnimalsHolder {
         }
 
     }
-
 
     public Vector2d getPreferredField(){
         for(DeadAnimalsHolderElement element : elements){
