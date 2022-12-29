@@ -19,7 +19,7 @@ import java.util.Random;
 import static java.lang.Thread.sleep;
 
 
-public class SimulationEngine implements Runnable{
+public class SimulationEngine implements Runnable {
 
     int epochCount;
     double epochDuration;
@@ -45,69 +45,63 @@ public class SimulationEngine implements Runnable{
         this.plantMap = plantMap;
         int height = map.getHeight();
         int width = map.getWidth();
-        this.epochCount=epochCount;
-        this.epochDuration=epochDuration;
+        this.epochCount = epochCount;
+        this.epochDuration = epochDuration;
         this.simulationWindow = simulationWindow;
         Random rand = new Random();
-        for(int i=0; i<numberOfAnimals; i++){
-            int x=rand.nextInt(width);
-            int y=rand.nextInt(height);
-            Vector2d animalPosition = new Vector2d(x,y);
-            Animal animal = new Animal(animalConstants,animalVariant,mutationVariant,animalPosition);
-            this.map.addAnimal(animal,animalPosition);
+        for (int i = 0; i < numberOfAnimals; i++) {
+            int x = rand.nextInt(width);
+            int y = rand.nextInt(height);
+            Vector2d animalPosition = new Vector2d(x, y);
+            Animal animal = new Animal(animalConstants, animalVariant, mutationVariant, animalPosition);
+            this.map.addAnimal(animal, animalPosition);
             animalList.add(animal);
         }
 
-        for(int i = 0; i<map.getMapConstants().get(WorldParamType.INIT_PLANT_COUNT); i++){
+        for (int i = 0; i < map.getMapConstants().get(WorldParamType.INIT_PLANT_COUNT); i++) {
             this.plantMap.addPlant();
         }
 
-//        simulationWindow.launchSimulationWindow(this.map,this.plantMap);
-//        Thread engineThread = new Thread(this::run);
-//        engineThread.start();
     }
 
     public void run() {
-        Platform.runLater( () -> {
-            try {
-                this.simulationWindow.launchSimulationWindow(this.map,this.plantMap);
-                System.out.println("UROCHOMIONE LAUNCH SIMULATION WINDOW");
-                this.simulationWindow.createMap(this.map,this.plantMap);
+        Platform.runLater(() -> this.simulationWindow.launchSimulationWindow(this.map, this.plantMap));
 
-                System.out.println("POSZŁO CREATE MAP");
+        for(int tmp =0; tmp<epochCount; tmp++) {
+            try {
                 sleep(700);
-            } catch (FileNotFoundException | InterruptedException e) {
+            } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-        });
 
+            Platform.runLater(() -> this.simulationWindow.createMap(this.map, this.plantMap));
 
-        for(Animal animal : animalList) {
-            // remove dead animals
-            System.out.println("IDE PO ANIMALACH");
-//            if (animal.isDead()) {
-//                map.removeAnimal(animal);
-//                animalList.remove(animal);
-//            }
-            // move all animals on map
-//            else {
-                Vector2d newPosition = animal.turn();
-                if (map.canMoveTo(newPosition)) {
-                    animal.move(map.changePosition(animal,newPosition));
-                } else {
-                    animal.reverse();
+            for (Animal animal : animalList) {
+                // remove dead animals
+                System.out.println("IDE PO ANIMALACH");
+                if (animal.isDead()) {
+                    map.removeAnimal(animal);
+                    animalList.remove(animal);
                 }
-                Platform.runLater( () -> {
-                    try {
-                        sleep(2000);
-                        this.simulationWindow.createMap(this.map,this.plantMap);
-                    } catch (FileNotFoundException | InterruptedException e) {
-                        throw new RuntimeException(e);
+
+                // move all animals on map
+                else {
+                    Vector2d newPosition = animal.turn();
+                    if (map.canMoveTo(newPosition)) {
+                        animal.move(map.changePosition(animal, newPosition));
+                    } else {
+                        animal.reverse();
                     }
-                });
-//            }
+
+                    Platform.runLater(() -> this.simulationWindow.createMap(this.map, this.plantMap));
+                    try {
+                        sleep(100);
+                    } catch (InterruptedException g) {
+                        throw new RuntimeException(g);
+                    }
+                }
+            }
         }
-////
 //        // feed all animals
 //        this.map.feedAnimals(this.plantMap);
 //
@@ -118,7 +112,9 @@ public class SimulationEngine implements Runnable{
 //        for(int i=0; i<plantGrowthPerDay; i++){
 //            plantMap.addPlant();
 //        }
-    }
+
+        }
 }
+
 
 

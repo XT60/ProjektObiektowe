@@ -29,7 +29,7 @@ public class SimulationWindow {
     Vector2d lowerLeft, upperRight;
     final GridPane gridPane = new GridPane();
 
-    public void launchSimulationWindow(IMap map, IPlant plantMap) throws FileNotFoundException {
+    public void launchSimulationWindow(IMap map, IPlant plantMap){
         Stage newWindow = new Stage();
         newWindow.setTitle("Simulation");
         createMap(map, plantMap);
@@ -74,40 +74,43 @@ public class SimulationWindow {
             }
         }
 
-    public void placeObjectsOnGrid(IMap map, IPlant plants) throws FileNotFoundException {
+    public void placeObjectsOnGrid(IMap map, IPlant plants){
         for (int x = 1; x <= horizontal; x++) {
             for (int y = 1; y <= vertical; y++) {
                 Vector2d position = new Vector2d((x - 1) + lowerLeft.x, upperRight.y - (y));
                 IMapElement mapObject = map.objectAt(position);
                 if (mapObject != null) {
-                    GuiElementBox guiElementBox = new GuiElementBox(mapObject);
-                    this.gridPane.add(guiElementBox.getvBox(), x, y, 1, 1);
-                    GridPane.setHalignment(guiElementBox.getvBox(), HPos.CENTER);
+                    addingObjectOnMap(x, y, mapObject);
                 }
                 else {
                     mapObject = plants.plantAtPosition(position);
                     if (mapObject != null) {
-                        GuiElementBox guiElementBox = new GuiElementBox(mapObject);
-                        this.gridPane.add(guiElementBox.getvBox(), x, y, 1, 1);
-                        GridPane.setHalignment(guiElementBox.getvBox(), HPos.CENTER);
+                        addingObjectOnMap(x, y, mapObject);
                     }
                 }
             }
         }
     }
 
-    public void createMap(IMap map, IPlant plantMap) throws FileNotFoundException {
+    private void addingObjectOnMap(int x, int y, IMapElement mapObject) {
+        GuiElementBox guiElementBox = null;
+        try {
+            guiElementBox = new GuiElementBox(mapObject);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        this.gridPane.add(guiElementBox.getvBox(), x, y, 1, 1);
+        GridPane.setHalignment(guiElementBox.getvBox(), HPos.CENTER);
+    }
+
+    public void createMap(IMap map, IPlant plantMap) {
         this.gridPane.getChildren().clear();
         this.gridPane.getColumnConstraints().clear();
         this.gridPane.getRowConstraints().clear();
         this.gridPane.setGridLinesVisible(false);
         this.gridPane.setGridLinesVisible(true);
         createGrid(map);
-        try {
-            placeObjectsOnGrid(map,plantMap);
-        } catch (FileNotFoundException e) {
-            System.out.println("Nie znaleziono pliku");
-            throw new RuntimeException(e);
-        }
+        placeObjectsOnGrid(map,plantMap);
+
     }
 }
