@@ -1,5 +1,6 @@
 package oop;
 
+import javafx.application.Platform;
 import oop.ConfigParameters.AnimalVariant;
 import oop.ConfigParameters.MutationVariant;
 import oop.ConfigParameters.WorldParamType;
@@ -15,8 +16,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import static java.lang.Thread.sleep;
 
-public class SimulationEngine {
+
+public class SimulationEngine implements Runnable{
 
     int epochCount;
     double epochDuration;
@@ -26,7 +29,13 @@ public class SimulationEngine {
 
     private final SimulationWindow simulationWindow;
 
-
+    public SimulationEngine(int numberOfAnimals, IMap map, IPlant plantMap, AnimalVariant animalVariant,
+                            MutationVariant mutationVariant, AnimalConstants animalConstants,
+                            SimulationWindow simulationWindow, int epochCount, double epochDuration, String csvFilePath) throws FileNotFoundException {
+        this(numberOfAnimals, map, plantMap, animalVariant,
+                mutationVariant, animalConstants, simulationWindow, epochCount, epochDuration);
+        // csvFilePath
+    }
 
     public SimulationEngine(int numberOfAnimals, IMap map, IPlant plantMap, AnimalVariant animalVariant,
                             MutationVariant mutationVariant, AnimalConstants animalConstants,
@@ -53,48 +62,60 @@ public class SimulationEngine {
             this.plantMap.addPlant();
         }
 
-        this.simulationWindow.launchSimulationWindow(map,plantMap);
-
+//        simulationWindow.launchSimulationWindow(this.map,this.plantMap);
+//        Thread engineThread = new Thread(this::run);
+//        engineThread.start();
+            run();
     }
 
-    public SimulationEngine(int numberOfAnimals, IMap map, IPlant plantMap, AnimalVariant animalVariant,
-                            MutationVariant mutationVariant, AnimalConstants animalConstants,
-                            SimulationWindow simulationWindow, int epochCount, double epochDuration, String csvFilePath) throws FileNotFoundException {
-        this(numberOfAnimals, map, plantMap, animalVariant,
-                mutationVariant, animalConstants, simulationWindow, epochCount, epochDuration);
-        // csvFilePath
-    }
+    public void run() {
+        System.out.println("TAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        try {
+            this.simulationWindow.launchSimulationWindow(this.map,this.plantMap);
+            System.out.println("NIEEEEEEEEEEEEEEEEEEEE");
 
-
-    public void run(){
-        for(Animal animal : animalList) {
-            // remove dead animals
-            if (animal.isDead()) {
-                map.removeAnimal(animal);
-                animalList.remove(animal);
-            }
-            // move all animals on map
-
-            else {
-                Vector2d newPosition = animal.turn(); // newPositon musi zwrócić Vector2d na jaki zwierze chicałoby wejść
-                if (map.canMoveTo(newPosition)) {
-                    animal.move(map.changePosition(animal,newPosition));
-                } else {
-                    animal.reverse();
-                }
-            }
+        } catch (FileNotFoundException e) {
+            System.out.println("TUTAJ SIE WYWALA");
         }
+//        Platform.runLater( () -> {
+//            try {
+//                this.simulationWindow.createMap(this.map,this.plantMap);
+//                sleep(0);
+//            } catch (FileNotFoundException | InterruptedException e) {
+//                throw new RuntimeException(e);
+//            }
+//        });
+        System.out.println("KURWAAAAAAAAAAAAAAAAAA");
 
-        // feed all animals
-        this.map.feedAnimals(this.plantMap);
 
-        //procreate animals
-
-        // growing all new plants
-        int plantGrowthPerDay = this.map.getMapConstants().get(WorldParamType.PLANT_GROWTH_RATE);
-        for(int i=0; i<plantGrowthPerDay; i++){
-            plantMap.addPlant();
-        }
+//        for(Animal animal : animalList) {
+//            // remove dead animals
+//            if (animal.isDead()) {
+//                map.removeAnimal(animal);
+//                animalList.remove(animal);
+//            }
+//            // move all animals on map
+//
+//            else {
+//                Vector2d newPosition = animal.turn(); // newPositon musi zwrócić Vector2d na jaki zwierze chicałoby wejść
+//                if (map.canMoveTo(newPosition)) {
+//                    animal.move(map.changePosition(animal,newPosition));
+//                } else {
+//                    animal.reverse();
+//                }
+//            }
+//        }
+////
+//        // feed all animals
+//        this.map.feedAnimals(this.plantMap);
+//
+//        //procreate animals
+//
+//        // growing all new plants
+//        int plantGrowthPerDay = this.map.getMapConstants().get(WorldParamType.PLANT_GROWTH_RATE);
+//        for(int i=0; i<plantGrowthPerDay; i++){
+//            plantMap.addPlant();
+//        }
     }
 }
 

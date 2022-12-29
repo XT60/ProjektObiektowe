@@ -25,30 +25,27 @@ import static java.lang.Math.min;
 
 public class SimulationWindow {
 
-    int horizontal,vertical,width=20, height=20;
+    int horizontal,vertical,width=40, height=40;
     Vector2d lowerLeft, upperRight;
     final GridPane gridPane = new GridPane();
 
     public void launchSimulationWindow(IMap map, IPlant plantMap) throws FileNotFoundException {
         //Create Stage
         Stage newWindow = new Stage();
-        newWindow.setTitle("New Scene");
+        newWindow.setTitle("Simulation");
         //Create view in Java
-
-        Label title = new Label("This is a pretty simple view!");
-        TextField textField = new TextField("Enter your name here");
-        Button button = new Button("OK");
-        VBox container = new VBox(title, textField, button);
-        //Style container
-        container.setSpacing(15);
-        container.setAlignment(Pos.CENTER);
+//        Label title = new Label("This is a pretty simple view!");
+//        TextField textField = new TextField("Enter your name here");
+//        Button button = new Button("OK");
+//        VBox container = new VBox(title, textField, button);
+//        //Style container
+//        container.setSpacing(15);
+//        container.setAlignment(Pos.CENTER);
         //Set view in window
-
         createMap(map, plantMap);
         HBox hBox = new HBox(this.gridPane);
         Scene scene = new Scene(hBox, 800, 800);
         newWindow.setScene(scene);
-
         newWindow.show();
     }
 
