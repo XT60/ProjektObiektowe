@@ -63,16 +63,18 @@ public class SimulationEngine implements Runnable {
     }
 
     public void run() {
+
         Platform.runLater(() -> this.simulationWindow.launchSimulationWindow(this.map, this.plantMap));
 
         for (int tmp = 0; tmp < epochCount; tmp++) {
+
+            Platform.runLater(() -> this.simulationWindow.createMap(this.map, this.plantMap));
             try {
-                sleep(200);
+                sleep((int)(epochDuration*1000));
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
 
-            Platform.runLater(() -> this.simulationWindow.createMap(this.map, this.plantMap));
             Iterator<Animal> iterator = animalList.iterator();
             while (iterator.hasNext()) {
 
@@ -92,37 +94,19 @@ public class SimulationEngine implements Runnable {
                         animal.reverse();
                     }
                 }
-
-                Platform.runLater(() -> this.simulationWindow.createMap(this.map, this.plantMap));
-                try {
-                    sleep(200);
-                } catch (InterruptedException g) {
-                    throw new RuntimeException(g);
-                }
-
             }
 
-        // feed all animals
-        this.map.feedAnimals(this.plantMap);
 
-//        //procreate animals
-//
+
+            // feed all animals
+            this.map.feedAnimals(this.plantMap);
+
+            //procreate animals
+
             // growing all new plants
-//            Platform.runLater(() -> this.simulationWindow.createMap(this.map, this.plantMap));
-//            try {
-//                sleep(300);
-//            } catch (InterruptedException g) {
-//                throw new RuntimeException(g);
-//            }
             int plantGrowthPerDay = this.map.getMapConstants().get(WorldParamType.PLANT_GROWTH_RATE);
             for (int i = 0; i < plantGrowthPerDay; i++) {
                 plantMap.addPlant();
-                Platform.runLater(() -> this.simulationWindow.createMap(this.map, this.plantMap));
-                try {
-                    sleep(200);
-                } catch (InterruptedException g) {
-                    throw new RuntimeException(g);
-                }
             }
 
         }

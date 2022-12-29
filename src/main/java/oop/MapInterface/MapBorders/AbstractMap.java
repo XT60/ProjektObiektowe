@@ -15,7 +15,7 @@ import java.util.HashMap;
 abstract class AbstractMap implements IMap {
 
     protected Map<Vector2d, SortedSet<Animal>> animals = new HashMap<Vector2d, SortedSet<Animal>>();
-    DeadAnimalsHolder deadAnimalsHolder;
+    DeadAnimalsHolder deadAnimalsHolder ;
 
 
     @Override

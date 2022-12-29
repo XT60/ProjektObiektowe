@@ -223,13 +223,17 @@ public class Animal implements IMapElement {
 
 
     public String getView(){
-        return "src/main/resources/up.png";
-//        return switch(this.direction){
-//            case NORTH -> "src/main/resources/up.png";
-//            case EAST -> "src/main/resources/right.png";
-//            case SOUTH -> "src/main/resources/down.png";
-//            case WEST -> "src/main/resources/left.png";
-//            };
+//        return "src/main/resources/up.png";
+        return switch(this.direction){
+            case N -> "src/main/resources/N.png";
+            case NE -> "src/main/resources/NE.png";
+            case E -> "src/main/resources/E.png";
+            case SE -> "src/main/resources/SE.png";
+            case S -> "src/main/resources/S.png";
+            case SW -> "src/main/resources/SW.png";
+            case W -> "src/main/resources/W.png";
+            case NW -> "src/main/resources/NW.png";
+            };
 
     }
 
