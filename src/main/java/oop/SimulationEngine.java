@@ -65,46 +65,49 @@ public class SimulationEngine implements Runnable{
 //        simulationWindow.launchSimulationWindow(this.map,this.plantMap);
 //        Thread engineThread = new Thread(this::run);
 //        engineThread.start();
-            run();
     }
 
     public void run() {
-        System.out.println("TAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-        try {
-            this.simulationWindow.launchSimulationWindow(this.map,this.plantMap);
-            System.out.println("NIEEEEEEEEEEEEEEEEEEEE");
-
-        } catch (FileNotFoundException e) {
-            System.out.println("TUTAJ SIE WYWALA");
-        }
-//        Platform.runLater( () -> {
-//            try {
-//                this.simulationWindow.createMap(this.map,this.plantMap);
-//                sleep(0);
-//            } catch (FileNotFoundException | InterruptedException e) {
-//                throw new RuntimeException(e);
-//            }
-//        });
-        System.out.println("KURWAAAAAAAAAAAAAAAAAA");
+        Platform.runLater( () -> {
+            try {
+                this.simulationWindow.launchSimulationWindow(this.map,this.plantMap);
+                System.out.println("UROCHOMIONE LAUNCH SIMULATION WINDOW");
+                sleep(4000);
+                this.simulationWindow.createMap(this.map,this.plantMap);
+                System.out.println("POSZŁO CREATE MAP");
+            } catch (FileNotFoundException | InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
 
-//        for(Animal animal : animalList) {
-//            // remove dead animals
+        for(Animal animal : animalList) {
+            // remove dead animals
+            System.out.println("IDE PO ANIMALACH");
 //            if (animal.isDead()) {
 //                map.removeAnimal(animal);
 //                animalList.remove(animal);
 //            }
-//            // move all animals on map
-//
+            // move all animals on map
 //            else {
-//                Vector2d newPosition = animal.turn(); // newPositon musi zwrócić Vector2d na jaki zwierze chicałoby wejść
-//                if (map.canMoveTo(newPosition)) {
-//                    animal.move(map.changePosition(animal,newPosition));
-//                } else {
-//                    animal.reverse();
-//                }
+                Vector2d newPosition = animal.turn(); // newPositon musi zwrócić Vector2d na jaki zwierze chicałoby wejść
+                if (map.canMoveTo(newPosition)) {
+                    animal.move(map.changePosition(animal,newPosition));
+                } else {
+                    animal.reverse();
+                }
+                Platform.runLater( () -> {
+                    try {
+                        System.out.println("OoOoOoOoOoOoOoOoOoOoOoOoOo");
+                        sleep(2000);
+                        System.out.println("NO NIEEEEEEE");
+                        this.simulationWindow.createMap(this.map,this.plantMap);
+                    } catch (FileNotFoundException | InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
 //            }
-//        }
+        }
 ////
 //        // feed all animals
 //        this.map.feedAnimals(this.plantMap);

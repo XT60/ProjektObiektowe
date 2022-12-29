@@ -31,7 +31,9 @@ public class ParameterValidator {
         worldParams = loadParamWorld(configFileName);
         checkConsistency();
         SimulationWindow simulationWindow = new SimulationWindow();
-        createSimulationEngine(worldParams, epochCount, epochDuration, simulationWindow, null);
+        SimulationEngine simulationEngine = createSimulationEngine(worldParams, epochCount, epochDuration, simulationWindow, null);
+        Thread engineThread = new Thread(simulationEngine);
+        engineThread.start();
     }
 
 

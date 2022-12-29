@@ -106,7 +106,7 @@ public class Animal implements IMapElement {
 
 
     public boolean isDead(){
-        return energy > 0;
+        return !(energy > 0);
     }
 
 
