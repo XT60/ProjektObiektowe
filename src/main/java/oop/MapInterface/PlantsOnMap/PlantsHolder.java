@@ -14,7 +14,9 @@ public class PlantsHolder {
     }
 
     public void removePlant(Plant plant){
+
         plantStorage.remove(plant.getPosition());
+        System.out.println("Liczba plantow po usunieciu: " + plantStorage.size());
     }
 
     public Plant plantAtPosition(Vector2d position){

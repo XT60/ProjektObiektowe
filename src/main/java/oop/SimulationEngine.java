@@ -67,7 +67,7 @@ public class SimulationEngine implements Runnable {
 
         for (int tmp = 0; tmp < epochCount; tmp++) {
             try {
-                sleep(700);
+                sleep(200);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -78,7 +78,6 @@ public class SimulationEngine implements Runnable {
 
                 // remove dead animals
                 Animal animal = iterator.next();
-                System.out.println("IDE PO ANIMALACH " + tmp + " " + animal.getEnergy());
                 if (animal.isDead()) {
                     map.removeAnimal(animal);
                     iterator.remove();
@@ -93,18 +92,19 @@ public class SimulationEngine implements Runnable {
                         animal.reverse();
                     }
                 }
+
                 Platform.runLater(() -> this.simulationWindow.createMap(this.map, this.plantMap));
                 try {
-                    sleep(300);
+                    sleep(200);
                 } catch (InterruptedException g) {
                     throw new RuntimeException(g);
                 }
 
             }
 
-//        // feed all animals
-//        this.map.feedAnimals(this.plantMap);
-//
+        // feed all animals
+        this.map.feedAnimals(this.plantMap);
+
 //        //procreate animals
 //
             // growing all new plants
@@ -117,6 +117,12 @@ public class SimulationEngine implements Runnable {
             int plantGrowthPerDay = this.map.getMapConstants().get(WorldParamType.PLANT_GROWTH_RATE);
             for (int i = 0; i < plantGrowthPerDay; i++) {
                 plantMap.addPlant();
+                Platform.runLater(() -> this.simulationWindow.createMap(this.map, this.plantMap));
+                try {
+                    sleep(200);
+                } catch (InterruptedException g) {
+                    throw new RuntimeException(g);
+                }
             }
 
         }

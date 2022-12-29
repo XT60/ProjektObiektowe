@@ -32,7 +32,6 @@ abstract class AbstractMap implements IMap {
         (animals.get(position)).remove(animal);
 
         if ((animals.get(position)).isEmpty()){
-            System.out.println("USUAM LISTE: " + animal.getPosition());
             animals.remove(position);
         }
         deadAnimalsHolder.deathAtPosition(position);
@@ -54,6 +53,7 @@ abstract class AbstractMap implements IMap {
             Plant plant = plants.plantAtPosition(position);
             if (plant != null) {
                 (animals.get(position)).first().feed();
+                System.out.println("USUWAM PLANTA");
                 plants.removePlant(plant);
             }
         }
@@ -61,7 +61,6 @@ abstract class AbstractMap implements IMap {
 
     public IMapElement objectAt(Vector2d position){
         if(animals.containsKey(position)){
-            System.out.println("ZWIERZE NA POZYCJI: " + position.toString());
             return animals.get(position).first();
         }
         return null;

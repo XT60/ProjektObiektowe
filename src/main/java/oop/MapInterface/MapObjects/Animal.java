@@ -177,7 +177,10 @@ public class Animal implements IMapElement {
                 return cmpRes;
             }
         }
-        return 0;
+       if(this.equals(otherAnimal)){
+           return 0;
+       }
+       return 1;
     }
 
     private int cmp(int a, int b){
