@@ -72,9 +72,10 @@ public class SimulationEngine implements Runnable{
             try {
                 this.simulationWindow.launchSimulationWindow(this.map,this.plantMap);
                 System.out.println("UROCHOMIONE LAUNCH SIMULATION WINDOW");
-                sleep(4000);
                 this.simulationWindow.createMap(this.map,this.plantMap);
-                System.out.println("POSZLO CREATE MAP");
+
+                System.out.println("POSZŁO CREATE MAP");
+                sleep(700);
             } catch (FileNotFoundException | InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -90,7 +91,7 @@ public class SimulationEngine implements Runnable{
 //            }
             // move all animals on map
 //            else {
-                Vector2d newPosition = animal.turn(); // newPositon musi zwrócić Vector2d na jaki zwierze chicałoby wejść
+                Vector2d newPosition = animal.turn();
                 if (map.canMoveTo(newPosition)) {
                     animal.move(map.changePosition(animal,newPosition));
                 } else {
