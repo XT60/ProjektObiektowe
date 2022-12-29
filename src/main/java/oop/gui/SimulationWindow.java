@@ -37,7 +37,6 @@ public class SimulationWindow {
         Scene scene = new Scene(hBox, 800, 800);
         newWindow.setScene(scene);
         newWindow.show();
-        System.out.println("NO NIECH WYŚWIETLI SIĘ TO ZAJEBANE OKNO");
     }
 
     public void createGrid(IMap map){

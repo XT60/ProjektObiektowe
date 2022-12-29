@@ -98,9 +98,7 @@ public class SimulationEngine implements Runnable{
                 }
                 Platform.runLater( () -> {
                     try {
-                        System.out.println("OoOoOoOoOoOoOoOoOoOoOoOoOo");
                         sleep(2000);
-                        System.out.println("NO NIEEEEEEE");
                         this.simulationWindow.createMap(this.map,this.plantMap);
                     } catch (FileNotFoundException | InterruptedException e) {
                         throw new RuntimeException(e);
