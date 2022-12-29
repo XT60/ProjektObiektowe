@@ -9,7 +9,7 @@ public class CrazyGenomeIndexChanger implements GenomeIndexChanger{
     public CrazyGenomeIndexChanger(int genomeLength){
         Random rand = new Random();
         this.genomeLength = genomeLength;
-        currIndex = rand.nextInt() % genomeLength;
+        currIndex = rand.nextInt(genomeLength);
     }
 
     public int next(){
@@ -18,7 +18,7 @@ public class CrazyGenomeIndexChanger implements GenomeIndexChanger{
         if (variate < 8) {
             currIndex = (currIndex + 1) % genomeLength;
         } else {
-            currIndex = rand.nextInt() % genomeLength;
+            currIndex = rand.nextInt(genomeLength);
         }
         return currIndex;
     }

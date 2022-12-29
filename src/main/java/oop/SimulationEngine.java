@@ -74,7 +74,7 @@ public class SimulationEngine implements Runnable{
                 System.out.println("UROCHOMIONE LAUNCH SIMULATION WINDOW");
                 sleep(4000);
                 this.simulationWindow.createMap(this.map,this.plantMap);
-                System.out.println("POSZŁO CREATE MAP");
+                System.out.println("POSZLO CREATE MAP");
             } catch (FileNotFoundException | InterruptedException e) {
                 throw new RuntimeException(e);
             }

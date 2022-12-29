@@ -35,7 +35,8 @@ public class AnimalConstants {
             case MAX_MUTATION_COUNT -> this.MAX_MUTATION_COUNT;
             case ANIMAL_GENOME_LENGTH -> this.ANIMAL_GENOME_LENGTH;
             case INIT_ANIMAL_ENERGY ->  this.INIT_ANIMAL_ENERGY;
-            default -> throw new IllegalArgumentException();
+            default -> throw new IllegalArgumentException("Invalid argument for AnimalConstants get method :"
+                    + paramType.toString());
         };
     }
 }

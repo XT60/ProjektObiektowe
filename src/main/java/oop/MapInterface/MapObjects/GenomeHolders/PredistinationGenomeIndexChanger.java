@@ -9,7 +9,7 @@ public class PredistinationGenomeIndexChanger implements GenomeIndexChanger{
     public PredistinationGenomeIndexChanger(int genomeLength){
         Random rand = new Random();
         this.genomeLength = genomeLength;
-        currIndex = rand.nextInt() % genomeLength;
+        currIndex = rand.nextInt(genomeLength);
     }
 
 
