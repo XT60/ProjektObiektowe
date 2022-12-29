@@ -29,11 +29,8 @@ abstract class AbstractMap implements IMap {
     @Override
     public void removeAnimal(Animal animal){
         Vector2d position = animal.getPosition();
-        System.out.println("USUAM ANIMALA Z POZYCJI: " + animal.getPosition().toString());
-
         (animals.get(position)).remove(animal);
 
-        System.out.println((animals.get(position)).size());
         if ((animals.get(position)).isEmpty()){
             System.out.println("USUAM LISTE: " + animal.getPosition());
             animals.remove(position);

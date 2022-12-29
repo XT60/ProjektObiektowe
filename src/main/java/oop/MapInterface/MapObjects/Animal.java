@@ -177,7 +177,7 @@ public class Animal implements IMapElement {
                 return cmpRes;
             }
         }
-        return 1;
+        return 0;
     }
 
     private int cmp(int a, int b){
@@ -233,15 +233,25 @@ public class Animal implements IMapElement {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Animal animal = (Animal) o;
+        if (!(o instanceof Animal animal)) return false;
+
+        if (energy != animal.energy) return false;
+        if (age != animal.age) return false;
+        if (childrenCount != animal.childrenCount) return false;
+        if (direction != animal.direction) return false;
+        if (!genomeHolder.equals(animal.genomeHolder)) return false;
         if (!position.equals(animal.position)) return false;
         return constants.equals(animal.constants);
     }
 
     @Override
     public int hashCode() {
-        int  result = position.hashCode();
+        int result = direction.hashCode();
+        result = 31 * result + genomeHolder.hashCode();
+        result = 31 * result + energy;
+        result = 31 * result + age;
+        result = 31 * result + childrenCount;
+        result = 31 * result + position.hashCode();
         result = 31 * result + constants.hashCode();
         return result;
     }

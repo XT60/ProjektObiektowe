@@ -93,9 +93,9 @@ public class SimulationEngine implements Runnable {
                         animal.reverse();
                     }
                 }
-//                Platform.runLater(() -> this.simulationWindow.createMap(this.map, this.plantMap));
+                Platform.runLater(() -> this.simulationWindow.createMap(this.map, this.plantMap));
                 try {
-                    sleep(2000);
+                    sleep(300);
                 } catch (InterruptedException g) {
                     throw new RuntimeException(g);
                 }
@@ -109,11 +109,11 @@ public class SimulationEngine implements Runnable {
 //
             // growing all new plants
 //            Platform.runLater(() -> this.simulationWindow.createMap(this.map, this.plantMap));
-            try {
-                sleep(300);
-            } catch (InterruptedException g) {
-                throw new RuntimeException(g);
-            }
+//            try {
+//                sleep(300);
+//            } catch (InterruptedException g) {
+//                throw new RuntimeException(g);
+//            }
             int plantGrowthPerDay = this.map.getMapConstants().get(WorldParamType.PLANT_GROWTH_RATE);
             for (int i = 0; i < plantGrowthPerDay; i++) {
                 plantMap.addPlant();
