@@ -36,7 +36,7 @@ public enum MapDirection {
     }
 
     public MapDirection turn(int moveValue){
-        return clockWiseOrder[(this.orderIndex + moveValue) % clockWiseOrder.length];
+        return clockWiseOrder[(this.orderIndex + moveValue + clockWiseOrder.length) % clockWiseOrder.length];
     }
 
     public Vector2d toUnitVector(){
