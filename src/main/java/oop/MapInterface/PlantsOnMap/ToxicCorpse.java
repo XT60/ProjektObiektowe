@@ -45,4 +45,8 @@ public class ToxicCorpse implements IPlant{
     public Plant plantAtPosition(Vector2d position){
         return plants.plantAtPosition(position);
     }
+
+    public int getNumberOfPlants(){
+        return plants.numberOfPlants();
+    }
 }

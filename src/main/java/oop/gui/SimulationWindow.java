@@ -29,17 +29,17 @@ public class SimulationWindow {
     Vector2d lowerLeft, upperRight;
     final GridPane gridPane = new GridPane();
 
-    public void launchSimulationWindow(IMap map, IPlant plantMap){
+    public void launchSimulationWindow(IMap map, IPlant plantMap, int countOfAnimals){
         Stage newWindow = new Stage();
         newWindow.setTitle("Simulation");
-        createMap(map, plantMap);
+        createMap(map, plantMap, countOfAnimals);
         HBox hBox = new HBox(this.gridPane);
         Scene scene = new Scene(hBox, 800, 800);
         newWindow.setScene(scene);
         newWindow.show();
     }
 
-    public void createGrid(IMap map){
+    public void createGrid(IMap map, int countOfAnimals){
         this.lowerLeft = map.getLowerLeft();
         this.upperRight =map.getUpperRight();
         int xMin = min(lowerLeft.x, upperRight.x);
@@ -72,6 +72,8 @@ public class SimulationWindow {
             this.gridPane.getRowConstraints().add(new RowConstraints(height));
             row--;
             }
+        Label animalCount = new Label("Ilość zwierząt: " + countOfAnimals);
+        gridPane.add(animalCount,width+3,0);
         }
 
     public void placeObjectsOnGrid(IMap map, IPlant plants){
@@ -103,14 +105,16 @@ public class SimulationWindow {
         GridPane.setHalignment(guiElementBox.getvBox(), HPos.CENTER);
     }
 
-    public void createMap(IMap map, IPlant plantMap) {
+    public void createMap(IMap map, IPlant plantMap, int countOfAnimals) {
         this.gridPane.getChildren().clear();
         this.gridPane.getColumnConstraints().clear();
         this.gridPane.getRowConstraints().clear();
-        this.gridPane.setGridLinesVisible(false);
-        this.gridPane.setGridLinesVisible(true);
-        createGrid(map);
+//        this.gridPane.setGridLinesVisible(false);
+//        this.gridPane.setGridLinesVisible(true);
+        createGrid(map, countOfAnimals);
         placeObjectsOnGrid(map,plantMap);
+
+
 
     }
 }

@@ -64,11 +64,19 @@ public class SimulationEngine implements Runnable {
 
     public void run() {
 
-        Platform.runLater(() -> this.simulationWindow.launchSimulationWindow(this.map, this.plantMap));
+        int countOfAnimals = 0;
+        int numberOfPlants =0;
+        int finalCountOfAnimals1 = countOfAnimals;
+        Platform.runLater(() -> this.simulationWindow.launchSimulationWindow(this.map, this.plantMap, finalCountOfAnimals1));
 
-        for (int tmp = 0; tmp < epochCount; tmp++) {
+        for (int day = 1; day <= epochCount; day++) {
 
-            Platform.runLater(() -> this.simulationWindow.createMap(this.map, this.plantMap));
+            countOfAnimals = animalList.size();
+            numberOfPlants = plantMap.getNumberOfPlants();
+
+
+            int finalCountOfAnimals = countOfAnimals;
+            Platform.runLater(() -> this.simulationWindow.createMap(this.map, this.plantMap, finalCountOfAnimals));
             try {
                 sleep((int)(epochDuration*1000));
             } catch (InterruptedException e) {

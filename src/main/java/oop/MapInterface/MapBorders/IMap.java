@@ -37,5 +37,7 @@ public interface IMap {
 
     LinkedList<Animal> procreateAnimals();
 
+
+
 }
 

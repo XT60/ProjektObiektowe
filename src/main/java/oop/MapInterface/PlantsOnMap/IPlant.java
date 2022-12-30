@@ -10,4 +10,6 @@ public interface IPlant {
     void removePlant(Plant plant);
 
     Plant plantAtPosition(Vector2d position);
+
+    int getNumberOfPlants();
 }

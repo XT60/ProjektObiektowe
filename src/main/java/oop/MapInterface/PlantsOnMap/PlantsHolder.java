@@ -20,4 +20,8 @@ public class PlantsHolder {
     public Plant plantAtPosition(Vector2d position){
         return plantStorage.get(position);
     }
+
+    public int numberOfPlants(){
+        return plantStorage.size();
+    }
 }

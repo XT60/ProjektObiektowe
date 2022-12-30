@@ -81,4 +81,8 @@ public class PlantsEquator implements IPlant{
     private boolean isInPreferredPosition(Vector2d position){
         return (position.y>=yDown && position.y<=yUp);
     }
+
+    public int getNumberOfPlants(){
+        return plants.numberOfPlants();
+    }
 }
