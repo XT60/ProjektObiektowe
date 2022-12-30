@@ -38,7 +38,7 @@ public abstract class AbstractGenomeHolder {
             genome[i] = leftPart[i];
         }
         for(; i < newGenomeLen; i++){
-            int rIndex = i - rightPart.length;
+            int rIndex = i - leftPart.length;
             genome[i] = rightPart[rIndex];
         }
         GenomeIndexChanger indexChanger = this.indexChanger.createNewIndexChanger();
@@ -143,8 +143,6 @@ public abstract class AbstractGenomeHolder {
      * @return      gen value after mutation
      */
     protected int mutateGen(int gen){
-        // will it work if this method is protected and overwritten in child class ??
-        // or should it be public
         return -1;
     }
 
