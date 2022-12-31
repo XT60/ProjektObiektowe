@@ -26,6 +26,8 @@ public class SimulationEngine implements Runnable {
     private final IPlant plantMap;
     private final List<Animal> animalList = new LinkedList<>();
 
+    private boolean pause = false;
+
     private final SimulationWindow simulationWindow;
 
     public SimulationEngine(int numberOfAnimals, IMap map, IPlant plantMap, AnimalVariant animalVariant,
@@ -63,11 +65,16 @@ public class SimulationEngine implements Runnable {
 
     }
 
+    public void stopOrResume() {
+        pause =! pause;
+    }
+
+
     public void run() {
 
         int countOfAnimals;
-        int sumOfEnergy = plantMap.getPlantsEnergy()*animalList.size();
-        int averageEnergy=sumOfEnergy;
+        int sumOfEnergy = plantMap.getPlantsEnergy() * animalList.size();
+        int averageEnergy = sumOfEnergy;
 
         int sumOfAge = 0;
         int numberOfDeathAnimals = 0;
@@ -76,35 +83,43 @@ public class SimulationEngine implements Runnable {
 
         for (int day = 1; day <= epochCount; day++) {
 
+            while (pause) {
+                try {
+                    sleep(100);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+
             countOfAnimals = animalList.size();
             int finalCountOfAnimals = countOfAnimals;
 
-            if(numberOfDeathAnimals!=0){
-                averageAge = sumOfAge/numberOfDeathAnimals;
+            if (numberOfDeathAnimals != 0) {
+                averageAge = sumOfAge / numberOfDeathAnimals;
             }
             int finalAverageAge = averageAge;
 
-            if(countOfAnimals!=0){
-                averageEnergy = sumOfEnergy/countOfAnimals;
+            if (countOfAnimals != 0) {
+                averageEnergy = sumOfEnergy / countOfAnimals;
             }
             int finalAverageEnergy = averageEnergy;
 
             Platform.runLater(() -> this.simulationWindow.createMap(this.map, this.plantMap, finalCountOfAnimals, finalAverageEnergy, finalAverageAge));
 
             try {
-                sleep((int)(epochDuration*1000));
+                sleep((int) (epochDuration * 1000));
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
 
             Iterator<Animal> iterator = animalList.iterator();
-            sumOfEnergy=0;
+            sumOfEnergy = 0;
             while (iterator.hasNext()) {
 
                 // remove dead animals
                 Animal animal = iterator.next();
                 if (animal.isDead()) {
-                    sumOfAge+=animal.getAge();
+                    sumOfAge += animal.getAge();
                     numberOfDeathAnimals++;
                     map.removeAnimal(animal);
                     iterator.remove();
@@ -125,13 +140,13 @@ public class SimulationEngine implements Runnable {
             // feed all animals
             this.map.feedAnimals(this.plantMap);
 
-            //procreate animals
-//            LinkedList<Animal> children = this.map.procreateAnimals();
-//            animalList.addAll(children);
-//            children.clear();
+//            // procreate animals
+            LinkedList<Animal> children = this.map.procreateAnimals();
+            animalList.addAll(children);
+            children.clear();
 
-            for(Animal animal : animalList){
-                sumOfEnergy+=animal.getEnergy();
+            for (Animal animal : animalList) {
+                sumOfEnergy += animal.getEnergy();
             }
 
             // grow all new plants
@@ -143,7 +158,9 @@ public class SimulationEngine implements Runnable {
         }
 
     }
+
 }
+
 
 
 

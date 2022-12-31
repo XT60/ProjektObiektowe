@@ -32,7 +32,7 @@ public class ParameterValidator {
         checkConsistency();
         SimulationWindow simulationWindow = new SimulationWindow();
         SimulationEngine simulationEngine = createSimulationEngine(worldParams, epochCount, epochDuration, simulationWindow, null);
-
+        simulationWindow.addSimulationEngine(simulationEngine);
         Thread engineThread = new Thread(simulationEngine);
         engineThread.start();
     }

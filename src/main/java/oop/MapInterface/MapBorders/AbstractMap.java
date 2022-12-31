@@ -1,5 +1,6 @@
 package oop.MapInterface.MapBorders;
 
+import com.sun.source.util.Trees;
 import oop.MapInterface.IMapElement;
 import oop.MapInterface.MapConstants;
 import oop.MapInterface.MapObjects.Plant;
@@ -14,7 +15,7 @@ import java.util.HashMap;
 
 abstract class AbstractMap implements IMap {
 
-    protected Map<Vector2d, SortedSet<Animal>> animals = new HashMap<Vector2d, SortedSet<Animal>>();
+    protected Map<Vector2d, TreeSet<Animal>> animals = new HashMap<Vector2d, TreeSet<Animal>>();
     DeadAnimalsHolder deadAnimalsHolder ;
 
 
@@ -29,11 +30,13 @@ abstract class AbstractMap implements IMap {
     @Override
     public void removeAnimal(Animal animal){
         Vector2d position = animal.getPosition();
-        (animals.get(position)).remove(animal);
-        if ((animals.get(position)).isEmpty()){
-            animals.remove(position);
+        if (animals.get(position) != null){
+            (animals.get(position)).remove(animal);
+            if ((animals.get(position)).isEmpty()){
+                animals.remove(position);
+            }
+            deadAnimalsHolder.deathAtPosition(position);
         }
-        deadAnimalsHolder.deathAtPosition(position);
     }
 
 
@@ -67,20 +70,24 @@ abstract class AbstractMap implements IMap {
     @Override
     public LinkedList<Animal> procreateAnimals() {
         LinkedList<Animal> procreatedAnimals = new LinkedList<Animal>();
+        ArrayList<Animal> parents = new ArrayList<>();
         for (Vector2d position : animals.keySet()) {
             if ((animals.get(position)).size()>1) {
                 Iterator<Animal> iterator = (animals.get(position)).iterator();
-                Animal firstAnimal = iterator.next();
-                Animal secondAnimal = iterator.next();
-                Animal newAnimal = firstAnimal.procreate(secondAnimal);
-                if(newAnimal!=null){
-//                    this.addAnimal(newAnimal,newAnimal.getPosition());
-                    procreatedAnimals.add(newAnimal);
-                }
+                parents.add(iterator.next());
+                parents.add(iterator.next());
             }
         }
-        for(Animal newAnimal : procreatedAnimals){
-            this.addAnimal(newAnimal,newAnimal.getPosition());
+        for( int i=0; i<parents.size()-1; i+=2){
+            removeAnimal(parents.get(i));
+            removeAnimal(parents.get(i+1));
+            Animal child = parents.get(i).procreate(parents.get(i+1));
+            addAnimal(parents.get(i), parents.get(i).getPosition());
+            addAnimal(parents.get(i+1), parents.get(i+1).getPosition());
+            if (child != null){
+                addAnimal(child, child.getPosition());
+                procreatedAnimals.add(child);
+            }
         }
         return procreatedAnimals;
     }

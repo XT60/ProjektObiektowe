@@ -1,5 +1,6 @@
 package oop.gui;
 
+import javafx.application.Platform;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -28,6 +29,11 @@ public class SimulationWindow {
     int horizontal,vertical,width=40, height=40;
     Vector2d lowerLeft, upperRight;
     final GridPane gridPane = new GridPane();
+    SimulationEngine simulationEngine;
+
+    public void addSimulationEngine(SimulationEngine simulationEngine){
+        this.simulationEngine = simulationEngine;
+    }
 
     public void launchSimulationWindow(IMap map){
         Stage newWindow = new Stage();
@@ -104,8 +110,9 @@ public class SimulationWindow {
         this.gridPane.add(avgEnergy,width+3,3);
         Label avgAge = new Label("Life expectancy: " + averageAge);
         this.gridPane.add(avgAge,width+3,4);
-
-
+        Button pauseButton = new Button("Pause/Play");
+        pauseButton.setOnAction((action) -> Platform.runLater(() -> simulationEngine.stopOrResume()));
+        this.gridPane.add(pauseButton,width+3, 5);
     }
 
     private void addingObjectOnMap(int x, int y, IMapElement mapObject) {
@@ -126,8 +133,7 @@ public class SimulationWindow {
         this.gridPane.getRowConstraints().clear();
         createGrid(map);
         placeObjectsOnGrid(map,plantMap,countOfAnimals, averageEnergy, averageAge);
-
-
-
     }
+
+
 }
