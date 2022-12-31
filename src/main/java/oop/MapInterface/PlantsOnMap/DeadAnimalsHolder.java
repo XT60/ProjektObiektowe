@@ -4,6 +4,8 @@ import oop.ConfigParameters.WorldParamType;
 import oop.MapInterface.MapConstants;
 import oop.Vector2d;
 
+import java.util.SortedSet;
+import java.util.TreeSet;
 import java.util.*;
 
 public class DeadAnimalsHolder {
@@ -11,9 +13,6 @@ public class DeadAnimalsHolder {
     MapConstants mapConstants;
     TreeSet<DeadAnimalsHolderElement> elements = new TreeSet<>( new DeadAnimalsHolderComparator());
     Map<Vector2d,DeadAnimalsHolderElement> positions = new HashMap<>();
-
-
-
 
 
     public DeadAnimalsHolder(MapConstants mapConstants){
@@ -57,7 +56,7 @@ public class DeadAnimalsHolder {
 
     public void deathAtPosition(Vector2d position){
         positions.get(position).incrementCount();
-        elements.remove(positions.get(position));
-        elements.add(positions.get(position));
+//        elements.remove(positions.get(position));
+//        elements.add(positions.get(position));
     }
 }

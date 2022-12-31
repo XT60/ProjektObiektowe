@@ -9,7 +9,7 @@ public class DeadAnimalsHolderComparator implements java.util.Comparator<DeadAni
             return 1;
         else if (o1.deadAnimalsCount < o2.deadAnimalsCount)
             return -1;
-        if (o1.equals(o2)) {
+        if (o1.hashCode() == o2.hashCode()) {
             return 0;
         }
         return 1;

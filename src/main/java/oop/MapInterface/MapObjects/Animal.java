@@ -221,18 +221,26 @@ public class Animal implements IMapElement {
         return new Vector2d(position);
     }
 
-
+    private String energyLevel(){
+        if(this.energy>= this.constants.get(WorldParamType.INIT_ANIMAL_ENERGY)){
+            return "";
+        }
+        else if(this.energy >= (int)(0.5*this.constants.get(WorldParamType.INIT_ANIMAL_ENERGY))){
+            return "_medium";
+        }
+        return "_low";
+    }
+    
     public String getView(){
-//        return "src/main/resources/up.png";
         return switch(this.direction){
-            case N -> "src/main/resources/N.png";
-            case NE -> "src/main/resources/NE.png";
-            case E -> "src/main/resources/E.png";
-            case SE -> "src/main/resources/SE.png";
-            case S -> "src/main/resources/S.png";
-            case SW -> "src/main/resources/SW.png";
-            case W -> "src/main/resources/W.png";
-            case NW -> "src/main/resources/NW.png";
+            case N -> "src/main/resources/N"+ energyLevel() + ".png";
+            case NE -> "src/main/resources/NE" + energyLevel() + ".png";
+            case E -> "src/main/resources/E" + energyLevel() + ".png";
+            case SE -> "src/main/resources/SE" + energyLevel() + ".png";
+            case S -> "src/main/resources/S" + energyLevel() + ".png";
+            case SW -> "src/main/resources/SW" + energyLevel()+ ".png";
+            case W -> "src/main/resources/W" + energyLevel() + ".png";
+            case NW -> "src/main/resources/NW" + energyLevel() + ".png";
             };
 
     }

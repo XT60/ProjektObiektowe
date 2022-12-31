@@ -29,8 +29,8 @@ public class GlobeMap extends AbstractMap {
             return newPosition;
         }
         else if(newPosition.x<0)
-            return super.changePosition(animal,new Vector2d(mapConstants.get(WorldParamType.MAP_WIDTH)-1, newPosition.y));
-        else if(newPosition.x>=mapConstants.get(WorldParamType.MAP_WIDTH))
+            return super.changePosition(animal,new Vector2d(this.width-1, newPosition.y));
+        else if(newPosition.x>=this.width)
             return super.changePosition(animal,new Vector2d(0,newPosition.y));
         return super.changePosition(animal, newPosition);
     }

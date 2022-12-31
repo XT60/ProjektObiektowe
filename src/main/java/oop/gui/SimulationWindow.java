@@ -74,6 +74,7 @@ public class SimulationWindow {
             }
         }
 
+
     public void placeObjectsOnGrid(IMap map, IPlant plants, int countOfAnimals, int averageEnergy, int averageAge){
         int freeSpaces = horizontal*(vertical-1);
         for (int x = 1; x <= horizontal; x++) {
@@ -118,12 +119,11 @@ public class SimulationWindow {
         GridPane.setHalignment(guiElementBox.getvBox(), HPos.CENTER);
     }
 
+
     public void createMap(IMap map, IPlant plantMap, int countOfAnimals, int averageEnergy, int averageAge) {
         this.gridPane.getChildren().clear();
         this.gridPane.getColumnConstraints().clear();
         this.gridPane.getRowConstraints().clear();
-//        this.gridPane.setGridLinesVisible(false);
-//        this.gridPane.setGridLinesVisible(true);
         createGrid(map);
         placeObjectsOnGrid(map,plantMap,countOfAnimals, averageEnergy, averageAge);
 
