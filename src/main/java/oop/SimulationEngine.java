@@ -126,9 +126,9 @@ public class SimulationEngine implements Runnable {
             this.map.feedAnimals(this.plantMap);
 
             //procreate animals
-            LinkedList<Animal> children = this.map.procreateAnimals();
-            animalList.addAll(children);
-            children.clear();
+//            LinkedList<Animal> children = this.map.procreateAnimals();
+//            animalList.addAll(children);
+//            children.clear();
 
             for(Animal animal : animalList){
                 sumOfEnergy+=animal.getEnergy();
