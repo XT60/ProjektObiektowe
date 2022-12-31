@@ -230,7 +230,7 @@ public class Animal implements IMapElement {
         }
         return "_low";
     }
-    
+
     public String getView(){
         return switch(this.direction){
             case N -> "src/main/resources/N"+ energyLevel() + ".png";

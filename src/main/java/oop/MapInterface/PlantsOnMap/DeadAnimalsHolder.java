@@ -31,9 +31,13 @@ public class DeadAnimalsHolder {
     }
 
     public Vector2d getPreferredField(){
-        for(DeadAnimalsHolderElement element : elements){
+        Iterator<DeadAnimalsHolderElement> iterator = elements.iterator();
+        while(iterator.hasNext()){
+            DeadAnimalsHolderElement element = iterator.next();
             if (!element.currentlyOnMap){
+                iterator.remove();
                 element.setOnMap();
+                elements.add(element);
                 return element.position;
             }
         }
@@ -41,13 +45,18 @@ public class DeadAnimalsHolder {
     }
 
     public Vector2d getOtherField(){
-        for(DeadAnimalsHolderElement element :  elements.descendingSet()){
+        Iterator<DeadAnimalsHolderElement> iterator = elements.descendingIterator();
+        while(iterator.hasNext()){
+            DeadAnimalsHolderElement element = iterator.next();
             if (!element.currentlyOnMap){
+                iterator.remove();
                 element.setOnMap();
+                elements.add(element);
                 return element.position;
             }
         }
         return null;
+
     }
 
     public void freePosition(Vector2d position){
@@ -55,8 +64,8 @@ public class DeadAnimalsHolder {
     }
 
     public void deathAtPosition(Vector2d position){
+        elements.remove(positions.get(position));
         positions.get(position).incrementCount();
-//        elements.remove(positions.get(position));
-//        elements.add(positions.get(position));
+        elements.add(positions.get(position));
     }
 }
