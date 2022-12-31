@@ -12,4 +12,5 @@ public interface IPlant {
     Plant plantAtPosition(Vector2d position);
 
     int getNumberOfPlants();
+    int getPlantsEnergy();
 }

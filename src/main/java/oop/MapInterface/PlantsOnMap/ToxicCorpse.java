@@ -49,4 +49,6 @@ public class ToxicCorpse implements IPlant{
     public int getNumberOfPlants(){
         return plants.numberOfPlants();
     }
+
+    public int getPlantsEnergy(){ return this.mapConstants.get(WorldParamType.PLANT_ENERGY);}
 }

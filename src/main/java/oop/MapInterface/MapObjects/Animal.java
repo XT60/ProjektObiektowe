@@ -177,7 +177,7 @@ public class Animal implements IMapElement {
                 return cmpRes;
             }
         }
-       if(this.equals(otherAnimal)){
+       if(this.hashCode()== otherAnimal.hashCode()){
            return 0;
        }
        return 1;

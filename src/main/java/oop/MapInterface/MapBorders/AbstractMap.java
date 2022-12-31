@@ -23,14 +23,13 @@ abstract class AbstractMap implements IMap {
         if(!animals.containsKey(position)){
             animals.put(position, new TreeSet<>(new AnimalComparator()) {});
         }
-        animals.get(position).add(animal);
+        (animals.get(position)).add(animal);
     }
 
     @Override
     public void removeAnimal(Animal animal){
         Vector2d position = animal.getPosition();
         (animals.get(position)).remove(animal);
-
         if ((animals.get(position)).isEmpty()){
             animals.remove(position);
         }
@@ -70,7 +69,7 @@ abstract class AbstractMap implements IMap {
         LinkedList<Animal> procreatedAnimals = new LinkedList<Animal>();
         for (Vector2d position : animals.keySet()) {
             if ((animals.get(position)).size()>1) {
-                Iterator<Animal> iterator = animals.get(position).iterator();
+                Iterator<Animal> iterator = (animals.get(position)).iterator();
                 Animal firstAnimal = iterator.next();
                 Animal secondAnimal = iterator.next();
                 Animal newAnimal = firstAnimal.procreate(secondAnimal);

@@ -14,6 +14,7 @@ import oop.MapInterface.PlantsOnMap.IPlant;
 import java.io.FileNotFoundException;
 import java.util.*;
 
+import static java.lang.Thread.enumerate;
 import static java.lang.Thread.sleep;
 
 
@@ -64,19 +65,32 @@ public class SimulationEngine implements Runnable {
 
     public void run() {
 
-        int countOfAnimals = 0;
-        int numberOfPlants =0;
-        int finalCountOfAnimals1 = countOfAnimals;
-        Platform.runLater(() -> this.simulationWindow.launchSimulationWindow(this.map, this.plantMap, finalCountOfAnimals1));
+        int countOfAnimals;
+        int sumOfEnergy = plantMap.getPlantsEnergy()*animalList.size();
+        int averageEnergy=sumOfEnergy;
+
+        int sumOfAge = 0;
+        int numberOfDeathAnimals = 0;
+        int averageAge = 0;
+        Platform.runLater(() -> this.simulationWindow.launchSimulationWindow(this.map));
 
         for (int day = 1; day <= epochCount; day++) {
 
             countOfAnimals = animalList.size();
-            numberOfPlants = plantMap.getNumberOfPlants();
-
-
             int finalCountOfAnimals = countOfAnimals;
-            Platform.runLater(() -> this.simulationWindow.createMap(this.map, this.plantMap, finalCountOfAnimals));
+
+            if(numberOfDeathAnimals!=0){
+                averageAge = sumOfAge/numberOfDeathAnimals;
+            }
+            int finalAverageAge = averageAge;
+
+            if(countOfAnimals!=0){
+                averageEnergy = sumOfEnergy/countOfAnimals;
+            }
+            int finalAverageEnergy = averageEnergy;
+
+            Platform.runLater(() -> this.simulationWindow.createMap(this.map, this.plantMap, finalCountOfAnimals, finalAverageEnergy, finalAverageAge));
+
             try {
                 sleep((int)(epochDuration*1000));
             } catch (InterruptedException e) {
@@ -84,11 +98,14 @@ public class SimulationEngine implements Runnable {
             }
 
             Iterator<Animal> iterator = animalList.iterator();
+            sumOfEnergy=0;
             while (iterator.hasNext()) {
 
                 // remove dead animals
                 Animal animal = iterator.next();
                 if (animal.isDead()) {
+                    sumOfAge+=animal.getAge();
+                    numberOfDeathAnimals++;
                     map.removeAnimal(animal);
                     iterator.remove();
                 }
@@ -111,7 +128,11 @@ public class SimulationEngine implements Runnable {
             //procreate animals
             LinkedList<Animal> children = this.map.procreateAnimals();
             animalList.addAll(children);
+            children.clear();
 
+            for(Animal animal : animalList){
+                sumOfEnergy+=animal.getEnergy();
+            }
 
             // grow all new plants
             int plantGrowthPerDay = this.map.getMapConstants().get(WorldParamType.PLANT_GROWTH_RATE);

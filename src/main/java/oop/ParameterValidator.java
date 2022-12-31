@@ -32,11 +32,10 @@ public class ParameterValidator {
         checkConsistency();
         SimulationWindow simulationWindow = new SimulationWindow();
         SimulationEngine simulationEngine = createSimulationEngine(worldParams, epochCount, epochDuration, simulationWindow, null);
+
         Thread engineThread = new Thread(simulationEngine);
         engineThread.start();
     }
-
-
 
     public SimulationEngine createSimulationEngine(Map<WorldParamType, Object> worldParams, int epochCount,
                                        Double epochDuration, SimulationWindow simulationWindow, String csvFilePath) throws FileNotFoundException {
