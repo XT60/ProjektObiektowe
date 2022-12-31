@@ -75,10 +75,13 @@ abstract class AbstractMap implements IMap {
                 Animal secondAnimal = iterator.next();
                 Animal newAnimal = firstAnimal.procreate(secondAnimal);
                 if(newAnimal!=null){
-                    this.addAnimal(newAnimal,newAnimal.getPosition());
+//                    this.addAnimal(newAnimal,newAnimal.getPosition());
                     procreatedAnimals.add(newAnimal);
                 }
             }
+        }
+        for(Animal newAnimal : procreatedAnimals){
+            this.addAnimal(newAnimal,newAnimal.getPosition());
         }
         return procreatedAnimals;
     }
