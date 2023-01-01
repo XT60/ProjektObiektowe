@@ -30,7 +30,7 @@ public class CorrectionGenomeHolder extends AbstractGenomeHolder{
             return (gen + 1) % 8;
         }
         else{
-            return (gen - 1) % 8;
+            return Math.abs((gen - 1) % 8);
         }
     }
 }
