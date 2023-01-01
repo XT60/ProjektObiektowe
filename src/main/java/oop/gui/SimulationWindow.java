@@ -46,6 +46,7 @@ public class SimulationWindow {
 
     public void launchSimulationWindow(IMap map){
         Stage newWindow = new Stage();
+        newWindow.setOnHidden(e -> simulationEngine.stop());
         newWindow.setTitle("Simulation");
         createGrid(map);
         HBox hBox = new HBox(this.gridPane);

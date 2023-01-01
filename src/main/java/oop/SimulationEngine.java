@@ -38,6 +38,7 @@ public class SimulationEngine implements Runnable {
     int popularGen=0;
 
 
+    private int day = 1;
     private final SimulationWindow simulationWindow;
 
     private String csvFilePath = null;
@@ -115,7 +116,7 @@ public class SimulationEngine implements Runnable {
         int averageAge = 0;
         Platform.runLater(() -> this.simulationWindow.launchSimulationWindow(this.map));
 
-        for (int day = 1; day <= epochCount; day++) {
+        for (; day <= epochCount; day++) {
             for(int i =0 ; i<8; i++)
                 popularGenoms[i]=0;
             if(pause){
@@ -237,6 +238,10 @@ public class SimulationEngine implements Runnable {
             e.printStackTrace();
         }
 
+    }
+
+    public void stop(){
+        day = epochCount;
     }
 
 }

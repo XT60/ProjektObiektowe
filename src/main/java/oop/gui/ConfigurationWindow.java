@@ -138,7 +138,10 @@ public class ConfigurationWindow {
             choiceBox.getItems().addAll(listFiles(Config.CONFIG_DIR_PATH));
         });
         Button newConfigFileBtn = new Button("New File");
-        newConfigFileBtn.setOnAction(event -> new InputConfigurationWindow());
+        newConfigFileBtn.setOnAction(event -> {
+            InputConfigurationWindow inputConfigurationWindow = new InputConfigurationWindow();
+            new Thread(inputConfigurationWindow).run();
+        });
 
         //Container with choiceBox and buttons
         HBox choiceContainer = new HBox(choiceBox, RefreshButton, newConfigFileBtn);
