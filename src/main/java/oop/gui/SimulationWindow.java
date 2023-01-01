@@ -184,7 +184,6 @@ public class SimulationWindow {
     }
 
     public void createPauseMap(IMap map, int popularGen) {
-        this.gridPane.getChildren();
         for (int x = 1; x <= horizontal; x++) {
             for (int y = 1; y <= vertical; y++) {
                 Vector2d position = new Vector2d((x - 1) + lowerLeft.x, upperRight.y - (y));
@@ -203,11 +202,13 @@ public class SimulationWindow {
                     button.setGraphic(imageView);
                     button.setGraphic(imageView);
                     button.setAlignment(Pos.CENTER);
+                    VBox vBox = new VBox(imageView);
+                    vBox.setAlignment(Pos.CENTER);
                     int finalX = x;
                     int finalY = y;
                     button.setOnAction((action) -> this.simulationEngine.trackAnimal((finalX - 1) + lowerLeft.x, upperRight.y - (finalY)));
                     this.gridPane.add(button, x, y, 1, 1);
-
+                    GridPane.setHalignment(vBox, HPos.CENTER);
                 }
 
             }

@@ -116,7 +116,7 @@ public class SimulationEngine implements Runnable {
 
             while (pause) {
                 try {
-//                    Platform.runLater(() -> this.simulationWindow.createPauseMap(this.map, popularGen));
+                    Platform.runLater(() -> this.simulationWindow.createPauseMap(this.map, popularGen));
                     sleep(100);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
