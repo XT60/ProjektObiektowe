@@ -31,7 +31,7 @@ public class ConfigurationWindow {
     private final TextField csvFileNameField = new TextField();
     private VBox csvPathSelection;
 
-    private final Spinner<Integer> epochCountSpinner = new Spinner<>(1, 10000, 100);
+    private final Spinner<Integer> epochCountSpinner = new Spinner<>(1, 100, 20);
     private final Spinner<Double> epochDurationSpinner = new Spinner<>(0.1, 5, 0.5, 0.1);
 
     /**
@@ -139,8 +139,7 @@ public class ConfigurationWindow {
         });
         Button newConfigFileBtn = new Button("New File");
         newConfigFileBtn.setOnAction(event -> {
-            InputConfigurationWindow inputConfigurationWindow = new InputConfigurationWindow();
-            new Thread(inputConfigurationWindow).run();
+            new InputConfigurationWindow();
         });
 
         //Container with choiceBox and buttons

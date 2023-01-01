@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class InputConfigurationWindow  implements Runnable{
+public class InputConfigurationWindow {
     private final Map<WorldParamType, Spinner<Integer>> paramSpinners= new HashMap<>();
 
     private final TextField fileNameInputField = new TextField();
@@ -27,7 +27,48 @@ public class InputConfigurationWindow  implements Runnable{
     /**
      * Creates setup window for choosing new configuration file parameters values
      */
-    public InputConfigurationWindow(){ }
+    public InputConfigurationWindow(){
+        //Stage
+        Stage newWindow = new Stage();
+        newWindow.setTitle("Create new simulation configuration file");
+
+        //File name input
+        HBox spacingBox = new HBox();
+        HBox.setHgrow(spacingBox, Priority.ALWAYS);
+        HBox fileNameContainer = new HBox(
+                new Label("File name: "),
+                spacingBox,
+                fileNameInputField
+        );
+
+        //Param inputs
+        WorldParamType[] paramTypeValues = WorldParamType.values();
+        HBox[] paramInputContainers = new HBox[paramTypeValues.length];
+        for (int i = 0; i < paramTypeValues.length; i++){
+            paramInputContainers[i] = createParamInput(paramTypeValues[i]);
+        }
+
+        //Create submission button
+        Button submitButton = new Button("Create new configuration file");
+        HBox.setHgrow(submitButton, Priority.ALWAYS);
+        submitButton.setOnAction(event -> attemptToCreateNewFile());
+
+        //Main container
+        VBox container = new VBox(fileNameContainer);
+        container.getChildren().addAll(paramInputContainers);
+        container.getChildren().addAll(errorMsg, submitButton);
+
+        //Style container
+        container.setSpacing(15);
+        container.setPadding(new Insets(10,10,10, 10));
+        container.setAlignment(Pos.CENTER);
+
+        //Set view in window
+        newWindow.setScene(new Scene(container));
+
+        //Launch
+        newWindow.show();
+    }
 
     /**
      * Creates HBox containing parameter setup interface,
@@ -121,47 +162,4 @@ public class InputConfigurationWindow  implements Runnable{
         }
     }
 
-    @Override
-    public void run() {
-        //Stage
-        Stage newWindow = new Stage();
-        newWindow.setTitle("Create new simulation configuration file");
-
-        //File name input
-        HBox spacingBox = new HBox();
-        HBox.setHgrow(spacingBox, Priority.ALWAYS);
-        HBox fileNameContainer = new HBox(
-                new Label("File name: "),
-                spacingBox,
-                fileNameInputField
-        );
-
-        //Param inputs
-        WorldParamType[] paramTypeValues = WorldParamType.values();
-        HBox[] paramInputContainers = new HBox[paramTypeValues.length];
-        for (int i = 0; i < paramTypeValues.length; i++){
-            paramInputContainers[i] = createParamInput(paramTypeValues[i]);
-        }
-
-        //Create submission button
-        Button submitButton = new Button("Create new configuration file");
-        HBox.setHgrow(submitButton, Priority.ALWAYS);
-        submitButton.setOnAction(event -> attemptToCreateNewFile());
-
-        //Main container
-        VBox container = new VBox(fileNameContainer);
-        container.getChildren().addAll(paramInputContainers);
-        container.getChildren().addAll(errorMsg, submitButton);
-
-        //Style container
-        container.setSpacing(15);
-        container.setPadding(new Insets(10,10,10, 10));
-        container.setAlignment(Pos.CENTER);
-
-        //Set view in window
-        newWindow.setScene(new Scene(container));
-
-        //Launch
-        newWindow.show();
-    }
 }

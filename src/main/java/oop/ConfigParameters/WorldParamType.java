@@ -71,11 +71,8 @@ public enum WorldParamType {
                     REPRODUCTION_COST,
                     MIN_MUTATION_COUNT,
                     MAX_MUTATION_COUNT,
-                    ANIMAL_GENOME_LENGTH -> new Vector2d(0, 100);
-            case INIT_ANIMAL_COUNT -> new Vector2d(0, 1000);
-            case MAP_HEIGHT,
-                    MAP_WIDTH,
-                    INIT_PLANT_COUNT -> new Vector2d(0, 10000);
+                    ANIMAL_GENOME_LENGTH -> new Vector2d(0, 20);
+            case INIT_ANIMAL_COUNT, MAP_HEIGHT, MAP_WIDTH, INIT_PLANT_COUNT -> new Vector2d(0, 50);
         };
     }
 

@@ -33,8 +33,7 @@ public class ParameterValidator {
         SimulationWindow simulationWindow = new SimulationWindow();
         SimulationEngine simulationEngine = createSimulationEngine(worldParams, epochCount, epochDuration, simulationWindow, csvFilePath);
         simulationWindow.addSimulationEngine(simulationEngine);
-        Thread engineThread = new Thread(simulationEngine);
-        engineThread.start();
+        (new Thread(simulationEngine)).start();
     }
 
 
