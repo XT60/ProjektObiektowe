@@ -124,13 +124,13 @@ public class SimulationEngine implements Runnable {
             }
             int finalAverageEnergy = averageEnergy;
 
-            Platform.runLater(() -> this.simulationWindow.createMap(this.map, this.plantMap, finalCountOfAnimals, finalAverageEnergy, finalAverageAge));
+//            Platform.runLater(() -> this.simulationWindow.createMap(this.map, this.plantMap, finalCountOfAnimals, finalAverageEnergy, finalAverageAge));
 
-            try {
-                sleep((int) (epochDuration * 1000));
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+//            try {
+//                sleep((int) (epochDuration * 1000));
+//            } catch (InterruptedException e) {
+//                throw new RuntimeException(e);
+//            }
 
             Iterator<Animal> iterator = animalList.iterator();
             sumOfEnergy = 0;
@@ -176,6 +176,12 @@ public class SimulationEngine implements Runnable {
                 plantMap.addPlant();
             }
             Platform.runLater(() -> this.simulationWindow.createMap(this.map, this.plantMap, finalCountOfAnimals, finalAverageEnergy, finalAverageAge));
+
+            try {
+                sleep((int) (epochDuration * 1000));
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
 
     }
