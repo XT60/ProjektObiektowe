@@ -11,7 +11,10 @@ import oop.MapInterface.MapBorders.IMap;
 import oop.MapInterface.MapObjects.Animal;
 import oop.MapInterface.PlantsOnMap.IPlant;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 
 import static java.lang.Thread.enumerate;
@@ -37,12 +40,14 @@ public class SimulationEngine implements Runnable {
 
     private final SimulationWindow simulationWindow;
 
+    private String csvFilePath = null;
+
     public SimulationEngine(int numberOfAnimals, IMap map, IPlant plantMap, AnimalVariant animalVariant,
                             MutationVariant mutationVariant, AnimalConstants animalConstants,
                             SimulationWindow simulationWindow, int epochCount, double epochDuration, String csvFilePath) throws FileNotFoundException {
         this(numberOfAnimals, map, plantMap, animalVariant,
                 mutationVariant, animalConstants, simulationWindow, epochCount, epochDuration);
-        // csvFilePath
+        this.csvFilePath = csvFilePath;
     }
 
     public SimulationEngine(int numberOfAnimals, IMap map, IPlant plantMap, AnimalVariant animalVariant,
@@ -101,7 +106,7 @@ public class SimulationEngine implements Runnable {
 
     public void run() {
 
-        int countOfAnimals;
+        int countOfAnimals = 0;
         int sumOfEnergy = plantMap.getPlantsEnergy() * animalList.size();
         int averageEnergy = sumOfEnergy;
 
@@ -195,6 +200,39 @@ public class SimulationEngine implements Runnable {
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
+        }
+//        if (this.csvFilePath != null){
+//            saveToCsv(this.csvFilePath, countOfAnimals, averageEnergy, averageAge);
+//        }
+    }
+
+    private void saveToCsv(String csvFilePath, int countOfAnimals, int countOfPlants, int freePlacesCount,
+                           int[] mostPopularGenome, int avgEnergy, int avgLifeSpan){
+        File csvFile = new File(csvFilePath);
+        if (csvFile.exists()){
+            throw new IllegalArgumentException("There already is file: " + csvFilePath);
+        }
+
+        // Create a String with the contents of the CSV file
+        String csv = "ID,Name,Age\n" +
+        "liczba wszystkich zwierząt," + Integer.toString(countOfAnimals) +
+        "liczby wszystkich roślin," + Integer.toString(countOfPlants) +
+        "liczba wolnych pól," +  Integer.toString(freePlacesCount) +
+        "najpopularniejszy genotyp, " + Arrays.toString(mostPopularGenome) +
+        "średniego poziomu energii dla żyjących zwierząt, " + Integer.toString(avgEnergy) +
+        "średniej długości życia zwierząt dla martwych zwierząt," + Integer.toString(avgLifeSpan);
+
+        try {
+            // Create a FileWriter and specify the file path and name
+            FileWriter writer = new FileWriter(csvFile);
+
+            // Use the write() method to write the contents of the CSV file to the file
+            writer.write(csv);
+
+            // Close the FileWriter
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
     }
