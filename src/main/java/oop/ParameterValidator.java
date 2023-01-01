@@ -27,15 +27,16 @@ public class ParameterValidator {
      * @throws FileNotFoundException        if file was not found
      * @throws IllegalArgumentException     if given arguments are not fitting the standard
      */
-    public ParameterValidator(String configFileName, Integer epochCount, Double epochDuration) throws FileNotFoundException, IllegalArgumentException{
+    public ParameterValidator(String configFileName, Integer epochCount, Double epochDuration, String csvFilePath) throws FileNotFoundException, IllegalArgumentException{
         worldParams = loadParamWorld(configFileName);
         checkConsistency();
         SimulationWindow simulationWindow = new SimulationWindow();
-        SimulationEngine simulationEngine = createSimulationEngine(worldParams, epochCount, epochDuration, simulationWindow, null);
+        SimulationEngine simulationEngine = createSimulationEngine(worldParams, epochCount, epochDuration, simulationWindow, csvFilePath);
         simulationWindow.addSimulationEngine(simulationEngine);
         Thread engineThread = new Thread(simulationEngine);
         engineThread.start();
     }
+
 
     public SimulationEngine createSimulationEngine(Map<WorldParamType, Object> worldParams, int epochCount,
                                        Double epochDuration, SimulationWindow simulationWindow, String csvFilePath) throws FileNotFoundException {
@@ -77,24 +78,6 @@ public class ParameterValidator {
         return new SimulationEngine(numberOfAnimals, map, plantMap, animalVariant,
                 mutationVariant, animalConstants, simulationWindow, epochCount, epochDuration, csvFilePath);
 
-    }
-
-
-    /**
-     * attempts to create simulation instance
-     * if not successful throws exception with error message
-     * @param configFileName        name of config file in config directory
-     * @param csvFilePath           path of a file for saving statistics
-     * @throws FileNotFoundException        when config file was not found
-     * @throws IllegalArgumentException     when given config file is not well-formatted
-     */
-    public ParameterValidator(String configFileName, Integer epochCount, Double epochDuration, String csvFilePath)
-            throws FileNotFoundException, IllegalArgumentException{
-        worldParams = loadParamWorld(configFileName);
-        checkConsistency();
-        SimulationWindow simulationWindow = new SimulationWindow();
-        createSimulationEngine(worldParams, epochCount, epochDuration, simulationWindow, csvFilePath);
-//        csvFileName <-- save simulation statistics here, before that check if file still doesn't exists, do not overwrite!
     }
 
 
@@ -167,7 +150,7 @@ public class ParameterValidator {
      */
     public static String startNewSimulation(String ConfigFileName, Integer epochCount, Double epochDuration){
         try{
-            new ParameterValidator(ConfigFileName, epochCount, epochDuration);
+            new ParameterValidator(ConfigFileName, epochCount, epochDuration, null);
             return "";
         }
         catch (IllegalArgumentException | FileNotFoundException e){

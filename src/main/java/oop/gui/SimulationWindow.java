@@ -38,6 +38,7 @@ public class SimulationWindow {
     Vector2d lowerLeft, upperRight;
     final GridPane gridPane = new GridPane();
     SimulationEngine simulationEngine;
+    private int freeSpaces = 0;
 
     public void addSimulationEngine(SimulationEngine simulationEngine){
         this.simulationEngine = simulationEngine;
@@ -90,7 +91,7 @@ public class SimulationWindow {
 
 
     public void placeObjectsOnGrid(IMap map, IPlant plants, int countOfAnimals, int averageEnergy, int averageAge){
-        int freeSpaces = horizontal*(vertical-1);
+        freeSpaces = horizontal*(vertical-1);
         for (int x = 1; x <= horizontal; x++) {
             for (int y = 1; y <= vertical; y++) {
                 Vector2d position = new Vector2d((x - 1) + lowerLeft.x, upperRight.y - (y));
@@ -213,4 +214,7 @@ public class SimulationWindow {
         }
     }
 
+    public int getFreeSpaces() {
+        return freeSpaces;
+    }
 }

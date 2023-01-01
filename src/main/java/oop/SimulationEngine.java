@@ -161,6 +161,7 @@ public class SimulationEngine implements Runnable {
                 else {
                     Vector2d newPosition = animal.turn();
                     if (map.canMoveTo(newPosition)) {
+
                         animal.move(map.changePosition(animal, newPosition));
                     } else {
                         animal.reverse();
@@ -201,26 +202,27 @@ public class SimulationEngine implements Runnable {
                 throw new RuntimeException(e);
             }
         }
-//        if (this.csvFilePath != null){
-//            saveToCsv(this.csvFilePath, countOfAnimals, averageEnergy, averageAge);
-//        }
+        if (this.csvFilePath != null){
+            saveToCsv(this.csvFilePath, countOfAnimals, plantMap.getNumberOfPlants(), simulationWindow.getFreeSpaces(),
+                    popularGen, averageEnergy, averageAge);
+        }
     }
 
     private void saveToCsv(String csvFilePath, int countOfAnimals, int countOfPlants, int freePlacesCount,
-                           int[] mostPopularGenome, int avgEnergy, int avgLifeSpan){
+                           int mostPopularGenome, int avgEnergy, int avgLifeSpan){
         File csvFile = new File(csvFilePath);
         if (csvFile.exists()){
             throw new IllegalArgumentException("There already is file: " + csvFilePath);
         }
 
         // Create a String with the contents of the CSV file
-        String csv = "ID,Name,Age\n" +
-        "liczba wszystkich zwierząt," + Integer.toString(countOfAnimals) +
-        "liczby wszystkich roślin," + Integer.toString(countOfPlants) +
-        "liczba wolnych pól," +  Integer.toString(freePlacesCount) +
-        "najpopularniejszy genotyp, " + Arrays.toString(mostPopularGenome) +
-        "średniego poziomu energii dla żyjących zwierząt, " + Integer.toString(avgEnergy) +
-        "średniej długości życia zwierząt dla martwych zwierząt," + Integer.toString(avgLifeSpan);
+        String csv =
+            "liczba wszystkich zwierząt," + Integer.toString(countOfAnimals) + '\n' +
+            "liczby wszystkich roślin," + Integer.toString(countOfPlants) + '\n' +
+            "liczba wolnych pól," +  Integer.toString(freePlacesCount) + '\n' +
+            "najpopularniejszy genotyp, " + Integer.toString(mostPopularGenome) + '\n' +
+            "średniego poziomu energii dla żyjących zwierząt, " + Integer.toString(avgEnergy) + '\n' +
+            "średniej długości życia zwierząt dla martwych zwierząt," + Integer.toString(avgLifeSpan);
 
         try {
             // Create a FileWriter and specify the file path and name

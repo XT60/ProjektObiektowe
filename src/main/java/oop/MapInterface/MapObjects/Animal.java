@@ -171,7 +171,7 @@ public class Animal implements IMapElement {
 
 
     /**
-     * Compares priority of 2 animals (used when competing for same plant)
+     * Compares priority of 2 animals
      * @param otherAnimal       other animal
      * @return                  compare result (-1|0|1)
      */
@@ -184,10 +184,7 @@ public class Animal implements IMapElement {
                 return cmpRes;
             }
         }
-       if(this.hashCode()== otherAnimal.hashCode()){
-           return 0;
-       }
-       return 1;
+        return cmp(this.hashCode(), otherAnimal.hashCode());
     }
 
     private int cmp(int a, int b){
