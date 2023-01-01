@@ -83,7 +83,7 @@ public abstract class AbstractGenomeHolder {
      * @return int responding to next gen value
      */
     public int getNextGen(){
-        return genome[this.indexChanger.getIndex()];
+        return genome[this.indexChanger.next()];
     }
 
 
