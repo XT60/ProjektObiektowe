@@ -16,6 +16,7 @@ import javafx.scene.layout.RowConstraints;
 import java.io.FileNotFoundException;
 
 import oop.MapInterface.IMapElement;
+import oop.MapInterface.MapObjects.Animal;
 import oop.MapInterface.PlantsOnMap.IPlant;
 import oop.World;
 import oop.MapInterface.MapBorders.*;
@@ -113,7 +114,31 @@ public class SimulationWindow {
         Button pauseButton = new Button("Pause/Play");
         pauseButton.setOnAction((action) -> Platform.runLater(() -> simulationEngine.stopOrResume()));
         this.gridPane.add(pauseButton,width+3, 5);
+
+        Animal trackedAnimal = simulationEngine.getTrackedAnimal();
+        if(simulationEngine.isAnimalTracked() && trackedAnimal != null){
+
+//            Label animalCount = new Label("Animal count: " + countOfAnimals);
+//            this.gridPane.add(animalCount,width+3,7);
+//            Label plantsCount = new Label("Plants count: " + plants.getNumberOfPlants());
+//            this.gridPane.add(plantsCount,width+3,8);
+
+            Label animalEnergy = new Label("Animal energy: " + trackedAnimal.getEnergy());
+            this.gridPane.add(animalEnergy,width+3,9);
+
+            Label numberOfEatenPlants = new Label("Number of eaten plants: " + trackedAnimal.getNumberOfEatenPlants());
+            this.gridPane.add(numberOfEatenPlants,width+3,10);
+
+            Label numberOfKids = new Label("Number of kids: " + trackedAnimal.getChildrenCount());
+            this.gridPane.add(numberOfKids, width+3, 11);
+
+            Label animalAge = new Label("Animal age: " + trackedAnimal.getAge());
+            this.gridPane.add(animalAge, width+3, 12);
+        }
     }
+
+
+
 
     private void addingObjectOnMap(int x, int y, IMapElement mapObject) {
         GuiElementBox guiElementBox = null;
@@ -122,7 +147,9 @@ public class SimulationWindow {
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-        this.gridPane.add(guiElementBox.getvBox(), x, y, 1, 1);
+        Button button = guiElementBox.getButton();
+        button.setOnAction((action) -> this.simulationEngine.trackAnimal((x - 1) + lowerLeft.x, upperRight.y - (y)));
+        this.gridPane.add(button, x, y, 1, 1);
         GridPane.setHalignment(guiElementBox.getvBox(), HPos.CENTER);
     }
 

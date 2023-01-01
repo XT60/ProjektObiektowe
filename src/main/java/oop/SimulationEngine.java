@@ -27,6 +27,8 @@ public class SimulationEngine implements Runnable {
     private final List<Animal> animalList = new LinkedList<>();
 
     private boolean pause = false;
+    private boolean currentyTrackingAnimal = false;
+    Animal trackedAnimal;
 
     private final SimulationWindow simulationWindow;
 
@@ -69,6 +71,24 @@ public class SimulationEngine implements Runnable {
         pause =! pause;
     }
 
+    public boolean isAnimalTracked(){
+        return currentyTrackingAnimal;
+    }
+
+    public Animal getTrackedAnimal(){
+        return trackedAnimal;
+    }
+
+    public void trackAnimal(int x, int y){
+        currentyTrackingAnimal = true;
+        if(trackedAnimal != null){
+            trackedAnimal.endTracking();
+        }
+        trackedAnimal = this.map.animalAt(new Vector2d(x,y));
+        if( trackedAnimal != null){
+        trackedAnimal.startTracking();
+        }
+    }
 
     public void run() {
 
@@ -154,7 +174,7 @@ public class SimulationEngine implements Runnable {
             for (int i = 0; i < plantGrowthPerDay; i++) {
                 plantMap.addPlant();
             }
-
+            Platform.runLater(() -> this.simulationWindow.createMap(this.map, this.plantMap, finalCountOfAnimals, finalAverageEnergy, finalAverageAge));
         }
 
     }

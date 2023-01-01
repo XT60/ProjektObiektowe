@@ -26,9 +26,9 @@ public class DeadAnimalsHolderElement {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof DeadAnimalsHolderElement that)) return false;
-
-        if (deadAnimalsCount != that.deadAnimalsCount) return false;
-        if (currentlyOnMap != that.currentlyOnMap) return false;
+//
+//        if (deadAnimalsCount != that.deadAnimalsCount) return false;
+//        if (currentlyOnMap != that.currentlyOnMap) return false;
         return position.equals(that.position);
     }
 

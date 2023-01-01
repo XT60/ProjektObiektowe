@@ -21,6 +21,9 @@ public class Animal implements IMapElement {
     protected int childrenCount = 0;
     private Vector2d position;
 
+    boolean tracked = false;
+     private int numberOfEatenPlants = 0;
+
     AnimalConstants constants;
 
 
@@ -101,6 +104,7 @@ public class Animal implements IMapElement {
      * increases animal energy of PLANT_ENERGY constant value
      */
     public void feed(){
+        this.numberOfEatenPlants++;
         this.energy += constants.get(WorldParamType.PLANT_ENERGY);
     }
 
@@ -221,6 +225,15 @@ public class Animal implements IMapElement {
         return new Vector2d(position);
     }
 
+    public int getNumberOfEatenPlants() { return this.numberOfEatenPlants;}
+
+    public void startTracking(){
+        this.tracked = true;
+    }
+    public void endTracking(){
+        this.tracked = false;
+    }
+
     private String energyLevel(){
         if(this.energy>= this.constants.get(WorldParamType.INIT_ANIMAL_ENERGY)){
             return "";
@@ -232,6 +245,9 @@ public class Animal implements IMapElement {
     }
 
     public String getView(){
+        if (tracked){
+            return "src/main/resources/red_point.png";
+        }
         return switch(this.direction){
             case N -> "src/main/resources/N"+ energyLevel() + ".png";
             case NE -> "src/main/resources/NE" + energyLevel() + ".png";
@@ -254,9 +270,7 @@ public class Animal implements IMapElement {
         if (age != animal.age) return false;
         if (childrenCount != animal.childrenCount) return false;
         if (direction != animal.direction) return false;
-        if (!genomeHolder.equals(animal.genomeHolder)) return false;
-        if (!position.equals(animal.position)) return false;
-        return constants.equals(animal.constants);
+        return (position.equals(animal.position));
     }
 
     @Override

@@ -2,10 +2,7 @@ package oop.MapInterface.MapObjects.GenomeHolders;
 
 import oop.ConfigParameters.AnimalVariant;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 public abstract class AbstractGenomeHolder {
         protected final int[] genome;
@@ -146,5 +143,20 @@ public abstract class AbstractGenomeHolder {
         return -1;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof AbstractGenomeHolder that)) return false;
+
+        if (!Arrays.equals(genome, that.genome)) return false;
+        return Objects.equals(indexChanger, that.indexChanger);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Arrays.hashCode(genome);
+        result = 31 * result + (indexChanger != null ? indexChanger.hashCode() : 0);
+        return result;
+    }
 }
 

@@ -21,6 +21,7 @@ abstract class AbstractMap implements IMap {
 
     @Override
     public void addAnimal(Animal animal, Vector2d position){
+        animal.move(position);
         if(!animals.containsKey(position)){
             animals.put(position, new TreeSet<>(new AnimalComparator()) {});
         }
@@ -90,6 +91,14 @@ abstract class AbstractMap implements IMap {
             }
         }
         return procreatedAnimals;
+    }
+
+    public Animal animalAt(Vector2d position){
+        if(animals.containsKey(position)){
+            animals.get(position).first().startTracking();
+            return animals.get(position).first();
+        }
+        return null;
     }
 
     abstract public boolean canMoveTo(Vector2d position);
