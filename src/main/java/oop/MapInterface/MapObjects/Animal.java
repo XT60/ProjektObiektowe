@@ -23,6 +23,8 @@ public class Animal implements IMapElement {
 
     boolean tracked = false;
      private int numberOfEatenPlants = 0;
+     private int currentGen;
+     private int dateOfDeath = 0;
 
     AnimalConstants constants;
 
@@ -70,6 +72,7 @@ public class Animal implements IMapElement {
      */
     public Vector2d turn(){
         int gen = genomeHolder.getNextGen();
+        this.currentGen = gen;
         direction = direction.turn(gen);
         energy -= 1;
         age += 1;
@@ -223,6 +226,21 @@ public class Animal implements IMapElement {
 
     public Vector2d getPosition() {
         return new Vector2d(position);
+    }
+
+    public int getCurrentGen(){
+        return this.currentGen;
+    }
+
+    public int[] getGenome(){
+        return this.genomeHolder.getGenome();
+    }
+
+    public void setDateOfDeath(int dateOfDeath){
+        this.dateOfDeath=dateOfDeath;
+    }
+    public int getDateOfDeath(){
+        return this.dateOfDeath;
     }
 
     public int getNumberOfEatenPlants() { return this.numberOfEatenPlants;}

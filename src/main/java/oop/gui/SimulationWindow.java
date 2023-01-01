@@ -14,6 +14,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.RowConstraints;
 import java.io.FileNotFoundException;
+import java.util.Arrays;
+import java.util.ArrayList;
 
 import oop.MapInterface.IMapElement;
 import oop.MapInterface.MapObjects.Animal;
@@ -27,7 +29,8 @@ import static java.lang.Math.min;
 
 public class SimulationWindow {
 
-    int horizontal,vertical,width=40, height=40;
+    int horizontal,vertical;
+    int width=40, height=40;
     Vector2d lowerLeft, upperRight;
     final GridPane gridPane = new GridPane();
     SimulationEngine simulationEngine;
@@ -118,10 +121,11 @@ public class SimulationWindow {
         Animal trackedAnimal = simulationEngine.getTrackedAnimal();
         if(simulationEngine.isAnimalTracked() && trackedAnimal != null){
 
-//            Label animalCount = new Label("Animal count: " + countOfAnimals);
-//            this.gridPane.add(animalCount,width+3,7);
-//            Label plantsCount = new Label("Plants count: " + plants.getNumberOfPlants());
-//            this.gridPane.add(plantsCount,width+3,8);
+            Label genome = new Label("Animal genome: " + Arrays.toString(trackedAnimal.getGenome()));
+            this.gridPane.add(genome,width+3,7);
+
+            Label currentGen = new Label("Currently active gen: " + trackedAnimal.getCurrentGen());
+            this.gridPane.add(currentGen,width+3,8);
 
             Label animalEnergy = new Label("Animal energy: " + trackedAnimal.getEnergy());
             this.gridPane.add(animalEnergy,width+3,9);
@@ -134,6 +138,11 @@ public class SimulationWindow {
 
             Label animalAge = new Label("Animal age: " + trackedAnimal.getAge());
             this.gridPane.add(animalAge, width+3, 12);
+
+            if(trackedAnimal.getDateOfDeath() != 0 ) {
+                Label animalDateOfDeath = new Label("Animal died at day: " + trackedAnimal.getDateOfDeath());
+                this.gridPane.add(animalDateOfDeath, width + 3, 13);
+            }
         }
     }
 

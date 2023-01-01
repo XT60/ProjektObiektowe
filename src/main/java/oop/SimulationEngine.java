@@ -142,6 +142,7 @@ public class SimulationEngine implements Runnable {
                     sumOfAge += animal.getAge();
                     numberOfDeathAnimals++;
                     map.removeAnimal(animal);
+                    animal.setDateOfDeath(day);
                     iterator.remove();
                 }
 
