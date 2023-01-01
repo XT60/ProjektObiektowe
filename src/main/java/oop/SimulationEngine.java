@@ -30,6 +30,11 @@ public class SimulationEngine implements Runnable {
     private boolean currentyTrackingAnimal = false;
     Animal trackedAnimal;
 
+    private final int[] popularGenoms = new int[8];
+
+    int popularGen=0;
+
+
     private final SimulationWindow simulationWindow;
 
     public SimulationEngine(int numberOfAnimals, IMap map, IPlant plantMap, AnimalVariant animalVariant,
@@ -84,10 +89,14 @@ public class SimulationEngine implements Runnable {
         if(trackedAnimal != null){
             trackedAnimal.endTracking();
         }
-        trackedAnimal = this.map.animalAt(new Vector2d(x,y));
+        trackedAnimal = this.map.animalAt(new Vector2d(x,y), true);
         if( trackedAnimal != null){
         trackedAnimal.startTracking();
         }
+    }
+
+    public int getPopularGen(){
+        return this.popularGen;
     }
 
     public void run() {
@@ -102,9 +111,12 @@ public class SimulationEngine implements Runnable {
         Platform.runLater(() -> this.simulationWindow.launchSimulationWindow(this.map));
 
         for (int day = 1; day <= epochCount; day++) {
+            for(int i =0 ; i<8; i++)
+                popularGenoms[i]=0;
 
             while (pause) {
                 try {
+//                    Platform.runLater(() -> this.simulationWindow.createPauseMap(this.map, popularGen));
                     sleep(100);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
@@ -123,14 +135,6 @@ public class SimulationEngine implements Runnable {
                 averageEnergy = sumOfEnergy / countOfAnimals;
             }
             int finalAverageEnergy = averageEnergy;
-
-//            Platform.runLater(() -> this.simulationWindow.createMap(this.map, this.plantMap, finalCountOfAnimals, finalAverageEnergy, finalAverageAge));
-
-//            try {
-//                sleep((int) (epochDuration * 1000));
-//            } catch (InterruptedException e) {
-//                throw new RuntimeException(e);
-//            }
 
             Iterator<Animal> iterator = animalList.iterator();
             sumOfEnergy = 0;
@@ -154,9 +158,16 @@ public class SimulationEngine implements Runnable {
                     } else {
                         animal.reverse();
                     }
+                    popularGenoms[animal.getCurrentGen()]++;
                 }
             }
-
+            int tmp =0;
+            for(int i=0; i<8; i++){
+                if (tmp<popularGenoms[i]){
+                        tmp=popularGenoms[i];
+                        popularGen=i;
+                }
+            }
 
             // feed all animals
             this.map.feedAnimals(this.plantMap);

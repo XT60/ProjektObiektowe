@@ -37,7 +37,7 @@ public interface IMap {
 
     LinkedList<Animal> procreateAnimals();
 
-    Animal animalAt(Vector2d position);
+    Animal animalAt(Vector2d position, boolean tracking);
 
 }
 

@@ -7,12 +7,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.RowConstraints;
+
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.ArrayList;
@@ -106,42 +110,50 @@ public class SimulationWindow {
         }
         Label animalCount = new Label("Animal count: " + countOfAnimals);
         this.gridPane.add(animalCount,width+3,0);
+
         Label plantsCount = new Label("Plants count: " + plants.getNumberOfPlants());
         this.gridPane.add(plantsCount,width+3,1);
+
         Label freeSpace = new Label("Number of free fields: " + freeSpaces);
         this.gridPane.add(freeSpace,width+3,2);
+
+        Label mostPopularGen = new Label("Most popular gen: " + this.simulationEngine.getPopularGen());
+        this.gridPane.add(mostPopularGen,width+3,3);
+
         Label avgEnergy = new Label("Average energy: " + averageEnergy);
-        this.gridPane.add(avgEnergy,width+3,3);
+        this.gridPane.add(avgEnergy,width+3,4);
+
         Label avgAge = new Label("Life expectancy: " + averageAge);
-        this.gridPane.add(avgAge,width+3,4);
+        this.gridPane.add(avgAge,width+3,5);
+
         Button pauseButton = new Button("Pause/Play");
         pauseButton.setOnAction((action) -> Platform.runLater(() -> simulationEngine.stopOrResume()));
-        this.gridPane.add(pauseButton,width+3, 5);
+        this.gridPane.add(pauseButton,width+3, 6);
 
         Animal trackedAnimal = simulationEngine.getTrackedAnimal();
         if(simulationEngine.isAnimalTracked() && trackedAnimal != null){
 
             Label genome = new Label("Animal genome: " + Arrays.toString(trackedAnimal.getGenome()));
-            this.gridPane.add(genome,width+3,7);
+            this.gridPane.add(genome,width+3,8);
 
             Label currentGen = new Label("Currently active gen: " + trackedAnimal.getCurrentGen());
-            this.gridPane.add(currentGen,width+3,8);
+            this.gridPane.add(currentGen,width+3,9);
 
             Label animalEnergy = new Label("Animal energy: " + trackedAnimal.getEnergy());
-            this.gridPane.add(animalEnergy,width+3,9);
+            this.gridPane.add(animalEnergy,width+3,10);
 
             Label numberOfEatenPlants = new Label("Number of eaten plants: " + trackedAnimal.getNumberOfEatenPlants());
-            this.gridPane.add(numberOfEatenPlants,width+3,10);
+            this.gridPane.add(numberOfEatenPlants,width+3,11);
 
             Label numberOfKids = new Label("Number of kids: " + trackedAnimal.getChildrenCount());
-            this.gridPane.add(numberOfKids, width+3, 11);
+            this.gridPane.add(numberOfKids, width+3, 12);
 
             Label animalAge = new Label("Animal age: " + trackedAnimal.getAge());
-            this.gridPane.add(animalAge, width+3, 12);
+            this.gridPane.add(animalAge, width+3, 13);
 
             if(trackedAnimal.getDateOfDeath() != 0 ) {
                 Label animalDateOfDeath = new Label("Animal died at day: " + trackedAnimal.getDateOfDeath());
-                this.gridPane.add(animalDateOfDeath, width + 3, 13);
+                this.gridPane.add(animalDateOfDeath, width + 3, 14);
             }
         }
     }
@@ -171,5 +183,35 @@ public class SimulationWindow {
         placeObjectsOnGrid(map,plantMap,countOfAnimals, averageEnergy, averageAge);
     }
 
+    public void createPauseMap(IMap map, int popularGen) {
+        this.gridPane.getChildren();
+        for (int x = 1; x <= horizontal; x++) {
+            for (int y = 1; y <= vertical; y++) {
+                Vector2d position = new Vector2d((x - 1) + lowerLeft.x, upperRight.y - (y));
+                Animal animal = map.animalAt(position, false);
+                if (animal != null && animal.getCurrentGen() == popularGen ) {
+                    Image image;
+                    try {
+                        image = new Image(new FileInputStream("src/main/resources/highlighted.png"));
+                    } catch (FileNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
+                    ImageView imageView = new ImageView(image);
+                    imageView.setFitHeight(20);
+                    imageView.setFitWidth(20);
+                    Button button = new Button();
+                    button.setGraphic(imageView);
+                    button.setGraphic(imageView);
+                    button.setAlignment(Pos.CENTER);
+                    int finalX = x;
+                    int finalY = y;
+                    button.setOnAction((action) -> this.simulationEngine.trackAnimal((finalX - 1) + lowerLeft.x, upperRight.y - (finalY)));
+                    this.gridPane.add(button, x, y, 1, 1);
+
+                }
+
+            }
+        }
+    }
 
 }

@@ -93,9 +93,11 @@ abstract class AbstractMap implements IMap {
         return procreatedAnimals;
     }
 
-    public Animal animalAt(Vector2d position){
+    public Animal animalAt(Vector2d position, boolean tracking){
         if(animals.containsKey(position)){
-            animals.get(position).first().startTracking();
+            if(tracking){
+                animals.get(position).first().startTracking();
+            }
             return animals.get(position).first();
         }
         return null;

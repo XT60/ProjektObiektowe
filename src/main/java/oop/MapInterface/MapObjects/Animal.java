@@ -266,6 +266,7 @@ public class Animal implements IMapElement {
         if (tracked){
             return "src/main/resources/red_point.png";
         }
+
         return switch(this.direction){
             case N -> "src/main/resources/N"+ energyLevel() + ".png";
             case NE -> "src/main/resources/NE" + energyLevel() + ".png";
