@@ -200,15 +200,13 @@ public class SimulationWindow {
                     imageView.setFitWidth(20);
                     Button button = new Button();
                     button.setGraphic(imageView);
-                    button.setGraphic(imageView);
                     button.setAlignment(Pos.CENTER);
                     VBox vBox = new VBox(imageView);
                     vBox.setAlignment(Pos.CENTER);
                     int finalX = x;
                     int finalY = y;
                     button.setOnAction((action) -> this.simulationEngine.trackAnimal((finalX - 1) + lowerLeft.x, upperRight.y - (finalY)));
-                    this.gridPane.add(button, x, y, 1, 1);
-                    GridPane.setHalignment(vBox, HPos.CENTER);
+                    this.gridPane.add(button, finalX, finalY, 1, 1);
                 }
 
             }

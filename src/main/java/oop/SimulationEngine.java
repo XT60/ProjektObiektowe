@@ -113,10 +113,12 @@ public class SimulationEngine implements Runnable {
         for (int day = 1; day <= epochCount; day++) {
             for(int i =0 ; i<8; i++)
                 popularGenoms[i]=0;
+            if(pause){
+                Platform.runLater(() -> this.simulationWindow.createPauseMap(this.map,popularGen));
+            }
 
             while (pause) {
                 try {
-                    Platform.runLater(() -> this.simulationWindow.createPauseMap(this.map, popularGen));
                     sleep(100);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
