@@ -6,10 +6,10 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -19,12 +19,10 @@ import javafx.scene.layout.RowConstraints;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
-import java.util.ArrayList;
 
 import oop.MapInterface.IMapElement;
 import oop.MapInterface.MapObjects.Animal;
 import oop.MapInterface.PlantsOnMap.IPlant;
-import oop.World;
 import oop.MapInterface.MapBorders.*;
 import oop.*;
 
@@ -161,8 +159,6 @@ public class SimulationWindow {
     }
 
 
-
-
     private void addingObjectOnMap(int x, int y, IMapElement mapObject) {
         GuiElementBox guiElementBox = null;
         try {
@@ -217,5 +213,28 @@ public class SimulationWindow {
 
     public int getFreeSpaces() {
         return freeSpaces;
+    }
+
+    public void showEndSimulationSuccessWindow(){
+        Label msgLabel = new Label("Simulation engine has finished successfully");
+        msgLabel.setTextFill(Color.GREEN);
+        createNewWindowWithLabel(msgLabel);
+
+    }
+
+    public void showEndSimulationErrorWindow(String ErrorMsg){
+        Label msgLabel = new Label(ErrorMsg);
+        msgLabel.setTextFill(Color.RED);
+        createNewWindowWithLabel(msgLabel);
+    }
+
+    private void createNewWindowWithLabel(Label label){
+        Stage newWindow = new Stage();
+        newWindow.setTitle("Simulation has ended");
+        HBox hBox = new HBox(label);
+        hBox.setAlignment(Pos.CENTER);
+        Scene scene = new Scene(hBox, 200, 100);
+        newWindow.setScene(scene);
+        newWindow.show();
     }
 }
