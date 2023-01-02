@@ -123,7 +123,7 @@ public class SimulationEngine implements Runnable {
                 for (int i = 0; i < 8; i++)
                     popularGenoms[i] = 0;
                 if (pause) {
-//                    Platform.runLater(() -> this.simulationWindow.createPauseMap(this.map, popularGen));
+                    Platform.runLater(() -> this.simulationWindow.createPauseMap(this.map, popularGen));
                 }
 
                 while (pause) {
@@ -198,7 +198,7 @@ public class SimulationEngine implements Runnable {
                 for (int i = 0; i < plantGrowthPerDay; i++) {
                     plantMap.addPlant();
                 }
-//                Platform.runLater(() -> this.simulationWindow.createMap(this.map, this.plantMap, finalCountOfAnimals, finalAverageEnergy, finalAverageAge));
+                Platform.runLater(() -> this.simulationWindow.createMap(this.map, this.plantMap, finalCountOfAnimals, finalAverageEnergy, finalAverageAge));
 
                 try {
                     sleep((int) (epochDuration * 1000));

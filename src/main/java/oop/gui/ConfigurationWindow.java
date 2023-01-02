@@ -32,7 +32,7 @@ public class ConfigurationWindow {
     private VBox csvPathSelection;
 
     private final Spinner<Integer> epochCountSpinner = new Spinner<>(1, 100, 20);
-    private final Spinner<Double> epochDurationSpinner = new Spinner<>(0.1, 5, 0.5, 0.1);
+    private final Spinner<Double> epochDurationSpinner = new Spinner<>(0.1, 1, 0.5, 0.1);
 
     /**
      * Creates window with fields to chose simulation course
