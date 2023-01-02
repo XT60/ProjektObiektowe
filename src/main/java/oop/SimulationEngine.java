@@ -37,6 +37,8 @@ public class SimulationEngine implements Runnable {
 
     int popularGen=0;
 
+    private boolean interruptedStop = false;
+
 
     private int day = 1;
     private final SimulationWindow simulationWindow;
@@ -121,7 +123,7 @@ public class SimulationEngine implements Runnable {
                 for (int i = 0; i < 8; i++)
                     popularGenoms[i] = 0;
                 if (pause) {
-                    Platform.runLater(() -> this.simulationWindow.createPauseMap(this.map, popularGen));
+//                    Platform.runLater(() -> this.simulationWindow.createPauseMap(this.map, popularGen));
                 }
 
                 while (pause) {
@@ -196,7 +198,7 @@ public class SimulationEngine implements Runnable {
                 for (int i = 0; i < plantGrowthPerDay; i++) {
                     plantMap.addPlant();
                 }
-                Platform.runLater(() -> this.simulationWindow.createMap(this.map, this.plantMap, finalCountOfAnimals, finalAverageEnergy, finalAverageAge));
+//                Platform.runLater(() -> this.simulationWindow.createMap(this.map, this.plantMap, finalCountOfAnimals, finalAverageEnergy, finalAverageAge));
 
                 try {
                     sleep((int) (epochDuration * 1000));
@@ -204,19 +206,21 @@ public class SimulationEngine implements Runnable {
                     throw new RuntimeException(e);
                 }
             }
-            if (this.csvFilePath != null) {
-                try {
-                    saveToCsv(this.csvFilePath, countOfAnimals, plantMap.getNumberOfPlants(), simulationWindow.getFreeSpaces(),
-                            popularGen, averageEnergy, averageAge);
-                } catch (IOException e) {
-                    Platform.runLater(() ->
-                            this.simulationWindow.showEndSimulationErrorWindow("Csv file couldn't be created"));
-                } catch (IllegalArgumentException e) {
-                    Platform.runLater(() ->
-                            this.simulationWindow.showEndSimulationErrorWindow("Csv file already exists"));
+            if(! interruptedStop){
+                if (this.csvFilePath != null) {
+                    try {
+                        saveToCsv(this.csvFilePath, countOfAnimals, plantMap.getNumberOfPlants(), simulationWindow.getFreeSpaces(),
+                                popularGen, averageEnergy, averageAge);
+                    } catch (IOException e) {
+                        Platform.runLater(() ->
+                                this.simulationWindow.showEndSimulationErrorWindow("Csv file couldn't be created"));
+                    } catch (IllegalArgumentException e) {
+                        Platform.runLater(() ->
+                                this.simulationWindow.showEndSimulationErrorWindow("Csv file already exists"));
+                    }
+                } else {
+                    Platform.runLater(this.simulationWindow::showEndSimulationSuccessWindow);
                 }
-            } else {
-                Platform.runLater(this.simulationWindow::showEndSimulationSuccessWindow);
             }
         } catch (Exception e){
             Platform.runLater(() ->
@@ -254,6 +258,7 @@ public class SimulationEngine implements Runnable {
 
     public void stop(){
         day = epochCount;
+        interruptedStop = true;
     }
 
 }
